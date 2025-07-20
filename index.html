@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Games - Your Ultimate Gaming Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0F0F1A;
+            color: #E0E0E0;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        
+        /* Interactive Header Styles */
+        #interactive-header {
+            position: relative;
+            width: 100%;
+            height: 40vh; /* Adjust height as needed */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        #stars-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+        .text-glow {
+            text-shadow: 0 0 8px rgba(99, 102, 241, 0.6), 0 0 20px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Card and Button Styles */
+        .card-glow {
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
+        }
+        .card-glow:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.4);
+        }
+        .btn-premium {
+            transition: all 0.3s ease-in-out;
+            background-image: linear-gradient(to right, #4f46e5, #c026d3);
+        }
+        .btn-premium:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(192, 38, 211, 0.5);
+        }
+        .placeholder-img {
+            background-color: #1E1E2D;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6B7280;
+            font-weight: bold;
+            height: 100%;
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-4 py-8 md:py-12">
+
+        <!-- Jaw-Dropping Interactive Header -->
+        <header id="interactive-header" class="mb-12">
+            <canvas id="stars-canvas"></canvas>
+            <div class="header-content">
+                <h1 class="text-4xl md:text-6xl font-black uppercase text-glow text-white">Galaxy Games</h1>
+                <p class="text-lg md:text-xl text-indigo-300 mt-2">The next dimension of gaming is here.</p>
+            </div>
+        </header>
+
+        <!-- Games Grid -->
+        <main>
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+                
+                <!-- Game Card Template -->
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://static.the-independent.com/2025/07/17/9/23/FC-26-Ultimate-Edition.png" alt="FC 26 Ultimate Edition" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">FC 26 Ultimate Edition</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://image.api.playstation.com/vulcan/ap/rnd/202505/1215/bb65e43cac18b1a8eb69a4a2e83136edcbb62cc7f4ea32a0.png" alt="Maestro VR" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Maestro VR</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://m.media-amazon.com/images/M/MV5BYWU1NTk0YTItOWZkNi00YTllLWIzOTUtMGQ3NDMzMzBlMDg2XkEyXkFqcGc@.jpg" alt="Rocket League" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Rocket League</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://modfyp.com/uploads/2025/4/rematch-apk-download.webp" alt="Rematch Mobile" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Rematch Mobile</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://wallpapers.com/images/hd/2d-stardew-valley-farm-landscape-wrz3itabb20b7ec7.jpg" alt="Stardew Valley" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Stardew Valley</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://img.apkcafe.fr/img:bz04c2lqNDkmbD02NzEwJmg9cG5nJmY9Z2xtJmk9MTg0" alt="Street Chaser" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Street Chaser</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://www.latestmodapks.com/wp-content/uploads/2023/03/Baseball9-Mod-Main.png" alt="Baseball 9" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Baseball 9</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://thumbs.dreamstime.com/b/minecraft-vector-logo-minecraft-game-d-vector-logo-illustration-isolated-black-transparent-banner-background-can-be-used-164068992.jpg" alt="Minecraft Mobile" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Minecraft Mobile</h2>
+                        </div>
+                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/1E1E2D/E0E0E0?text=Cyberpunk+2077" alt="Cyberpunk 2077" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
+                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Cyberpunk 2077</h2>
+                        </div>
+                        <a href="#" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
+                            Download
+                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Footer Section with Security Badges -->
+        <footer class="mt-16 pt-8 border-t border-gray-700/50 text-center text-gray-400">
+            <div class="flex flex-wrap items-center justify-center gap-y-4 gap-x-6 md:gap-x-8">
+                <div class="flex items-center space-x-2">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.417l4.5-4.5m-2.036-5.036A11.955 11.955 0 0112 2.944a11.955 11.955 0 018.618 3.04A12.02 12.02 0 0021 20.417l-4.5-4.5m-2.036-5.036A11.955 11.955 0 0112 2.944"></path></svg>
+                    <span>Verified Secure</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                    <span>SSL Certified</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6z"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                    <span>Privacy Protected</span>
+                </div>
+            </div>
+            <p class="mt-6 text-sm">&copy; 2025 Galaxy Games. All rights reserved.</p>
+        </footer>
+
+    </div>
+
+    <!-- Three.js for the interactive header -->
+    <script type="module">
+        // UPDATED SCRIPT: Replaced the broken Skypack link with a stable jsdelivr link.
+        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
+
+        // Get the canvas element
+        const canvas = document.getElementById('stars-canvas');
+        const header = document.getElementById('interactive-header');
+
+        // Scene, Camera, Renderer
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, header.offsetWidth / header.offsetHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
+        
+        renderer.setSize(header.offsetWidth, header.offsetHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        // Create Particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const count = 5000; // Number of stars
+
+        const positions = new Float32Array(count * 3);
+        for (let i = 0; i < count * 3; i++) {
+            positions[i] = (Math.random() - 0.5) * 10; // Spread particles in a cube
+        }
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.02,
+            sizeAttenuation: true,
+            color: 0xffffff,
+            transparent: true,
+            opacity: 0.8,
+        });
+
+        const stars = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(stars);
+
+        camera.position.z = 5;
+
+        // Mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation Loop
+        const clock = new THREE.Clock();
+        const animate = () => {
+            const elapsedTime = clock.getElapsedTime();
+
+            // Animate stars
+            stars.rotation.y = elapsedTime * 0.05;
+            stars.rotation.x = elapsedTime * 0.02;
+
+            // Parallax effect
+            camera.position.x += (mouseX * 0.1 - camera.position.x) * 0.02;
+            camera.position.y += (mouseY * 0.1 - camera.position.y) * 0.02;
+            
+            camera.lookAt(scene.position);
+
+            renderer.render(scene, camera);
+            window.requestAnimationFrame(animate);
+        };
+
+        animate();
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = header.offsetWidth / header.offsetHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(header.offsetWidth, header.offsetHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+        });
+    </script>
+</body>
+</html>
+
