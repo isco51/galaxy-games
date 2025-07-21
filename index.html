@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Galaxy Games - Your Ultimate Gaming Hub</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
             font-family: 'Inter', sans-serif;
             background-color: #0F0F1A;
             color: #E0E0E0;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            overflow-x: hidden;
         }
         
-        /* Interactive Header Styles */
         #interactive-header {
             position: relative;
             width: 100%;
-            height: 40vh; /* Adjust height as needed */
+            height: 40vh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -38,10 +38,9 @@
             text-align: center;
         }
         .text-glow {
-            text-shadow: 0 0 8px rgba(99, 102, 241, 0.6), 0 0 20px rgba(99, 102, 241, 0.4);
+            text-shadow: 0 0 8px rgba(255, 107, 59, 0.6), 0 0 20px rgba(255, 107, 59, 0.4);
         }
 
-        /* Card and Button Styles */
         .card-glow {
             transition: all 0.3s ease-in-out;
             box-shadow: 0 0 15px rgba(99, 102, 241, 0.1);
@@ -58,254 +57,328 @@
             transform: scale(1.05);
             box-shadow: 0 0 20px rgba(192, 38, 211, 0.5);
         }
-        .placeholder-img {
-            background-color: #1E1E2D;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #6B7280;
-            font-weight: bold;
-            height: 100%;
-            width: 100%;
+        .star-rating .fa-star.filled {
+            color: #f59e0b;
         }
     </style>
 </head>
 <body class="bg-gray-900">
 
-    <!-- Main Container -->
     <div class="container mx-auto px-4 py-8 md:py-12">
 
-        <!-- Jaw-Dropping Interactive Header -->
-        <header id="interactive-header" class="mb-12">
+        <header id="interactive-header" class="mb-12 rounded-2xl">
             <canvas id="stars-canvas"></canvas>
             <div class="header-content">
                 <h1 class="text-4xl md:text-6xl font-black uppercase text-glow text-white">Galaxy Games</h1>
-                <p class="text-lg md:text-xl text-indigo-300 mt-2">The next dimension of gaming is here.</p>
+                <p class="text-lg md:text-xl text-orange-200 mt-2">The next dimension of gaming is here.</p>
             </div>
         </header>
 
-        <!-- Games Grid -->
         <main>
-            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-8">
+            <div class="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-8">
                 
-                <!-- Game Card Template -->
+                <!-- Game 1: FC 26 Ultimate Edition -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://static.the-independent.com/2025/07/17/9/23/FC-26-Ultimate-Edition.png" alt="FC 26 Ultimate Edition" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://static.the-independent.com/2025/07/17/9/23/FC-26-Ultimate-Edition.png" alt="FC 26 Ultimate Edition" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=FC+26';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">FC 26 Ultimate Edition</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">FC 26 Ultimate Edition</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">5M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.9</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$29.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Game 2: Five Nights At Chuck E Cheese -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://image.api.playstation.com/vulcan/ap/rnd/202505/1215/bb65e43cac18b1a8eb69a4a2e83136edcbb62cc7f4ea32a0.png" alt="Maestro VR" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/05/the-first-five-nights-at-freddy-s-movie-teaser-is-genuinely-scary-1.jpg" alt="Five Nights At Chuck E Cheese" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=FNAF';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Maestro VR</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Five Nights At Chuck E Cheese</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">3M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.7</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$9.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Game 3: GTA 6 -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://m.media-amazon.com/images/M/MV5BYWU1NTk0YTItOWZkNi00YTllLWIzOTUtMGQ3NDMzMzBlMDg2XkEyXkFqcGc@.jpg" alt="Rocket League" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://cdn.mos.cms.futurecdn.net/hBWx3UpU2Je2zJqrHLyUQW.jpg" alt="GTA 6" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=GTA+6';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Rocket League</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">GTA 6</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">PRE-REG</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">5.0</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$69.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Game 4: War Thunder -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://modfyp.com/uploads/2025/4/rematch-apk-download.webp" alt="Rematch Mobile" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://images6.alphacoders.com/131/thumbbig-1313835.webp" alt="War Thunder" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=War+Thunder';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Rematch Mobile</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">War Thunder</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">12M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.6</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$19.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Game 5: Who's at the door -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://wallpapers.com/images/hd/2d-stardew-valley-farm-landscape-wrz3itabb20b7ec7.jpg" alt="Stardew Valley" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://download.ir/wp-content/uploads/2025/07/Whos-at-the-door-Cover.jpg" alt="Who's at the door" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Who%27s+at+the+door';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Stardew Valley</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Who's at the Door</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">500K+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.2</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$4.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Game 6: Maestro VR -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://img.apkcafe.fr/img:bz04c2lqNDkmbD02NzEwJmg9cG5nJmY9Z2xtJmk9MTg0" alt="Street Chaser" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://image.api.playstation.com/vulcan/ap/rnd/202505/1215/bb65e43cac18b1a8eb69a4a2e83136edcbb62cc7f4ea32a0.png" alt="Maestro VR" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Maestro+VR';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Street Chaser</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Maestro VR</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">1M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.8</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$19.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 7: Rocket League -->
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://m.media-amazon.com/images/M/MV5BYWU1NTk0YTItOWZkNi00YTllLWIzOTUtMGQ3NDMzMzBlMDg2XkEyXkFqcGc@.jpg" alt="Rocket League" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Rocket+League';">
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Rocket League</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">10M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.7</span></div>
+                           </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$24.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 8: Rematch Mobile -->
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://modfyp.com/uploads/2025/4/rematch-apk-download.webp" alt="Rematch Mobile" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Rematch+Mobile';">
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Rematch Mobile</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">2M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.5</span></div>
+                           </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$9.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
                 
+                <!-- Game 9: Stardew Valley -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://www.latestmodapks.com/wp-content/uploads/2023/03/Baseball9-Mod-Main.png" alt="Baseball 9" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://wallpapers.com/images/hd/2d-stardew-valley-farm-landscape-wrz3itabb20b7ec7.jpg" alt="Stardew Valley" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Stardew+Valley';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Baseball 9</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Stardew Valley</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">8M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.9</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$14.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
+                <!-- Game 10: Street Chaser -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://thumbs.dreamstime.com/b/minecraft-vector-logo-minecraft-game-d-vector-logo-illustration-isolated-black-transparent-banner-background-can-be-used-164068992.jpg" alt="Minecraft Mobile" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://img.apkcafe.fr/img:bz04c2lqNDkmbD02NzEwJmg9cG5nJmY9Z2xtJmk9MTg0" alt="Street Chaser" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Street+Chaser';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Minecraft Mobile</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Street Chaser</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">15M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.4</span></div>
+                           </div>
                         </div>
-                        <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$4.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
-                
+
+                <!-- Game 11: Baseball 9 -->
                 <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
-                    <img class="w-full h-48 object-cover" src="https://placehold.co/600x400/1E1E2D/E0E0E0?text=Cyberpunk+2077" alt="Cyberpunk 2077" onerror="this.onerror=null;this.parentElement.replaceChild(document.createElement('div'), this).innerHTML='<div class=\'placeholder-img\'><p>Image Not Found</p></div>';">
-                    <div class="p-4 md:p-6 flex flex-col flex-grow">
+                    <img class="w-full h-48 object-cover" src="https://www.latestmodapks.com/wp-content/uploads/2023/03/Baseball9-Mod-Main.png" alt="Baseball 9" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Baseball+9';">
+                    <div class="p-4 flex flex-col flex-grow">
                         <div class="flex-grow">
-                            <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center">Cyberpunk 2077</h2>
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Baseball 9</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">7M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.6</span></div>
+                           </div>
                         </div>
-                        <a href="#" class="w-full flex items-center justify-center px-3 py-2 md:px-4 md:py-3 rounded-lg font-bold text-white btn-premium mt-4 text-sm md:text-base">
-                            Download
-                            <svg class="w-5 h-5 ml-2 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                        </a>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$9.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 12: Minecraft Mobile -->
+                <div class="bg-slate-800/40 rounded-xl overflow-hidden card-glow flex flex-col">
+                    <img class="w-full h-48 object-cover" src="https://thumbs.dreamstime.com/b/minecraft-vector-logo-minecraft-game-d-vector-logo-illustration-isolated-black-transparent-banner-background-can-be-used-164068992.jpg" alt="Minecraft Mobile" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1E1E2D/E0E0E0?text=Minecraft';">
+                    <div class="p-4 flex flex-col flex-grow">
+                        <div class="flex-grow">
+                           <h2 class="text-xl md:text-2xl font-bold text-white mb-2 text-center h-16 flex items-center justify-center">Minecraft Mobile</h2>
+                           <div class="flex justify-center items-center space-x-4 my-2 text-gray-400">
+                                <i class="fab fa-apple text-lg" title="Available on iOS"></i><i class="fab fa-android text-lg" title="Available on Android"></i>
+                                <div class="flex items-center space-x-1"><i class="fas fa-download text-sm"></i><span class="text-xs font-semibold">50M+</span></div>
+                                <div class="flex items-center space-x-1 star-rating"><i class="fas fa-star text-sm filled"></i><span class="text-xs font-semibold">4.8</span></div>
+                           </div>
+                        </div>
+                        <div class="flex justify-between items-center mt-4">
+                            <div class="text-lg"><span class="text-gray-500 line-through mr-2">$6.99</span><span class="font-bold text-green-400">$0.00</span></div>
+                            <a href="https://installchecker.com/cl/i/1o468e" target="_blank" class="flex items-center justify-center px-4 py-2 rounded-lg font-bold text-white btn-premium text-sm">Get</a>
+                        </div>
                     </div>
                 </div>
 
             </div>
         </main>
 
-        <!-- Footer Section with Security Badges -->
         <footer class="mt-16 pt-8 border-t border-gray-700/50 text-center text-gray-400">
-            <div class="flex flex-wrap items-center justify-center gap-y-4 gap-x-6 md:gap-x-8">
+            <div class="flex flex-wrap items-center justify-center gap-y-6 gap-x-6 md:gap-x-8">
+                <div class="flex items-center space-x-2 p-2 rounded-lg bg-slate-700/50">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/EA_logo_logotype.svg/1200px-EA_logo_logotype.svg.png" alt="EA Logo" class="h-8 w-8 object-contain">
+                    <span class="font-semibold text-white">Officially Supported by EA</span>
+                </div>
                 <div class="flex items-center space-x-2">
                     <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.417l4.5-4.5m-2.036-5.036A11.955 11.955 0 0112 2.944a11.955 11.955 0 018.618 3.04A12.02 12.02 0 0021 20.417l-4.5-4.5m-2.036-5.036A11.955 11.955 0 0112 2.944"></path></svg>
                     <span>Verified Secure</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
-                    <span>SSL Certified</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <svg class="w-6 h-6 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 12c0 1.2-4.03 6-9 6s-9-4.8-9-6c0-1.2 4.03-6 9-6s9 4.8 9 6z"></path><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                    <span>Privacy Protected</span>
-                </div>
             </div>
-            <p class="mt-6 text-sm">&copy; 2025 Galaxy Games. All rights reserved.</p>
+            <p class="mt-8 text-sm">&copy; 2025 Galaxy Games. All rights reserved.</p>
         </footer>
 
     </div>
 
-    <!-- Three.js for the interactive header -->
     <script type="module">
-        // UPDATED SCRIPT: Replaced the broken Skypack link with a stable jsdelivr link.
-        import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.module.js';
+        import * as THREE from 'https://cdn.skypack.dev/three@0.128.0';
 
-        // Get the canvas element
+        // Starfield script
         const canvas = document.getElementById('stars-canvas');
         const header = document.getElementById('interactive-header');
-
-        // Scene, Camera, Renderer
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, header.offsetWidth / header.offsetHeight, 0.1, 1000);
-        const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
-        
-        renderer.setSize(header.offsetWidth, header.offsetHeight);
-        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-
-        // Create Particles
-        const particlesGeometry = new THREE.BufferGeometry();
-        const count = 5000; // Number of stars
-
-        const positions = new Float32Array(count * 3);
-        for (let i = 0; i < count * 3; i++) {
-            positions[i] = (Math.random() - 0.5) * 10; // Spread particles in a cube
-        }
-        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-
-        const particlesMaterial = new THREE.PointsMaterial({
-            size: 0.02,
-            sizeAttenuation: true,
-            color: 0xffffff,
-            transparent: true,
-            opacity: 0.8,
-        });
-
-        const stars = new THREE.Points(particlesGeometry, particlesMaterial);
-        scene.add(stars);
-
-        camera.position.z = 5;
-
-        // Mouse interaction
-        let mouseX = 0;
-        let mouseY = 0;
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        // Animation Loop
-        const clock = new THREE.Clock();
-        const animate = () => {
-            const elapsedTime = clock.getElapsedTime();
-
-            // Animate stars
-            stars.rotation.y = elapsedTime * 0.05;
-            stars.rotation.x = elapsedTime * 0.02;
-
-            // Parallax effect
-            camera.position.x += (mouseX * 0.1 - camera.position.x) * 0.02;
-            camera.position.y += (mouseY * 0.1 - camera.position.y) * 0.02;
-            
-            camera.lookAt(scene.position);
-
-            renderer.render(scene, camera);
-            window.requestAnimationFrame(animate);
-        };
-
-        animate();
-
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            camera.aspect = header.offsetWidth / header.offsetHeight;
-            camera.updateProjectionMatrix();
+        if (canvas && header) {
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, header.offsetWidth / header.offsetHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true });
             renderer.setSize(header.offsetWidth, header.offsetHeight);
             renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-        });
+            const particlesGeometry = new THREE.BufferGeometry();
+            const count = 5000;
+            const positions = new Float32Array(count * 3);
+            for (let i = 0; i < count * 3; i++) {
+                positions[i] = (Math.random() - 0.5) * 10;
+            }
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.02,
+                sizeAttenuation: true,
+                color: 0xffa500,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+            const stars = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(stars);
+            camera.position.z = 5;
+            let mouseX = 0;
+            let mouseY = 0;
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+            const clock = new THREE.Clock();
+            const animate = () => {
+                const elapsedTime = clock.getElapsedTime();
+                stars.rotation.y = elapsedTime * 0.05;
+                stars.rotation.x = elapsedTime * 0.02;
+                camera.position.x += (mouseX * 0.1 - camera.position.x) * 0.02;
+                camera.position.y += (mouseY * 0.1 - camera.position.y) * 0.02;
+                camera.lookAt(scene.position);
+                renderer.render(scene, camera);
+                window.requestAnimationFrame(animate);
+            };
+            animate();
+            window.addEventListener('resize', () => {
+                camera.aspect = header.offsetWidth / header.offsetHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(header.offsetWidth, header.offsetHeight);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            });
+        }
     </script>
 </body>
 </html>
