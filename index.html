@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class=""> <!-- The 'dark' class will be toggled here -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AppVault - Free Premium Games & Apps</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        // Prevents Flash of Unstyled Content (FOUC)
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -29,48 +37,46 @@
         .modal-content {
             transition: transform 0.3s ease-in-out;
         }
-        /* Ensure all card images have a consistent container */
         .app-card-image-container {
             aspect-ratio: 1 / 1;
             width: 100%;
-            background-color: #e0e7ff; /* A light blue background for images that don't cover */
         }
         .app-card-image {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* This will crop images to fit the square container */
+            object-fit: cover;
         }
     </style>
 </head>
-<body class="bg-blue-50 text-gray-800">
+<body class="bg-blue-50 dark:bg-black text-gray-800 dark:text-gray-200 transition-colors duration-300">
 
     <!-- Header Bar -->
-    <header class="bg-white shadow-sm sticky top-0 z-40">
+    <header class="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-40 transition-colors duration-300">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <div class="flex items-center">
                     <div class="flex-shrink-0">
-                        <h1 class="text-2xl font-bold text-blue-600 sf-pro-display">AppVault</h1>
+                        <h1 class="text-2xl font-bold text-blue-600 dark:text-blue-500 sf-pro-display">AppVault</h1>
                     </div>
                     <nav class="hidden md:flex items-center ml-10 space-x-8">
-                        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Categories</a>
-                        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Top Downloads</a>
-                        <a href="#" class="text-gray-600 hover:text-blue-600 font-medium">Support</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium">Categories</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium">Top Downloads</a>
+                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 font-medium">Support</a>
                     </nav>
                 </div>
                 <div class="flex items-center">
                     <div class="relative">
-                        <input type="text" placeholder="Search for apps..." class="hidden sm:block bg-blue-100 border border-blue-200 rounded-full py-2 pl-10 pr-4 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <input type="text" placeholder="Search for apps..." class="hidden sm:block bg-blue-100 dark:bg-gray-800 border border-blue-200 dark:border-gray-700 rounded-full py-2 pl-10 pr-4 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none hidden sm:flex">
-                            <svg class="h-5 w-5 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                            <svg class="h-5 w-5 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
                             </svg>
                         </div>
                     </div>
-                    <button class="ml-4 md:hidden p-2 rounded-md text-gray-500 hover:text-gray-700 hover:bg-blue-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500">
-                        <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-                        </svg>
+                    <!-- Dark Mode Toggle Button -->
+                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ml-4">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM4 10a1 1 0 01-1-1H2a1 1 0 110-2h1a1 1 0 011 1zM15 15.536a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z"></path></svg>
                     </button>
                 </div>
             </div>
@@ -81,8 +87,8 @@
     <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
 
         <!-- Conversion Callout Banner -->
-        <div class="bg-blue-100 border-l-4 border-blue-500 rounded-r-lg p-4 mb-8 text-blue-800 flex items-center space-x-4">
-            <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <div class="bg-blue-100 dark:bg-gray-900 border-l-4 border-blue-500 rounded-r-lg p-4 mb-8 text-blue-800 dark:text-blue-300 flex items-center space-x-4 transition-colors duration-300">
+            <svg class="h-6 w-6 text-blue-600 dark:text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
             <div>
                 <p class="font-bold">No Payment Required – Safe Free Access</p>
                 <p class="text-sm">Unlock premium games and apps with a few simple steps. Fast and secure downloads on any device.</p>
@@ -91,10 +97,9 @@
 
         <!-- Featured Apps Section -->
         <section>
-            <h2 class="text-3xl font-bold text-gray-900 mb-6 sf-pro-display">Popular Games & Apps</h2>
-            <!-- Grid updated to 3 columns on medium screens and up -->
+            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 sf-pro-display">Popular Games & Apps</h2>
             <div id="app-grid" class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                <!-- All app cards will be dynamically inserted here -->
+                <!-- App cards will be dynamically inserted here -->
             </div>
         </section>
 
@@ -107,12 +112,12 @@
     </main>
     
     <!-- Footer -->
-    <footer class="bg-white border-t mt-12">
-        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+    <footer class="bg-white dark:bg-gray-900 border-t dark:border-gray-700 mt-12 transition-colors duration-300">
+        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-gray-400">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-blue-600">Privacy Policy</a>
-                <a href="#" class="hover:text-blue-600">Terms of Use</a>
-                <a href="#" class="hover:text-blue-600">Contact Support</a>
+                <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">Terms of Use</a>
+                <a href="#" class="hover:text-blue-600 dark:hover:text-blue-400">Contact Support</a>
             </div>
             <p class="text-sm">&copy; 2024 AppVault. All rights reserved.</p>
             <p class="text-xs mt-2">Disclaimer: This site is not affiliated with Google Play or the Apple App Store. For entertainment and educational use only. All apps are trademarks of their respective owners.</p>
@@ -121,8 +126,8 @@
 
 
     <!-- App Details Modal -->
-    <div id="app-modal" class="modal fixed inset-0 bg-black bg-opacity-60 items-center justify-center p-4 z-50">
-        <div id="modal-content" class="modal-content bg-white rounded-lg shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto transform scale-95">
+    <div id="app-modal" class="modal fixed inset-0 bg-black bg-opacity-70 items-center justify-center p-4 z-50">
+        <div id="modal-content" class="modal-content bg-white dark:bg-gray-900 rounded-lg shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto transform scale-95 transition-colors duration-300">
             <!-- Modal content will be dynamically inserted here -->
         </div>
     </div>
@@ -131,293 +136,148 @@
 <script>
     // --- DATABASE ---
     const apps = [
-        {
-            id: 7, name: 'Geometry Dash', tagline: 'Jump and fly through danger!', publisher: 'RobTop Games', rating: 4.7, downloads: '50M+',
-            icon: 'https://images.seeklogo.com/logo-png/61/2/geometry-dash-logo-png_seeklogo-617886.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'A rhythm-based action platformer that will push your skills to the limit. Navigate through dangerous passages and spiky obstacles in a fast-paced, music-driven adventure. Unlock new icons and colors to customize your character.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'DashMaster', rating: 5, comment: 'Frustratingly addictive. I can\'t put it down.' }]
-        },
-        {
-            id: 1, name: 'GTA 6', tagline: 'The next chapter in the legendary series.', publisher: 'Rockstar Games', rating: 4.9, downloads: 'Pre-release',
-            icon: 'https://images.seeklogo.com/logo-png/51/1/gta-vi-logo-png_seeklogo-511746.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Experience the highly anticipated next entry in the Grand Theft Auto series. Explore the sprawling, sun-soaked streets of a brand new city, engage in thrilling heists, and live out a life of crime in the most immersive open world yet.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'HypeMan', rating: 5, comment: 'Been waiting for this forever! The trailer looks amazing.' }]
-        },
-        {
-            id: 2, name: 'GTA 5 V', tagline: 'The classic open-world adventure.', publisher: 'Rockstar Games', rating: 4.8, downloads: '100M+',
-            icon: 'https://preview.redd.it/vetzwp2cnoh91.jpg?auto=webp&s=b10356482b6e8c605104edb606ab1cefc194bbe2', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Switch between three characters and pull off a series of daring heists in the sprawling city of Los Santos. Explore a vast open world, engage in high-octane action, and experience a gripping story of crime and survival.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'OG_Player', rating: 5, comment: 'A masterpiece. Still holds up years later.' }]
-        },
-        {
-            id: 3, name: 'Minecraft Mobile', tagline: 'Build, explore, and survive.', publisher: 'Mojang Studios', rating: 4.7, downloads: '200M+',
-            icon: 'https://thumbs.dreamstime.com/b/minecraft-vector-logo-minecraft-game-d-vector-logo-illustration-isolated-black-transparent-banner-background-can-be-used-164068992.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Create and explore your very own world where the only limit is your imagination. Build anything from the simplest of homes to the grandest of castles. Play in creative mode with unlimited resources or mine deep in survival mode.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'BlockBuilder', rating: 5, comment: 'Endless fun. I can play this for hours.' }]
-        },
-        {
-            id: 9, name: 'FC 26 Ultimate Edition', tagline: 'The future of football gaming.', publisher: 'EA Sports', rating: 4.8, downloads: 'Pre-release',
-            icon: 'https://static.the-independent.com/2025/07/17/9/23/FC-26-Ultimate-Edition.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Experience unparalleled realism with the next generation of football. Build your dream squad in Ultimate Team, lead your favorite club to glory in Career Mode, and enjoy groundbreaking gameplay enhancements.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'FootballFan', rating: 5, comment: 'The graphics look insane. Can\'t wait to build my team.' }]
-        },
-        {
-            id: 5, name: 'Valorant Mobile', tagline: 'Tactical 5v5 character-based shooter.', publisher: 'Riot Games', rating: 4.6, downloads: 'Pre-release',
-            icon: 'https://images.seeklogo.com/logo-png/48/2/valorant-logo-png_seeklogo-482655.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'The acclaimed tactical shooter comes to mobile. Master a cast of agents with unique abilities and engage in high-stakes 5v5 combat where strategy and skill are key to victory. Pre-register to get the free version on launch.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'FPS_Pro', rating: 5, comment: 'Can\'t wait for this to drop on mobile!' }]
-        },
-        {
-            id: 11, name: 'Stardew Valley', tagline: 'Create the farm of your dreams.', publisher: 'ConcernedApe', rating: 4.9, downloads: '5M+',
-            icon: 'https://wallpapers.com/images/hd/2d-stardew-valley-farm-landscape-wrz3itabb20b7ec7.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'You\'ve inherited your grandfather\'s old farm plot in Stardew Valley. Armed with hand-me-down tools and a few coins, you set out to begin your new life. Can you learn to live off the land and turn these overgrown fields into a thriving home?',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'CozyGamer', rating: 5, comment: 'The most relaxing and charming game I have ever played.' }]
-        },
-        {
-            id: 12, name: 'Five Nights At Chuck E Cheese', tagline: 'A new animatronic nightmare.', publisher: 'Indie Horror', rating: 4.4, downloads: '500K+',
-            icon: 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/05/the-first-five-nights-at-freddy-s-movie-teaser-is-genuinely-scary-1.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Survive five nights as a security guard in a haunted family entertainment center. Watch the cameras carefully and conserve your limited power to keep the terrifying animatronic characters at bay. A fan-inspired horror experience.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'ScreamQueen', rating: 4, comment: 'Gave me some serious scares. Great concept.' }]
-        },
-        {
-            id: 10, name: 'Rocket League', tagline: 'High-powered hybrid of cars and soccer.', publisher: 'Psyonix', rating: 4.7, downloads: '20M+',
-            icon: 'https://m.media-amazon.com/images/M/MV5BYWU1NTk0YTItOWZkNi00YTllLWIzOTUtMGQ3NDMzMzBlMDg2XkEyXkFqcGc@.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'A futuristic sports-action game, Rocket League equips players with booster-rigged vehicles that can be crashed into balls for incredible goals or epic saves across multiple, highly-detailed arenas.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'WhatASave!', rating: 5, comment: 'So much fun with friends. Easy to learn, hard to master.' }]
-        },
-        {
-            id: 14, name: 'mod Baseball 9', tagline: 'Enhanced baseball experience.', publisher: 'Playus Soft', rating: 4.7, downloads: '10M+',
-            icon: 'https://www.latestmodapks.com/wp-content/uploads/2023/03/Baseball9-Mod-Main.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Enjoy a fast-paced, realistic baseball game with enhanced features. Play the modded BASEBALL NINE to become the Legend League Champion! Customize your players and build your dream team with extra perks.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'HomerunKing', rating: 5, comment: 'Best baseball game on mobile. The mod features are a game changer.' }]
-        },
-        {
-            id: 15, name: 'Gran Velocita - Real Driving', tagline: 'Ultimate driving simulator.', publisher: 'Speedy Games', rating: 4.2, downloads: '1M+',
-            icon: 'https://image.winudf.com/v2/image1/NDI4MzI5NDFfMTc0OTk5MjY5NV8wNTA/screen-0.png?fakeurl=1&type=png&w=292', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Experience the thrill of real driving with Gran Velocita. Get behind the wheel of detailed cars and race on realistic tracks. Master the physics and become the fastest driver on the road.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'SimRacer', rating: 4, comment: 'Good physics for a mobile game.' }]
-        },
-        {
-            id: 6, name: 'WLPPR – Live Wallpapers', tagline: 'HD & 4K satellite imagery.', publisher: 'WLPPR', rating: 4.9, downloads: '1M+',
-            icon: 'https://play-lh.googleusercontent.com/QlnZinZ64ZK1Jif_Yy9JDr87I1Dy-c9jEYFklFR1Oo9vKSxHS1cAMrBj3LZUctSh0K08=s300-rw', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Transform your device with stunning high-resolution satellite images of our planet. Discover breathtaking landscapes, cities, and natural wonders from a new perspective. New wallpapers added weekly.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'SpaceFan', rating: 5, comment: 'My phone has never looked better. The images are incredible.' }]
-        },
-        {
-            id: 17, name: 'Maestro VR', tagline: 'Conduct an orchestra in VR.', publisher: 'Symphony Interactive', rating: 4.8, downloads: '100K+',
-            icon: 'https://image.api.playstation.com/vulcan/ap/rnd/202505/1215/bb65e43cac18b1a8eb69a4a2e83136edcbb62cc7f4ea32a0.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Step onto the conductor\'s podium in this immersive VR experience. Lead a full symphony orchestra through masterpieces of classical music. Feel the power of the music at your fingertips.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'ClassicalFan', rating: 5, comment: 'A truly magical experience. I felt like a real conductor.' }]
-        },
-        {
-            id: 18, name: 'Who\'s at the Door', tagline: 'A chilling horror mystery.', publisher: 'Nightmare Studios', rating: 4.6, downloads: '300K+',
-            icon: 'https://download.ir/wp-content/uploads/2025/07/Whos-at-the-door-Cover.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'You are home alone when you hear a knock at the door. Who is it? A short, atmospheric horror game where your choices determine your fate. Uncover the mystery, but be careful who you trust.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'HorrorJunkie', rating: 5, comment: 'Short but very effective. The atmosphere is terrifying.' }]
-        },
-        {
-            id: 8, name: 'War Thunder', tagline: 'Comprehensive military vehicle combat.', publisher: 'Gaijin Entertainment', rating: 4.5, downloads: '10M+',
-            icon: 'https://images6.alphacoders.com/131/thumbbig-1313835.webp', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Engage in major battles on land, in the air, and at sea, fighting with millions of players from all over the world in an ever-evolving environment. Command tanks, aircraft, and naval vessels in realistic, large-scale combat.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'HistoryBuff', rating: 4, comment: 'Incredibly detailed vehicles. A must-play for military fans.' }]
-        },
-        {
-            id: 16, name: 'Rematch Mobile', tagline: 'Competitive multiplayer action.', publisher: 'Rivalry Studios', rating: 4.5, downloads: '500K+',
-            icon: 'https://modfyp.com/uploads/2025/4/rematch-apk-download.webp', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Jump into fast-paced multiplayer battles in Rematch Mobile. Choose your hero, master your abilities, and dominate the arena in various game modes. Team up with friends and climb the leaderboards.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'ArenaChamp', rating: 5, comment: 'Awesome action, very competitive.' }]
-        },
-        {
-            id: 4, name: 'Capcut Pro', tagline: 'Powerful video editing made easy.', publisher: 'Bytedance', rating: 4.8, downloads: '500M+',
-            icon: 'https://www.pngmart.com/files/23/Capcut-Logo-PNG-Picture.png', cpaLink: 'https://installchecker.com/cl/i/1o468e',
-            description: 'Unlock professional-level video editing tools with Capcut Pro. Access exclusive filters, advanced effects, keyframe animation, and a massive library of sounds and fonts to make your videos stand out.',
-            compatibility: 'iOS & Android', size: 'Varies by Device',
-            reviews: [{ user: 'ContentCreator', rating: 5, comment: 'The best mobile editor for social media content.' }]
-        }
+        { id: 7, name: 'Geometry Dash', tagline: 'Jump and fly through danger!', publisher: 'RobTop Games', rating: 4.7, downloads: '50M+', icon: 'https://images.seeklogo.com/logo-png/61/2/geometry-dash-logo-png_seeklogo-617886.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'A rhythm-based action platformer that will push your skills to the limit.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'DashMaster', rating: 5, comment: 'Frustratingly addictive.' }] },
+        { id: 1, name: 'GTA 6', tagline: 'The next chapter in the legendary series.', publisher: 'Rockstar Games', rating: 4.9, downloads: 'Pre-release', icon: 'https://images.seeklogo.com/logo-png/51/1/gta-vi-logo-png_seeklogo-511746.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Experience the highly anticipated next entry in the Grand Theft Auto series.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HypeMan', rating: 5, comment: 'Been waiting for this forever!' }] },
+        { id: 2, name: 'GTA 5 V', tagline: 'The classic open-world adventure.', publisher: 'Rockstar Games', rating: 4.8, downloads: '100M+', icon: 'https://preview.redd.it/vetzwp2cnoh91.jpg?auto=webp&s=b10356482b6e8c605104edb606ab1cefc194bbe2', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Switch between three characters and pull off a series of daring heists in Los Santos.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'OG_Player', rating: 5, comment: 'A masterpiece.' }] },
+        { id: 3, name: 'Minecraft Mobile', tagline: 'Build, explore, and survive.', publisher: 'Mojang Studios', rating: 4.7, downloads: '200M+', icon: 'https://thumbs.dreamstime.com/b/minecraft-vector-logo-minecraft-game-d-vector-logo-illustration-isolated-black-transparent-banner-background-can-be-used-164068992.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Create and explore your very own world where the only limit is your imagination.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'BlockBuilder', rating: 5, comment: 'Endless fun.' }] },
+        { id: 9, name: 'FC 26 Ultimate Edition', tagline: 'The future of football gaming.', publisher: 'EA Sports', rating: 4.8, downloads: 'Pre-release', icon: 'https://static.the-independent.com/2025/07/17/9/23/FC-26-Ultimate-Edition.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Experience unparalleled realism with the next generation of football.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'FootballFan', rating: 5, comment: 'The graphics look insane.' }] },
+        { id: 5, name: 'Valorant Mobile', tagline: 'Tactical 5v5 character-based shooter.', publisher: 'Riot Games', rating: 4.6, downloads: 'Pre-release', icon: 'https://images.seeklogo.com/logo-png/48/2/valorant-logo-png_seeklogo-482655.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'The acclaimed tactical shooter comes to mobile. Master a cast of agents with unique abilities.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'FPS_Pro', rating: 5, comment: 'Can\'t wait for this to drop!' }] },
+        { id: 11, name: 'Stardew Valley', tagline: 'Create the farm of your dreams.', publisher: 'ConcernedApe', rating: 4.9, downloads: '5M+', icon: 'https://wallpapers.com/images/hd/2d-stardew-valley-farm-landscape-wrz3itabb20b7ec7.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'You\'ve inherited your grandfather\'s old farm plot. Can you learn to live off the land?', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'CozyGamer', rating: 5, comment: 'The most relaxing game ever.' }] },
+        { id: 12, name: 'Five Nights At Chuck E Cheese', tagline: 'A new animatronic nightmare.', publisher: 'Indie Horror', rating: 4.4, downloads: '500K+', icon: 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/05/the-first-five-nights-at-freddy-s-movie-teaser-is-genuinely-scary-1.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Survive five nights as a security guard in a haunted family entertainment center.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ScreamQueen', rating: 4, comment: 'Gave me some serious scares.' }] },
+        { id: 10, name: 'Rocket League', tagline: 'High-powered hybrid of cars and soccer.', publisher: 'Psyonix', rating: 4.7, downloads: '20M+', icon: 'https://m.media-amazon.com/images/M/MV5BYWU1NTk0YTItOWZkNi00YTllLWIzOTUtMGQ3NDMzMzBlMDg2XkEyXkFqcGc@.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'A futuristic sports-action game with booster-rigged vehicles.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'WhatASave!', rating: 5, comment: 'So much fun with friends.' }] },
+        { id: 14, name: 'mod Baseball 9', tagline: 'Enhanced baseball experience.', publisher: 'Playus Soft', rating: 4.7, downloads: '10M+', icon: 'https://www.latestmodapks.com/wp-content/uploads/2023/03/Baseball9-Mod-Main.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Enjoy a fast-paced, realistic baseball game with enhanced features.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HomerunKing', rating: 5, comment: 'The mod features are a game changer.' }] },
+        { id: 15, name: 'Gran Velocita - Real Driving', tagline: 'Ultimate driving simulator.', publisher: 'Speedy Games', rating: 4.2, downloads: '1M+', icon: 'https://image.winudf.com/v2/image1/NDI4MzI5NDFfMTc0OTk5MjY5NV8wNTA/screen-0.png?fakeurl=1&type=png&w=292', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Experience the thrill of real driving with detailed cars and realistic tracks.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'SimRacer', rating: 4, comment: 'Good physics for a mobile game.' }] },
+        { id: 6, name: 'WLPPR – Live Wallpapers', tagline: 'HD & 4K satellite imagery.', publisher: 'WLPPR', rating: 4.9, downloads: '1M+', icon: 'https://play-lh.googleusercontent.com/QlnZinZ64ZK1Jif_Yy9JDr87I1Dy-c9jEYFklFR1Oo9vKSxHS1cAMrBj3LZUctSh0K08=s300-rw', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Transform your device with stunning high-resolution satellite images of our planet.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'SpaceFan', rating: 5, comment: 'My phone has never looked better.' }] },
+        { id: 17, name: 'Maestro VR', tagline: 'Conduct an orchestra in VR.', publisher: 'Symphony Interactive', rating: 4.8, downloads: '100K+', icon: 'https://image.api.playstation.com/vulcan/ap/rnd/202505/1215/bb65e43cac18b1a8eb69a4a2e83136edcbb62cc7f4ea32a0.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Step onto the conductor\'s podium in this immersive VR experience.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ClassicalFan', rating: 5, comment: 'A truly magical experience.' }] },
+        { id: 18, name: 'Who\'s at the Door', tagline: 'A chilling horror mystery.', publisher: 'Nightmare Studios', rating: 4.6, downloads: '300K+', icon: 'https://download.ir/wp-content/uploads/2025/07/Whos-at-the-door-Cover.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'You are home alone when you hear a knock at the door. Who is it?', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HorrorJunkie', rating: 5, comment: 'Short but very effective.' }] },
+        { id: 8, name: 'War Thunder', tagline: 'Comprehensive military vehicle combat.', publisher: 'Gaijin Entertainment', rating: 4.5, downloads: '10M+', icon: 'https://images6.alphacoders.com/131/thumbbig-1313835.webp', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Engage in major battles on land, in the air, and at sea.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HistoryBuff', rating: 4, comment: 'Incredibly detailed vehicles.' }] },
+        { id: 16, name: 'Rematch Mobile', tagline: 'Competitive multiplayer action.', publisher: 'Rivalry Studios', rating: 4.5, downloads: '500K+', icon: 'https://modfyp.com/uploads/2025/4/rematch-apk-download.webp', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Jump into fast-paced multiplayer battles. Choose your hero and master your abilities.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ArenaChamp', rating: 5, comment: 'Awesome action.' }] },
+        { id: 4, name: 'Capcut Pro', tagline: 'Powerful video editing made easy.', publisher: 'Bytedance', rating: 4.8, downloads: '500M+', icon: 'https://www.pngmart.com/files/23/Capcut-Logo-PNG-Picture.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Unlock professional-level video editing tools with exclusive filters and advanced effects.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ContentCreator', rating: 5, comment: 'The best mobile editor.' }] }
     ];
 
-    // --- DOM ELEMENTS ---
-    const appGrid = document.getElementById('app-grid');
-    const modal = document.getElementById('app-modal');
-    const modalContent = document.getElementById('modal-content');
+    // --- DOM ELEMENTS & LOGIC ---
+    document.addEventListener('DOMContentLoaded', () => {
+        const appGrid = document.getElementById('app-grid');
+        const modal = document.getElementById('app-modal');
+        const modalContent = document.getElementById('modal-content');
+        const themeToggleButton = document.getElementById('theme-toggle');
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-    // --- FUNCTIONS ---
-
-    // Function to generate star rating HTML
-    function generateStars(rating) {
-        let stars = '';
-        const fullStar = `<svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
-        const emptyStar = `<svg class="w-4 h-4 text-gray-300" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
-        for (let i = 1; i <= 5; i++) {
-            stars += (i <= rating) ? fullStar : emptyStar;
+        function updateThemeIcons(isDark) {
+            themeToggleDarkIcon.classList.toggle('hidden', isDark);
+            themeToggleLightIcon.classList.toggle('hidden', !isDark);
         }
-        return `<div class="flex items-center">${stars}</div>`;
-    }
 
-    // Function to create an app card
-    function createAppCard(app) {
-        return `
-            <div class="app-card cursor-pointer group" data-app-id="${app.id}">
-                <div class="bg-white rounded-xl shadow-md overflow-hidden transform group-hover:-translate-y-1 transition-transform duration-300 flex flex-col h-full">
-                    <div class="app-card-image-container">
-                         <img class="app-card-image" src="${app.icon}" alt="Icon for ${app.name}" onerror="this.onerror=null;this.src='https://placehold.co/256x256/cccccc/333333?text=Error';">
-                    </div>
-                    <div class="p-3 text-center flex-grow flex flex-col justify-between">
-                        <div>
-                           <h3 class="text-sm font-semibold text-gray-900 truncate">${app.name}</h3>
-                           <p class="text-xs text-gray-500 truncate">${app.tagline}</p>
+        themeToggleButton.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.toggle('dark');
+            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
+            updateThemeIcons(isDark);
+        });
+
+        function generateStars(rating) {
+            let stars = '';
+            const fullStar = `<svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
+            const emptyStar = `<svg class="w-4 h-4 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
+            for (let i = 1; i <= 5; i++) {
+                stars += (i <= rating) ? fullStar : emptyStar;
+            }
+            return `<div class="flex justify-center mt-2">${stars}</div>`;
+        }
+
+        function createAppCard(app) {
+            return `
+                <div class="app-card cursor-pointer group" data-app-id="${app.id}">
+                    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-lg dark:hover:shadow-blue-500/20 overflow-hidden transform group-hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
+                        <div class="app-card-image-container bg-blue-50 dark:bg-gray-800">
+                             <img class="app-card-image" src="${app.icon}" alt="Icon for ${app.name}" onerror="this.onerror=null;this.src='https://placehold.co/256x256/cccccc/333333?text=Error';">
                         </div>
-                        <div class="flex justify-center mt-2">
+                        <div class="p-4 text-center flex-grow flex flex-col justify-between">
+                            <div>
+                               <h3 class="font-semibold text-gray-900 dark:text-white truncate">${app.name}</h3>
+                               <p class="text-xs text-gray-500 dark:text-gray-400 truncate">${app.tagline}</p>
+                            </div>
                             ${generateStars(app.rating)}
                         </div>
                     </div>
                 </div>
-            </div>
-        `;
-    }
-    
-    // Function to populate the app grids
-    function populateGrids() {
+            `;
+        }
+        
+        function openModal(app) {
+            modalContent.innerHTML = `
+                <div class="p-4 sm:p-6">
+                    <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 pb-4 border-b dark:border-gray-700">
+                        <img src="${app.icon}" alt="${app.name}" class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl shadow-lg flex-shrink-0 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/cccccc/333333?text=Error';">
+                        <div class="flex-grow">
+                            <h2 class="text-2xl sm:text-3xl font-bold sf-pro-display">${app.name}</h2>
+                            <p class="text-blue-600 dark:text-blue-400 font-medium">${app.publisher}</p>
+                            <div class="flex items-center mt-2 space-x-2">
+                                <span class="text-sm font-bold">${app.rating.toFixed(1)}</span>
+                                <div class="flex items-center">${generateStars(app.rating).replace('justify-center mt-2', '')}</div>
+                                <span class="text-xs text-gray-500 dark:text-gray-400">(${app.downloads} downloads)</span>
+                            </div>
+                            <div class="mt-4">
+                                <button class="w-full sm:w-auto cta-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg" onclick="window.open('${app.cpaLink}', '_blank')">
+                                    Download Free Version
+                                </button>
+                            </div>
+                        </div>
+                        <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                    <div class="py-6 text-sm">
+                        <h3 class="font-bold text-lg mb-2">Description</h3>
+                        <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${app.description}</p>
+                    </div>
+                </div>`;
+            modal.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => modalContent.classList.add('scale-100'), 10);
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+        }
+
+        function closeModal() {
+            modalContent.classList.remove('scale-100');
+            setTimeout(() => {
+                modal.classList.remove('is-open');
+                document.body.style.overflow = 'auto';
+            }, 200);
+        }
+
         appGrid.innerHTML = apps.map(createAppCard).join('');
-        document.querySelectorAll('.app-card').forEach(card => {
-            card.addEventListener('click', (event) => {
-                // Prevent the body click listener from firing when a card is clicked
-                event.stopPropagation(); 
+        appGrid.addEventListener('click', (event) => {
+            const card = event.target.closest('.app-card');
+            if (card) {
+                event.stopPropagation();
                 const appId = card.dataset.appId;
                 const appData = apps.find(g => g.id == appId);
-                if (appData) {
-                    openModal(appData);
-                }
-            });
+                if (appData) openModal(appData);
+            }
         });
-    }
-
-    // Function to open and populate the modal
-    function openModal(app) {
-        modalContent.innerHTML = `
-            <div class="p-4 sm:p-6">
-                <!-- Modal Header -->
-                <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 pb-4 border-b">
-                    <img src="${app.icon}" alt="${app.name}" class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl shadow-lg flex-shrink-0 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/128x128/cccccc/333333?text=Error';">
-                    <div class="flex-grow">
-                        <h2 class="text-2xl sm:text-3xl font-bold sf-pro-display">${app.name}</h2>
-                        <p class="text-blue-600 font-medium">${app.publisher}</p>
-                        <div class="flex items-center mt-2 space-x-2">
-                            <span class="text-sm font-bold">${app.rating.toFixed(1)}</span>
-                            ${generateStars(app.rating)}
-                            <span class="text-xs text-gray-500">(${app.downloads} downloads)</span>
-                        </div>
-                        <div class="mt-4">
-                            <button class="w-full sm:w-auto cta-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-full shadow-lg" onclick="window.open('${app.cpaLink}', '_blank')">
-                                Download Free Version
-                            </button>
-                        </div>
-                    </div>
-                    <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                    </button>
-                </div>
-
-                <!-- Description & Info -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm my-6">
-                    <div class="md:col-span-2">
-                        <h3 class="font-bold text-lg mb-2">Description</h3>
-                        <p class="text-gray-600 leading-relaxed">${app.description}</p>
-                    </div>
-                    <div>
-                        <h3 class="font-bold text-lg mb-2">Information</h3>
-                        <div class="space-y-2 bg-blue-50 p-3 rounded-lg">
-                            <div class="flex justify-between"><span>Publisher</span> <span class="font-medium text-right">${app.publisher}</span></div>
-                            <div class="flex justify-between"><span>Size</span> <span class="font-medium">${app.size}</span></div>
-                            <div class="flex justify-between"><span>Compatibility</span> <span class="font-medium">${app.compatibility}</span></div>
-                            <div class="flex justify-between items-center"><span>Verified</span> <span class="flex items-center font-medium text-blue-600">Safe <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg></span></div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Reviews -->
-                <div class="mt-6 border-t pt-6">
-                    <h3 class="font-bold text-lg mb-4">User Reviews</h3>
-                    <div class="space-y-4">
-                        ${app.reviews.map(review => `
-                            <div class="bg-blue-50 p-3 rounded-lg">
-                                <div class="flex items-center mb-1">
-                                    <p class="font-semibold text-sm">${review.user}</p>
-                                    <div class="ml-auto">${generateStars(review.rating)}</div>
-                                </div>
-                                <p class="text-gray-600 text-sm">${review.comment}</p>
-                            </div>
-                        `).join('')}
-                    </div>
-                </div>
-            </div>
-        `;
-        modal.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
         
-        setTimeout(() => {
-            modalContent.classList.remove('scale-95');
-            modalContent.classList.add('scale-100');
-        }, 10);
+        modal.addEventListener('click', (event) => {
+            event.stopPropagation();
+            if (event.target === modal) closeModal();
+        });
 
-        document.getElementById('close-modal').addEventListener('click', closeModal);
-    }
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+        });
 
-    // Function to close the modal
-    function closeModal() {
-        modalContent.classList.remove('scale-100');
-        modalContent.classList.add('scale-95');
-        setTimeout(() => {
-            modal.classList.remove('is-open');
-            document.body.style.overflow = 'auto';
-        }, 200);
-    }
+        let firstClick = true;
+        const directLink = 'https://www.profitableratecpm.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955';
+        document.body.addEventListener('click', (event) => {
+            if (firstClick && !event.target.closest('a, button, .app-card, .modal')) {
+                firstClick = false;
+                window.open(directLink, '_blank');
+            }
+        });
 
-    // --- EVENT LISTENERS ---
-    modal.addEventListener('click', (event) => {
-        // Prevent the body click listener from firing when clicking inside the modal
-        event.stopPropagation(); 
-        if (event.target === modal) {
-            closeModal();
-        }
+        // Set initial theme
+        updateThemeIcons(document.documentElement.classList.contains('dark'));
     });
-
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modal.classList.contains('is-open')) {
-            closeModal();
-        }
-    });
-
-    // Direct Link on first page click
-    let firstClick = true;
-    const directLink = 'https://www.profitableratecpm.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955';
-    document.body.addEventListener('click', () => {
-        if (firstClick) {
-            firstClick = false;
-            window.open(directLink, '_blank');
-        }
-    });
-
-
-    // --- INITIALIZATION ---
-    document.addEventListener('DOMContentLoaded', populateGrids);
-
 </script>
 
 <!-- Social Bar Ad Script -->
