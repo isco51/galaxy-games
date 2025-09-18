@@ -340,8 +340,8 @@
             <h2 class="text-3xl font-bold text-[#CFFF04] mb-4">Final Step: Sponsor Verification</h2>
             <p class="text-lg text-white">To receive your free Robux, our sponsors require you to complete one simple offer.</p>
             <p class="text-gray-300 mt-2">This is how we are able to fund the Robux for everyone. Once you complete an offer, your reward will be sent to your account instantly!</p>
-            <!-- Smartlink -->
-            <a href="https://www.revenuecpmgate.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955" target="_blank" rel="noopener noreferrer" class="block mt-6">
+            <!-- CPA Link -->
+            <a href="https://lockedapp.net/cl/i/1o468e" target="_blank" rel="noopener noreferrer" class="block mt-6">
                 <button class="btn-primary relative overflow-hidden w-full text-black font-bold text-lg px-8 py-3 rounded-lg">
                     Complete an Offer
                 </button>
@@ -461,11 +461,16 @@
                 card.className = 'glowing-card p-4 rounded-lg cursor-pointer flex justify-between items-center';
                 card.dataset.amount = reward.amount;
                 card.innerHTML = `
-                    <div class="text-left">
-                        <p class="text-xl font-bold">${reward.amount.toLocaleString()} Robux</p>
-                        <p class="text-sm text-gray-400">${reward.label}</p>
+                    <div class="flex items-center gap-4">
+                        <img src="https://i.ibb.co/Q8Q5v9R/robux-coin.png" alt="Robux Coin" class="w-10 h-10" onerror="this.style.display='none'">
+                        <div class="text-left">
+                            <p class="text-xl font-bold">${reward.amount.toLocaleString()} Robux</p>
+                            <p class="text-sm text-gray-400">${reward.label}</p>
+                        </div>
                     </div>
-                    <div class="text-3xl text-[#CFFF04]">R$</div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
                 `;
                 card.addEventListener('click', () => {
                     playClickSound();
@@ -476,7 +481,7 @@
                     confirmSelectionBtn.disabled = false;
                 });
                 rewardsContainer.appendChild(card);
-            });
+});
             
             confirmSelectionBtn.addEventListener('click', () => {
                 if (confirmSelectionBtn.disabled) return;
