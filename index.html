@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Your Free Robux Today!</title>
+    <title>احصل على روبوكس مجاني اليوم!</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -15,18 +15,36 @@
     
     <!-- Custom Styles & Theme Configuration -->
     <style>
+        html {
+            direction: ltr; /* Ensure layout is Left-to-Right for this design */
+        }
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #000;
             background-image: linear-gradient(315deg, #1e0000 0%, #000000 74%);
             animation: gradient-animation 20s ease infinite;
             background-size: 400% 400%;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
 
         @keyframes gradient-animation {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
+        }
+
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        .content-container {
+            position: relative;
+            z-index: 1;
         }
 
         .font-source-code {
@@ -54,10 +72,6 @@
         .testimonial-card {
             scroll-snap-align: start;
         }
-
-        .glowing-shadow {
-             box-shadow: 0 0 5px #ef4444, 0 0 10px #ef4444, 0 0 15px #ef4444;
-        }
         
         .reward-card:hover {
             transform: translateY(-5px) scale(1.02);
@@ -69,7 +83,7 @@
     <!-- Popunder Ad Script -->
     <script type='text/javascript' src='//pl27674374.revenuecpmgate.com/2f/00/6e/2f006e1bdbffb539615eca0c19f82ea4.js'></script>
 </head>
-<body class="bg-black text-white antialiased overflow-x-hidden">
+<body class="bg-black text-white antialiased">
 
     <!-- Verification Iframe Overlay (Initially Hidden) -->
     <div id="verification-overlay" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
@@ -77,8 +91,9 @@
     </div>
 
     <!-- Page 1: Username Entry -->
-    <main id="page1" class="min-h-screen flex flex-col items-center justify-center p-4 transition-opacity duration-500">
-        <div class="w-full max-w-4xl mx-auto">
+    <main id="page1" class="min-h-screen flex flex-col items-center justify-center p-4 transition-opacity duration-500 relative">
+        <canvas id="particles-js"></canvas>
+        <div class="w-full max-w-4xl mx-auto content-container">
             <img src="https://cdn.prod.website-files.com/67329a5ebeec6bec4738e42f/6765e8af62cf64412d6c3f32_1milgiveaway1920x1080.png" alt="Robux Giveaway" class="rounded-lg shadow-2xl shadow-red-500/20 w-full object-cover mb-8">
 
             <div class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-gray-800 text-center">
@@ -206,34 +221,11 @@
                 <h2 class="text-3xl font-bold text-center mb-8 text-red-500">What Our Users Say</h2>
                 <div class="relative">
                     <div id="carousel" class="testimonial-carousel flex overflow-x-auto pb-4 -mx-4 px-4">
-                        <!-- Testimonial 1 -->
-                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
-                                <p class="text-gray-300 italic mb-4">"I thought this was fake at first but it actually worked! Got my 4500 Robux in like 10 minutes. So cool!"</p>
-                                <p class="font-bold text-red-400">- GamerPro123</p>
-                            </div>
-                        </div>
-                        <!-- Testimonial 2 -->
-                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
-                                <p class="text-gray-300 italic mb-4">"Super easy process. Just followed the steps and the Robux showed up in my account. Will definitely use again."</p>
-                                <p class="font-bold text-red-400">- RobloxFanatic_X</p>
-                            </div>
-                        </div>
-                        <!-- Testimonial 3 -->
-                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                           <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
-                                <p class="text-gray-300 italic mb-4">"Finally a site that delivers. The verification was quick and I got my reward instantly. 10/10"</p>
-                                <p class="font-bold text-red-400">- BloxMaster99</p>
-                            </div>
-                        </div>
-                         <!-- Testimonial 4 -->
-                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
-                           <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
-                                <p class="text-gray-300 italic mb-4">"Was skeptical but my friend recommended it. It's legit! We both got Robux for our favorite games."</p>
-                                <p class="font-bold text-red-400">- AdoptMePlayer_YT</p>
-                            </div>
-                        </div>
+                        <!-- Testimonials -->
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4"><div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full"><p class="text-gray-300 italic mb-4">"I thought this was fake at first but it actually worked! Got my 4500 Robux in like 10 minutes. So cool!"</p><p class="font-bold text-red-400">- GamerPro123</p></div></div>
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4"><div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full"><p class="text-gray-300 italic mb-4">"Super easy process. Just followed the steps and the Robux showed up in my account. Will definitely use again."</p><p class="font-bold text-red-400">- RobloxFanatic_X</p></div></div>
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4"><div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full"><p class="text-gray-300 italic mb-4">"Finally a site that delivers. The verification was quick and I got my reward instantly. 10/10"</p><p class="font-bold text-red-400">- BloxMaster99</p></div></div>
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4"><div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full"><p class="text-gray-300 italic mb-4">"Was skeptical but my friend recommended it. It's legit! We both got Robux for our favorite games."</p><p class="font-bold text-red-400">- AdoptMePlayer_YT</p></div></div>
                     </div>
                 </div>
             </section>
@@ -259,6 +251,75 @@
     
     <!-- Main Application Logic -->
     <script>
+        // --- Particle Animation ---
+        const canvas = document.getElementById('particles-js');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particlesArray;
+
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) {
+                this.x = x;
+                this.y = y;
+                this.directionX = directionX;
+                this.directionY = directionY;
+                this.size = size;
+                this.color = color;
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+            }
+            update() {
+                if (this.x > canvas.width || this.x < 0) {
+                    this.directionX = -this.directionX;
+                }
+                if (this.y > canvas.height || this.y < 0) {
+                    this.directionY = -this.directionY;
+                }
+                this.x += this.directionX;
+                this.y += this.directionY;
+                this.draw();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(239, 68, 68, 0.5)';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+
+        function animateParticles() {
+            requestAnimationFrame(animateParticles);
+            ctx.clearRect(0, 0, innerWidth, innerHeight);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+            }
+        }
+        
+        window.addEventListener('resize', () => {
+            canvas.width = innerWidth;
+            canvas.height = innerHeight;
+            initParticles();
+        });
+
+        initParticles();
+        animateParticles();
+
+
+        // --- Main Page Logic ---
         const usernameForm = document.getElementById('username-form');
         const terminal = document.getElementById('terminal');
         const terminalOutput = document.getElementById('terminal-output');
@@ -267,27 +328,22 @@
         const rewardCards = document.querySelectorAll('.reward-card');
         const verificationOverlay = document.getElementById('verification-overlay');
 
-        // Function to simulate typing in the terminal
         function typeWriter(element, text, i, callback) {
             if (i < text.length) {
                 element.innerHTML = text.substring(0, i + 1) + '<span class="terminal-cursor"></span>';
-                setTimeout(() => typeWriter(element, text, i + 1, callback), 25); // Faster typing speed
+                setTimeout(() => typeWriter(element, text, i + 1, callback), 25);
             } else {
-                element.innerHTML = text; // Remove cursor when done
-                if (callback) {
-                    setTimeout(callback, 200); // Faster delay before next step
-                }
+                element.innerHTML = text;
+                if (callback) setTimeout(callback, 200);
             }
         }
         
-        // Function to add a new line to the terminal
         function addTerminalLine(text, callback) {
             const line = document.createElement('div');
             terminalOutput.appendChild(line);
             typeWriter(line, text, 0, callback);
         }
 
-        // Handle username form submission
         usernameForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const username = document.getElementById('roblox-username').value;
@@ -309,7 +365,6 @@
                     addTerminalLine(messages[messageIndex], showNextMessage);
                     messageIndex++;
                 } else {
-                    // All messages displayed, transition to page 2
                     setTimeout(() => {
                         page1.classList.add('opacity-0');
                         setTimeout(() => {
@@ -317,24 +372,20 @@
                            page2.classList.remove('hidden');
                            window.scrollTo(0, 0);
                         }, 500);
-                    }, 500); // Faster delay before transition
+                    }, 500);
                 }
             }
-            
             showNextMessage();
         });
 
-        // Handle reward card clicks
         rewardCards.forEach(card => {
             card.addEventListener('click', () => {
                 verificationOverlay.classList.remove('hidden');
             });
         });
 
-        // Testimonial carousel auto-scroll
         const carousel = document.getElementById('carousel');
         let isScrolling = false;
-
         setInterval(() => {
             if (document.hasFocus() && !isScrolling) {
                 const scrollWidth = carousel.scrollWidth;
@@ -345,11 +396,9 @@
                     carousel.scrollLeft += clientWidth;
                 }
             }
-        }, 5000); // Change slide every 5 seconds
-        
+        }, 5000);
         carousel.addEventListener('mouseenter', () => isScrolling = true);
         carousel.addEventListener('mouseleave', () => isScrolling = false);
-
     </script>
     
     <!-- Social Bar Ad Script -->
