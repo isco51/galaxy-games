@@ -1,308 +1,578 @@
 <!DOCTYPE html>
-<html lang="en" class=""> <!-- The 'dark' class will be toggled here -->
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AppVault - Free Premium Games & Apps</title>
+    <title>Roblox Rewards - Get Your Robux!</title>
+    
+    <!-- SEO AND META TAGS -->
+    <meta name="description" content="Learn how to earn Robux and understand the value of digital assets in the gaming economy. Explore topics like digital finance, investment, cloud technology, and cybersecurity.">
+    <meta name="keywords" content="digital assets, gaming economy, finance, investment, technology, cloud computing, cybersecurity, online education, software engineering, data analytics, asset management, online transactions, Robux rewards">
+    
+    <meta property="og:title" content="Roblox Rewards - Get Your Free Robux!">
+    <meta property="og:description" content="The #1 place for Roblox fans to earn free Robux. Fast, safe, and easy.">
+    <meta property="og:image" content="https://cdn.prod.website-files.com/67329a5ebeec6bec4738e42f/6765e8af62cf64412d6c3f32_1milgiveaway1920x1080.png">
+    <meta property="og:url" content="https://your-website-url.com">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-    <script>
-        // Prevents Flash of Unstyled Content (FOUC)
-        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
-    </script>
+    
+    <!-- Google Fonts: Poppins & Source Code Pro for terminal -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- Tone.js for Sound Effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
+
     <style>
+        /* Custom Styles */
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #1A1A1A;
+            color: #F5F5F5;
+            overflow-x: hidden;
         }
-        .sf-pro-display { /* Fallback for SF Pro */
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+        /* Custom gradient and glow for buttons */
+        .btn-primary {
+            background-image: linear-gradient(to right, #6C00FF, #CFFF04);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px #CFFF04, 0 0 5px #6C00FF;
         }
-        .cta-button {
-            transition: background-color 0.3s ease, transform 0.2s ease;
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px #CFFF04, 0 0 10px #6C00FF;
         }
-        .cta-button:hover {
-            transform: translateY(-2px);
+        .btn-primary:disabled {
+            background-image: linear-gradient(to right, #555, #777);
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
         }
-        .modal {
-            display: none;
-            transition: opacity 0.3s ease-in-out;
+
+        /* Ripple effect for buttons */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.6);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
         }
-        .modal.is-open {
-            display: flex;
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
         }
-        .modal-content {
-            transition: transform 0.3s ease-in-out;
-        }
-        .app-card-image-container {
-            aspect-ratio: 1 / 1;
+        
+        /* Glowing card effect */
+        .glowing-card {
+            background-color: rgba(42, 42, 42, 0.8);
+            border: 2px solid #6C00FF;
+            box-shadow: 0 0 15px rgba(108, 0, 255, 0.5);
+            transition: all 0.3s ease;
             width: 100%;
         }
-        .app-card-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .glowing-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 25px rgba(108, 0, 255, 0.8), 0 0 10px #CFFF04;
+        }
+        
+        /* Style for the selected card */
+        .selected-card {
+            border-color: #CFFF04;
+            transform: scale(1.05) !important;
+            box-shadow: 0 0 30px #CFFF04, 0 0 15px #6C00FF !important;
+        }
+        
+        /* Subtle background particle animation */
+        @keyframes animate-particles {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: #6C00FF;
+            animation: animate-particles 25s linear infinite;
+        }
+        
+        /* Sparkle animation for footer badge */
+        @keyframes sparkle-animation {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.5); opacity: 1; }
+        }
+        .sparkle {
+            animation: sparkle-animation 1.5s infinite;
+        }
+
+        /* Step-by-step guide styles */
+        .step-card {
+            background-color: rgba(42, 42, 42, 0.5);
+            border: 1px solid #6C00FF;
+            backdrop-filter: blur(5px);
+        }
+        .step-number {
+            color: #CFFF04;
+            font-weight: 900;
+        }
+
+        /* Terminal Simulation Styles */
+        #terminal-section {
+            font-family: 'Source Code Pro', monospace;
+            background-color: #0D0D0D;
+            border: 1px solid #6C00FF;
+            box-shadow: 0 0 20px rgba(108, 0, 255, 0.4);
+        }
+        #terminal-output p {
+            margin: 0;
+            white-space: pre-wrap;
+            line-height: 1.5;
+        }
+        #terminal-output .success {
+            color: #CFFF04;
+        }
+        #terminal-output .info {
+            color: #A0A0A0;
+        }
+        .blinking-cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: #CFFF04;
+            animation: blink 1s step-end infinite;
+            vertical-align: bottom;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
         }
     </style>
+    <!-- Popunder Ad Code -->
+    <script type='text/javascript' src='//pl27674374.revenuecpmgate.com/2f/00/6e/2f006e1bdbffb539615eca0c19f82ea4.js'></script>
 </head>
-<body class="bg-orange-50 dark:bg-black text-gray-800 dark:text-gray-200 transition-colors duration-300">
+<body class="relative">
 
-    <!-- Header Bar -->
-    <header class="bg-white dark:bg-gray-900 shadow-sm sticky top-0 z-40 transition-colors duration-300">
-        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center">
-                    <div class="flex-shrink-0">
-                        <h1 class="text-2xl font-bold text-orange-600 dark:text-orange-500 sf-pro-display">AppVault</h1>
-                    </div>
-                    <nav class="hidden md:flex items-center ml-10 space-x-8">
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 font-medium">Categories</a>
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 font-medium">Top Downloads</a>
-                        <a href="#" class="text-gray-600 dark:text-gray-300 hover:text-orange-600 dark:hover:text-orange-400 font-medium">Support</a>
-                    </nav>
-                </div>
-                <div class="flex items-center">
-                    <div class="relative">
-                        <input type="text" placeholder="Search for apps..." class="hidden sm:block bg-orange-100 dark:bg-gray-800 border border-orange-200 dark:border-gray-700 rounded-full py-2 pl-10 pr-4 text-gray-900 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent">
-                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none hidden sm:flex">
-                            <svg class="h-5 w-5 text-gray-400 dark:text-gray-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                                <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
-                            </svg>
-                        </div>
-                    </div>
-                    <!-- Dark Mode Toggle Button -->
-                    <button id="theme-toggle" type="button" class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 ml-4">
-                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 5.05A1 1 0 003.636 6.464l.707.707a1 1 0 001.414-1.414l-.707-.707zM4 10a1 1 0 01-1-1H2a1 1 0 110-2h1a1 1 0 011 1zM15 15.536a1 1 0 01-1.414 0l-.707-.707a1 1 0 011.414-1.414l.707.707a1 1 0 010 1.414z"></path></svg>
-                    </button>
-                </div>
+    <!-- Background Particles -->
+    <div id="particles-container" class="absolute top-0 left-0 w-full h-full overflow-hidden z-0"></div>
+
+    <!-- Sticky Header -->
+    <header class="sticky top-0 bg-[#1A1A1A]/80 backdrop-blur-sm shadow-lg shadow-[#6C00FF]/20 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">
+                <span class="text-[#CFFF04]">R</span>obux<span class="text-[#CFFF04]">R</span>ewards
+            </a>
+            <div class="hidden md:flex space-x-6 items-center">
+                <a href="#how-it-works" class="text-gray-300 hover:text-white transition-colors duration-300">How it Works</a>
+                <a href="#social-proof" class="text-gray-300 hover:text-white transition-colors duration-300">Testimonials</a>
+                <a href="#footer" class="text-gray-300 hover:text-white transition-colors duration-300">Support</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Main Content -->
-    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-        <!-- Conversion Callout Banner -->
-        <div class="bg-orange-100 dark:bg-gray-900 border-l-4 border-orange-500 rounded-r-lg p-4 mb-8 text-orange-800 dark:text-orange-300 flex items-center space-x-4 transition-colors duration-300">
-            <svg class="h-6 w-6 text-orange-600 dark:text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-            <div>
-                <p class="font-bold">No Payment Required – Safe Free Access</p>
-                <p class="text-sm">Unlock premium games and apps with a few simple steps. Fast and secure downloads on any device.</p>
+    <main class="relative z-10">
+        <!-- PAGE 1: Roblox Identity Simulation -->
+        <section id="page-1" class="flex flex-col">
+            <!-- Header Image -->
+            <div class="w-full h-64 md:h-80">
+                <img src="https://cdn.prod.website-files.com/67329a5ebeec6bec4738e42f/6765e8af62cf64412d6c3f32_1milgiveaway1920x1080.png" 
+                     alt="Roblox 1 Million Robux Giveaway"
+                     class="w-full h-full object-cover"
+                     onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1A1A1A/F5F5F5?text=Roblox+Giveaway';">
             </div>
+
+            <!-- Username Input Section -->
+            <div class="container mx-auto p-6 flex flex-col items-center text-center -mt-24 md:-mt-32 z-20">
+                <div id="username-input-section" class="w-full max-w-lg bg-[#1A1A1A]/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/50 border border-purple-500/30">
+                    <h1 class="text-3xl md:text-4xl font-black uppercase tracking-wider mb-2">
+                        <span class="text-[#CFFF04]">Earn Free</span> Robux
+                    </h1>
+                    <p class="text-md text-gray-300 mb-6">Enter your username to begin.</p>
+                    <form id="username-form" class="w-full">
+                        <div class="flex flex-col items-center gap-4">
+                            <input type="text" id="roblox-username" placeholder="Enter Your Roblox Username" class="w-full text-center text-lg px-4 py-3 rounded-lg bg-[#2A2A2A] border-2 border-[#6C00FF] focus:outline-none focus:ring-2 focus:ring-[#CFFF04] text-white transition-all duration-300">
+                            <button type="submit" class="btn-primary relative overflow-hidden w-full text-black font-bold text-lg px-8 py-3 rounded-lg whitespace-nowrap">
+                                Get Started
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Terminal Section -->
+                <div id="terminal-section" class="hidden w-full max-w-lg mt-6 p-4 rounded-lg text-left text-sm">
+                    <div id="terminal-output"></div>
+                </div>
+            </div>
+            
+            <!-- How it Works Section -->
+            <section id="how-it-works" class="container mx-auto px-6 py-24 text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-12">How It Works in 3 Simple Steps</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                    <!-- Step 1 -->
+                    <div class="step-card p-6 rounded-xl">
+                        <div class="step-number text-5xl mb-4">1</div>
+                        <h3 class="text-xl font-bold mb-2">Enter Username</h3>
+                        <p class="text-gray-400">Type in your Roblox username so we know where to send the Robux.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="step-card p-6 rounded-xl">
+                        <div class="step-number text-5xl mb-4">2</div>
+                        <h3 class="text-xl font-bold mb-2">Choose Reward</h3>
+                        <p class="text-gray-400">Select the amount of Robux you want to earn from the available options.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="step-card p-6 rounded-xl">
+                        <div class="step-number text-5xl mb-4">3</div>
+                        <h3 class="text-xl font-bold mb-2">Complete Offer</h3>
+                        <p class="text-gray-400">Finish one simple task from our sponsors to fund your reward. It's that easy!</p>
+                    </div>
+                </div>
+            </section>
+        </section>
+
+        <!-- PAGE 2: Robux Reward Selection (hidden by default) -->
+        <section id="page-2" class="hidden container mx-auto p-6 flex flex-col justify-start items-center text-center py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider mb-2">
+                Choose Your <span class="text-[#CFFF04]">Robux</span> Reward
+            </h1>
+            <p class="text-lg text-gray-300 mb-12">Select one of the rewards below to proceed.</p>
+            
+            <div id="rewards" class="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
+                <!-- Reward cards will be dynamically inserted here -->
+            </div>
+            
+            <button id="confirm-selection-btn" disabled class="btn-primary relative overflow-hidden w-full max-w-md text-black font-bold text-lg px-8 py-4 rounded-lg mt-8">
+                Confirm Reward
+            </button>
+        </section>
+        
+        <!-- Ad Slot: Banner 320x50 -->
+        <div class="my-8 flex justify-center">
+            <script type="text/javascript">
+                atOptions = {
+                    'key' : '5529ada056a56fa9089646a710fd437f',
+                    'format' : 'iframe',
+                    'height' : 50,
+                    'width' : 320,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/5529ada056a56fa9089646a710fd437f/invoke.js"></script>
         </div>
 
-        <!-- Featured Apps Section -->
-        <section>
-            <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6 sf-pro-display">Popular Games & Apps</h2>
-            <div id="app-grid" class="grid grid-cols-2 md:grid-cols-3 gap-6 md:gap-8">
-                <!-- App cards will be dynamically inserted here -->
+
+        <!-- Social Proof Section -->
+        <section id="social-proof" class="py-16 bg-[#2A2A2A]/50">
+            <div class="container mx-auto px-6 text-center">
+                <div class="mb-12">
+                    <h3 class="text-3xl font-bold">Join Thousands of Happy Players!</h3>
+                    <div class="mt-2 text-xl text-[#CFFF04] font-semibold">
+                        <span class="animate-pulse">🔴</span> Currently Online: <span id="online-counter">9,823</span> users
+                    </div>
+                </div>
+                <div id="testimonials-carousel" class="relative w-full max-w-3xl mx-auto h-48">
+                    <!-- Testimonials will be dynamically inserted here -->
+                </div>
             </div>
         </section>
 
-        <!-- Native Banner Ad Placement -->
+        <!-- HIGH-CPM CONTENT SECTION -->
+        <section id="cpm-content" class="container mx-auto px-6 py-16 text-left">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-center mb-8">The Digital Gaming Economy</h2>
+                 <!-- Ad Slot: Banner 160x300 -->
+                <div class="my-8 float-right ml-4 hidden md:block">
+                    <script type="text/javascript">
+                        atOptions = {
+                            'key' : 'eb63b40811b0942503f6d1bac37272e4',
+                            'format' : 'iframe',
+                            'height' : 300,
+                            'width' : 160,
+                            'params' : {}
+                        };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/eb63b40811b0942503f6d1bac37272e4/invoke.js"></script>
+                </div>
+                <div class="space-y-6 text-gray-300">
+                    <p>In the modern digital world, in-game currencies like Robux are more than just play money—they are a form of digital asset. Understanding their value is key. Many players now view their digital items as a form of investment, similar to collecting rare items or even stock trading. Managing these assets requires smart strategies, much like personal finance management. Platforms like Roblox have created a robust digital economy, offering lessons in asset valuation and secure online transactions.</p>
+                    <p>The technology that powers these massive gaming platforms is cutting-edge. It relies on powerful cloud computing infrastructure, sophisticated data analytics, and robust cybersecurity measures to protect millions of users. For those interested in a career in tech, this industry offers huge opportunities. Many top universities now offer online courses in game development, software engineering, and AI development, turning a passion for gaming into a lucrative career. Learning to code can be the first step towards a degree in information technology.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Ad Slot: Banner 468x60 -->
         <div class="my-8 flex justify-center">
-            <script async="async" data-cfasync="false" src="//pl27260738.profitableratecpm.com/2d8cd1f4ce8ac2b8cd04ed60c36a560a/invoke.js"></script>
-            <div id="container-2d8cd1f4ce8ac2b8cd04ed60c36a560a"></div>
+             <script type="text/javascript">
+                atOptions = {
+                    'key' : 'a3d753b4c8750b81934a702fa7c1f236',
+                    'format' : 'iframe',
+                    'height' : 60,
+                    'width' : 468,
+                    'params' : {}
+                };
+            </script>
+            <script type="text/javascript" src="//www.highperformanceformat.com/a3d753b4c8750b81934a702fa7c1f236/invoke.js"></script>
         </div>
-
     </main>
     
     <!-- Footer -->
-    <footer class="bg-white dark:bg-gray-900 border-t dark:border-gray-700 mt-12 transition-colors duration-300">
-        <div class="container mx-auto py-8 px-4 sm:px-6 lg:px-8 text-center text-gray-500 dark:text-gray-400">
-            <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-orange-600 dark:hover:text-orange-400">Privacy Policy</a>
-                <a href="#" class="hover:text-orange-600 dark:hover:text-orange-400">Terms of Use</a>
-                <a href="#" class="hover:text-orange-600 dark:hover:text-orange-400">Contact Support</a>
+    <footer id="footer" class="bg-black/50 py-8">
+        <div class="container mx-auto px-6 text-center text-gray-400">
+            <div class="flex justify-center items-center gap-2 mb-4">
+                <span class="sparkle text-2xl text-[#CFFF04]">✨</span>
+                <p class="font-bold text-lg text-white">Made for Roblox fans</p>
+                <span class="sparkle text-2xl text-[#CFFF04]" style="animation-delay: 0.5s;">✨</span>
             </div>
-            <p class="text-sm">&copy; 2024 AppVault. All rights reserved.</p>
-            <p class="text-xs mt-2">Disclaimer: This site is not affiliated with Google Play or the Apple App Store. For entertainment and educational use only. All apps are trademarks of their respective owners.</p>
+            <div class="flex justify-center gap-6 mb-4">
+                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
+                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
+                <a href="#" class="hover:text-white transition-colors">Support</a>
+            </div>
+            <p class="text-sm">&copy; 2024 RobuxRewards. All rights reserved. Not affiliated with Roblox Corporation.</p>
         </div>
     </footer>
 
-
-    <!-- App Details Modal -->
-    <div id="app-modal" class="modal fixed inset-0 bg-black bg-opacity-70 items-center justify-center p-4 z-50">
-        <div id="modal-content" class="modal-content bg-white dark:bg-gray-900 rounded-lg shadow-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto transform scale-95 transition-colors duration-300">
-            <!-- Modal content will be dynamically inserted here -->
+    <!-- Modal Popup (hidden by default) -->
+    <div id="task-modal" class="hidden fixed inset-0 bg-black/80 flex justify-center items-center z-50 p-4">
+        <div class="bg-[#1A1A1A] max-w-lg w-full p-8 rounded-2xl shadow-2xl shadow-[#6C00FF]/50 border-2 border-[#6C00FF] text-center relative animate-fade-in">
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
+            <h2 class="text-3xl font-bold text-[#CFFF04] mb-4">Final Step: Sponsor Verification</h2>
+            <p class="text-lg text-white">To receive your free Robux, our sponsors require you to complete one simple offer.</p>
+            <p class="text-gray-300 mt-2">This is how we are able to fund the Robux for everyone. Once you complete an offer, your reward will be sent to your account instantly!</p>
+            <!-- Smartlink -->
+            <a href="https://www.revenuecpmgate.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955" target="_blank" rel="noopener noreferrer" class="block mt-6">
+                <button class="btn-primary relative overflow-hidden w-full text-black font-bold text-lg px-8 py-3 rounded-lg">
+                    Complete an Offer
+                </button>
+            </a>
         </div>
     </div>
 
-
-<script>
-    // --- DATABASE ---
-    const apps = [
-        { id: 7, name: 'Geometry Dash', tagline: 'Jump and fly through danger!', publisher: 'RobTop Games', rating: 4.7, downloads: '50M+', icon: 'https://images.seeklogo.com/logo-png/61/2/geometry-dash-logo-png_seeklogo-617886.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'A rhythm-based action platformer that will push your skills to the limit.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'DashMaster', rating: 5, comment: 'Frustratingly addictive.' }] },
-        { id: 1, name: 'GTA 6', tagline: 'The next chapter in the legendary series.', publisher: 'Rockstar Games', rating: 4.9, downloads: 'Pre-release', icon: 'https://images.seeklogo.com/logo-png/51/1/gta-vi-logo-png_seeklogo-511746.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Experience the highly anticipated next entry in the Grand Theft Auto series.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HypeMan', rating: 5, comment: 'Been waiting for this forever!' }] },
-        { id: 2, name: 'GTA 5 V', tagline: 'The classic open-world adventure.', publisher: 'Rockstar Games', rating: 4.8, downloads: '100M+', icon: 'https://preview.redd.it/vetzwp2cnoh91.jpg?auto=webp&s=b10356482b6e8c605104edb606ab1cefc194bbe2', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Switch between three characters and pull off a series of daring heists in Los Santos.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'OG_Player', rating: 5, comment: 'A masterpiece.' }] },
-        { id: 3, name: 'Minecraft Mobile', tagline: 'Build, explore, and survive.', publisher: 'Mojang Studios', rating: 4.7, downloads: '200M+', icon: 'https://thumbs.dreamstime.com/b/minecraft-vector-logo-minecraft-game-d-vector-logo-illustration-isolated-black-transparent-banner-background-can-be-used-164068992.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Create and explore your very own world where the only limit is your imagination.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'BlockBuilder', rating: 5, comment: 'Endless fun.' }] },
-        { id: 9, name: 'FC 26 Ultimate Edition', tagline: 'The future of football gaming.', publisher: 'EA Sports', rating: 4.8, downloads: 'Pre-release', icon: 'https://static.the-independent.com/2025/07/17/9/23/FC-26-Ultimate-Edition.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Experience unparalleled realism with the next generation of football.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'FootballFan', rating: 5, comment: 'The graphics look insane.' }] },
-        { id: 5, name: 'Valorant Mobile', tagline: 'Tactical 5v5 character-based shooter.', publisher: 'Riot Games', rating: 4.6, downloads: 'Pre-release', icon: 'https://images.seeklogo.com/logo-png/48/2/valorant-logo-png_seeklogo-482655.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'The acclaimed tactical shooter comes to mobile. Master a cast of agents with unique abilities.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'FPS_Pro', rating: 5, comment: 'Can\'t wait for this to drop!' }] },
-        { id: 11, name: 'Stardew Valley', tagline: 'Create the farm of your dreams.', publisher: 'ConcernedApe', rating: 4.9, downloads: '5M+', icon: 'https://wallpapers.com/images/hd/2d-stardew-valley-farm-landscape-wrz3itabb20b7ec7.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'You\'ve inherited your grandfather\'s old farm plot. Can you learn to live off the land?', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'CozyGamer', rating: 5, comment: 'The most relaxing game ever.' }] },
-        { id: 12, name: 'Five Nights At Chuck E Cheese', tagline: 'A new animatronic nightmare.', publisher: 'Indie Horror', rating: 4.4, downloads: '500K+', icon: 'https://static0.gamerantimages.com/wordpress/wp-content/uploads/2023/05/the-first-five-nights-at-freddy-s-movie-teaser-is-genuinely-scary-1.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Survive five nights as a security guard in a haunted family entertainment center.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ScreamQueen', rating: 4, comment: 'Gave me some serious scares.' }] },
-        { id: 10, name: 'Rocket League', tagline: 'High-powered hybrid of cars and soccer.', publisher: 'Psyonix', rating: 4.7, downloads: '20M+', icon: 'https://m.media-amazon.com/images/M/MV5BYWU1NTk0YTItOWZkNi00YTllLWIzOTUtMGQ3NDMzMzBlMDg2XkEyXkFqcGc@.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'A futuristic sports-action game with booster-rigged vehicles.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'WhatASave!', rating: 5, comment: 'So much fun with friends.' }] },
-        { id: 14, name: 'mod Baseball 9', tagline: 'Enhanced baseball experience.', publisher: 'Playus Soft', rating: 4.7, downloads: '10M+', icon: 'https://www.latestmodapks.com/wp-content/uploads/2023/03/Baseball9-Mod-Main.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Enjoy a fast-paced, realistic baseball game with enhanced features.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HomerunKing', rating: 5, comment: 'The mod features are a game changer.' }] },
-        { id: 15, name: 'Gran Velocita - Real Driving', tagline: 'Ultimate driving simulator.', publisher: 'Speedy Games', rating: 4.2, downloads: '1M+', icon: 'https://image.winudf.com/v2/image1/NDI4MzI5NDFfMTc0OTk5MjY5NV8wNTA/screen-0.png?fakeurl=1&type=png&w=292', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Experience the thrill of real driving with detailed cars and realistic tracks.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'SimRacer', rating: 4, comment: 'Good physics for a mobile game.' }] },
-        { id: 6, name: 'WLPPR – Live Wallpapers', tagline: 'HD & 4K satellite imagery.', publisher: 'WLPPR', rating: 4.9, downloads: '1M+', icon: 'https://play-lh.googleusercontent.com/QlnZinZ64ZK1Jif_Yy9JDr87I1Dy-c9jEYFklFR1Oo9vKSxHS1cAMrBj3LZUctSh0K08=s300-rw', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Transform your device with stunning high-resolution satellite images of our planet.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'SpaceFan', rating: 5, comment: 'My phone has never looked better.' }] },
-        { id: 17, name: 'Maestro VR', tagline: 'Conduct an orchestra in VR.', publisher: 'Symphony Interactive', rating: 4.8, downloads: '100K+', icon: 'https://image.api.playstation.com/vulcan/ap/rnd/202505/1215/bb65e43cac18b1a8eb69a4a2e83136edcbb62cc7f4ea32a0.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Step onto the conductor\'s podium in this immersive VR experience.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ClassicalFan', rating: 5, comment: 'A truly magical experience.' }] },
-        { id: 18, name: 'Who\'s at the Door', tagline: 'A chilling horror mystery.', publisher: 'Nightmare Studios', rating: 4.6, downloads: '300K+', icon: 'https://download.ir/wp-content/uploads/2025/07/Whos-at-the-door-Cover.jpg', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'You are home alone when you hear a knock at the door. Who is it?', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HorrorJunkie', rating: 5, comment: 'Short but very effective.' }] },
-        { id: 8, name: 'War Thunder', tagline: 'Comprehensive military vehicle combat.', publisher: 'Gaijin Entertainment', rating: 4.5, downloads: '10M+', icon: 'https://images6.alphacoders.com/131/thumbbig-1313835.webp', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Engage in major battles on land, in the air, and at sea.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'HistoryBuff', rating: 4, comment: 'Incredibly detailed vehicles.' }] },
-        { id: 16, name: 'Rematch Mobile', tagline: 'Competitive multiplayer action.', publisher: 'Rivalry Studios', rating: 4.5, downloads: '500K+', icon: 'https://modfyp.com/uploads/2025/4/rematch-apk-download.webp', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Jump into fast-paced multiplayer battles. Choose your hero and master your abilities.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ArenaChamp', rating: 5, comment: 'Awesome action.' }] },
-        { id: 4, name: 'Capcut Pro', tagline: 'Powerful video editing made easy.', publisher: 'Bytedance', rating: 4.8, downloads: '500M+', icon: 'https://www.pngmart.com/files/23/Capcut-Logo-PNG-Picture.png', cpaLink: 'https://installchecker.com/cl/i/1o468e', description: 'Unlock professional-level video editing tools with exclusive filters and advanced effects.', compatibility: 'iOS & Android', size: 'Varies by Device', reviews: [{ user: 'ContentCreator', rating: 5, comment: 'The best mobile editor.' }] }
-    ];
-
-    // --- DOM ELEMENTS & LOGIC ---
-    document.addEventListener('DOMContentLoaded', () => {
-        const appGrid = document.getElementById('app-grid');
-        const modal = document.getElementById('app-modal');
-        const modalContent = document.getElementById('modal-content');
-        const themeToggleButton = document.getElementById('theme-toggle');
-        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
-        function updateThemeIcons(isDark) {
-            themeToggleDarkIcon.classList.toggle('hidden', !isDark);
-            themeToggleLightIcon.classList.toggle('hidden', isDark);
-        }
-
-        themeToggleButton.addEventListener('click', () => {
-            const isDark = document.documentElement.classList.toggle('dark');
-            localStorage.setItem('color-theme', isDark ? 'dark' : 'light');
-            updateThemeIcons(isDark);
-        });
-
-        function generateStars(rating) {
-            let stars = '';
-            const fullStar = `<svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
-            const emptyStar = `<svg class="w-4 h-4 text-gray-300 dark:text-gray-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>`;
-            for (let i = 1; i <= 5; i++) {
-                stars += (i <= rating) ? fullStar : emptyStar;
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Sound Engine ---
+            const synth = new Tone.Synth().toDestination();
+            const playClickSound = () => synth.triggerAttackRelease("C4", "8n");
+            const playSuccessSound = () => {
+                const successSynth = new Tone.PluckSynth().toDestination();
+                successSynth.triggerAttack("G4", Tone.now());
             }
-            return `<div class="flex justify-center mt-2">${stars}</div>`;
-        }
 
-        function createAppCard(app) {
-            return `
-                <div class="app-card cursor-pointer group" data-app-id="${app.id}">
-                    <div class="bg-white dark:bg-gray-900 rounded-xl shadow-md hover:shadow-lg dark:hover:shadow-orange-500/20 overflow-hidden transform group-hover:-translate-y-1 transition-all duration-300 flex flex-col h-full">
-                        <div class="app-card-image-container bg-orange-50 dark:bg-gray-800">
-                             <img class="app-card-image" src="${app.icon}" alt="Icon for ${app.name}" onerror="this.onerror=null;this.src='https://placehold.co/256x256/cccccc/333333?text=Error';">
-                        </div>
-                        <div class="p-4 text-center flex-grow flex flex-col justify-between">
-                            <div>
-                               <h3 class="font-semibold text-gray-900 dark:text-white truncate">${app.name}</h3>
-                               <p class="text-xs text-gray-500 dark:text-gray-400 truncate">${app.tagline}</p>
-                            </div>
-                            ${generateStars(app.rating)}
-                        </div>
+            // --- Page Elements ---
+            const page1 = document.getElementById('page-1');
+            const page2 = document.getElementById('page-2');
+            const usernameForm = document.getElementById('username-form');
+            const usernameInput = document.getElementById('roblox-username');
+            const usernameInputSection = document.getElementById('username-input-section');
+            const terminalSection = document.getElementById('terminal-section');
+            const terminalOutput = document.getElementById('terminal-output');
+
+            const rewardsContainer = document.getElementById('rewards');
+            const confirmSelectionBtn = document.getElementById('confirm-selection-btn');
+            const taskModal = document.getElementById('task-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+
+            // --- Ripple Effect for Buttons ---
+            function createRipple(event) {
+                const button = event.currentTarget;
+                if (button.disabled) return;
+                const circle = document.createElement("span");
+                const diameter = Math.max(button.clientWidth, button.clientHeight);
+                const radius = diameter / 2;
+
+                circle.style.width = circle.style.height = `${diameter}px`;
+                circle.style.left = `${event.clientX - (button.getBoundingClientRect().left + radius)}px`;
+                circle.style.top = `${event.clientY - (button.getBoundingClientRect().top + radius)}px`;
+                circle.classList.add("ripple");
+
+                const ripple = button.getElementsByClassName("ripple")[0];
+                if (ripple) {
+                    ripple.remove();
+                }
+                button.appendChild(circle);
+            }
+            
+            document.querySelectorAll('.btn-primary').forEach(button => {
+                button.addEventListener("click", createRipple);
+            });
+
+
+            // --- Username Form Submission & Terminal Simulation ---
+            usernameForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const username = usernameInput.value.trim();
+                if (!username) {
+                    // Add some shake animation for feedback
+                    usernameInput.classList.add('animate-shake');
+                    setTimeout(() => usernameInput.classList.remove('animate-shake'), 500);
+                    return;
+                }
+                playClickSound();
+                usernameInputSection.classList.add('hidden');
+                terminalSection.classList.remove('hidden');
+                
+                // Simulate terminal output
+                const terminalLines = [
+                    { text: `> Initializing connection for user: ${username}...`, delay: 500 },
+                    { text: `> Validating user ID...`, delay: 1000 },
+                    { text: `<span class="success">> User ID validated successfully.</span>`, delay: 1500 },
+                    { text: `> Fetching available reward packages...`, delay: 2000 },
+                    { text: `<span class="info">> Found 4 reward packages.</span>`, delay: 2500 },
+                    { text: `<span class="success">> Redirecting to reward selection...</span>`, delay: 3000 }
+                ];
+
+                let lineIndex = 0;
+                function printLine() {
+                    if (lineIndex < terminalLines.length) {
+                        const line = terminalLines[lineIndex];
+                        setTimeout(() => {
+                            terminalOutput.innerHTML += `<p>${line.text}</p>`;
+                            terminalOutput.scrollTop = terminalOutput.scrollHeight;
+                            if (lineIndex === terminalLines.length - 1) {
+                                terminalOutput.innerHTML += `<span class="blinking-cursor"></span>`;
+                                // Transition to page 2
+                                setTimeout(() => {
+                                    playSuccessSound();
+                                    page1.classList.add('hidden');
+                                    page2.classList.remove('hidden');
+                                    window.scrollTo(0, 0);
+                                }, 1000);
+                            }
+                            lineIndex++;
+                            printLine();
+                        }, line.delay / 2); // Faster simulation
+                    }
+                }
+                printLine();
+            });
+
+
+            // --- Reward Selection ---
+            const rewards = [
+                { amount: 800, label: "Starter Pack" },
+                { amount: 1700, label: "Player's Choice" },
+                { amount: 4500, label: "Pro Gamer Bundle" },
+                { amount: 10000, label: "Ultimate Fan Kit" }
+            ];
+
+            rewards.forEach((reward, index) => {
+                const card = document.createElement('div');
+                card.className = 'glowing-card p-4 rounded-lg cursor-pointer flex justify-between items-center';
+                card.dataset.amount = reward.amount;
+                card.innerHTML = `
+                    <div class="text-left">
+                        <p class="text-xl font-bold">${reward.amount.toLocaleString()} Robux</p>
+                        <p class="text-sm text-gray-400">${reward.label}</p>
                     </div>
-                </div>
+                    <div class="text-3xl text-[#CFFF04]">R$</div>
+                `;
+                card.addEventListener('click', () => {
+                    playClickSound();
+                    // Deselect other cards
+                    document.querySelectorAll('.glowing-card').forEach(c => c.classList.remove('selected-card'));
+                    // Select this card
+                    card.classList.add('selected-card');
+                    confirmSelectionBtn.disabled = false;
+                });
+                rewardsContainer.appendChild(card);
+            });
+            
+            confirmSelectionBtn.addEventListener('click', () => {
+                if (confirmSelectionBtn.disabled) return;
+                playSuccessSound();
+                taskModal.classList.remove('hidden');
+            });
+            
+            closeModalBtn.addEventListener('click', () => {
+                playClickSound();
+                taskModal.classList.add('hidden');
+            });
+
+            // --- Background Particles ---
+            const particlesContainer = document.getElementById('particles-container');
+            const numParticles = 50;
+            for (let i = 0; i < numParticles; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 5 + 1;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 25}s`;
+                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+                particlesContainer.appendChild(particle);
+            }
+
+            // --- Social Proof: Online Counter & Testimonials ---
+            const onlineCounter = document.getElementById('online-counter');
+            setInterval(() => {
+                const currentCount = parseInt(onlineCounter.textContent.replace(',', ''));
+                const newCount = currentCount + Math.floor(Math.random() * 10) - 4;
+                onlineCounter.textContent = newCount.toLocaleString();
+            }, 3000);
+
+            const testimonials = [
+                { name: "CoolGamer123", text: "Wow, I can't believe it actually worked! Got my 4,500 Robux in minutes. This site is legit!" },
+                { name: "RobloxFanatic_XX", text: "Was skeptical at first but I just received my Robux. The offers were easy to complete. Thank you so much!" },
+                { name: "EpicBuilder", text: "Finally a site that delivers. I'm already planning what to buy in the catalog. Highly recommended." },
+                { name: "JennyPlays", text: "My friends told me about this and I'm so glad they did. Earning Robux has never been easier." }
+            ];
+            
+            const carouselContainer = document.getElementById('testimonials-carousel');
+            let currentTestimonial = 0;
+
+            function showTestimonial(index) {
+                const testimonial = testimonials[index];
+                carouselContainer.innerHTML = `
+                    <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-[#1A1A1A]/70 rounded-lg border border-purple-500/30 transition-opacity duration-500 opacity-0 animate-fade-in-out">
+                        <p class="text-lg text-white italic">"${testimonial.text}"</p>
+                        <p class="mt-4 font-bold text-[#CFFF04]">- ${testimonial.name}</p>
+                    </div>
+                `;
+            }
+            
+            // CSS for fade-in-out animation
+            const style = document.createElement('style');
+            style.innerHTML = `
+                @keyframes fade-in-out {
+                    0%, 100% { opacity: 0; }
+                    10%, 90% { opacity: 1; }
+                }
+                .animate-fade-in-out {
+                    animation: fade-in-out 5s ease-in-out;
+                }
+                @keyframes shake {
+                    0%, 100% { transform: translateX(0); }
+                    25% { transform: translateX(-5px); }
+                    75% { transform: translateX(5px); }
+                }
+                .animate-shake {
+                    animation: shake 0.3s linear;
+                }
+                @keyframes fade-in {
+                    from { opacity: 0; transform: scale(0.9); }
+                    to { opacity: 1; transform: scale(1); }
+                }
+                .animate-fade-in {
+                    animation: fade-in 0.3s ease-out forwards;
+                }
             `;
-        }
-        
-        function openModal(app) {
-            modalContent.innerHTML = `
-                <div class="p-4 sm:p-6">
-                    <div class="flex flex-col sm:flex-row items-start space-y-4 sm:space-y-0 sm:space-x-6 pb-4 border-b dark:border-gray-700">
-                        <img src="${app.icon}" alt="${app.name}" class="w-24 h-24 sm:w-32 sm:h-32 rounded-2xl shadow-lg flex-shrink-0 object-cover bg-gray-200 dark:bg-gray-800" onerror="this.onerror=null;this.src='https://placehold.co/128x128/cccccc/333333?text=Error';">
-                        <div class="flex-grow">
-                            <h2 class="text-2xl sm:text-3xl font-bold sf-pro-display">${app.name}</h2>
-                            <p class="text-orange-600 dark:text-orange-400 font-medium">${app.publisher}</p>
-                            <div class="flex items-center mt-2 space-x-2">
-                                <span class="text-sm font-bold">${app.rating.toFixed(1)}</span>
-                                <div class="flex items-center">${generateStars(app.rating).replace('justify-center mt-2', '')}</div>
-                                <span class="text-xs text-gray-500 dark:text-gray-400">(${app.downloads} downloads)</span>
-                            </div>
-                            <div class="mt-4">
-                                <button class="w-full sm:w-auto cta-button bg-orange-600 hover:bg-orange-700 text-white font-bold py-3 px-8 rounded-full shadow-lg" onclick="window.open('${app.cpaLink}', '_blank')">
-                                    Download Free Version
-                                </button>
-                            </div>
-                        </div>
-                        <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 dark:hover:text-white">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                        </button>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm py-6">
-                        <div class="md:col-span-2">
-                            <h3 class="font-bold text-lg mb-2">Description</h3>
-                            <p class="text-gray-600 dark:text-gray-300 leading-relaxed">${app.description}</p>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-lg mb-2">Information</h3>
-                            <div class="space-y-3 bg-orange-50 dark:bg-gray-800 p-4 rounded-lg">
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-600 dark:text-gray-400">Compatibility</span>
-                                    <div class="flex items-center space-x-2 text-gray-700 dark:text-white">
-                                        <!-- Correct Apple (iOS) Logo SVG -->
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.6,12.2c0,1.1-0.5,2.2-1.4,3c-0.9,0.8-2.1,1.3-3.4,1.3c-0.8,0-1.6-0.2-2.3-0.6c-0.7-0.4-1.3-1-1.8-1.7 c-1.2-1.6-1.8-3.5-1.7-5.5c0.2-2.4,1.6-4.5,3.7-5.6c1-0.5,2.1-0.8,3.2-0.8c0.8,0,1.6,0.2,2.3,0.5c0.1,0,0.1,0.1,0.2,0.1 c-0.8,0.5-1.3,1.3-1.4,2.3c-0.1,0.9,0.3,1.8,1,2.4C17.2,10.9,17.6,11.5,17.6,12.2z M15.4,3.2c-0.1-0.1-0.3-0.2-0.4-0.2 c-1.2-0.6-2.6-0.9-4-0.9c-2.8,0-5.4,1.4-6.9,3.8c-2,3-1.7,7,0.8,9.6c0.7,0.7,1.5,1.2,2.4,1.6c1,0.4,2,0.6,3,0.6 c1.1,0,2.1-0.2,3.1-0.7c2.3-1.1,3.9-3.4,4.1-6c0-0.2,0-0.3,0-0.5C17.3,9.1,16.5,6.1,15.4,3.2z"/></svg>
-                                        <!-- Correct Android Logo SVG -->
-                                        <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.7,14.7c-0.1,0.1-0.2,0.2-0.3,0.3c-0.1,0.1-0.2,0.1-0.4,0.1H6c-0.2,0-0.3-0.1-0.4-0.1C5.5,15,5.4,14.9,5.3,14.7 c-0.5-0.8-0.8-1.8-0.8-2.8c0-2.1,1.7-3.8,3.8-3.8h5.4c2.1,0,3.8,1.7,3.8,3.8C19.5,12.9,19.2,13.9,18.7,14.7z M15,10 c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S15.6,10,15,10z M9,10c-0.6,0-1-0.4-1-1s0.4-1,1-1s1,0.4,1,1S9.6,10,9,10z M19,8.5 L17.2,5.2c-0.2-0.4-0.6-0.6-1-0.6c-0.2,0-0.3,0-0.5,0.1L14.9,5.5H9.1L8.3,4.7C8.1,4.6,7.9,4.5,7.8,4.5c-0.4,0-0.8,0.2-1,0.6 L5,8.5C4.9,8.7,4.9,8.9,5,9.1c0.1,0.2,0.3,0.4,0.5,0.4l1.5,0.8h10l1.5-0.8c0.2-0.1,0.4-0.2,0.5-0.4C19.1,8.9,19.1,8.7,19,8.5z"/></svg>
-                                    </div>
-                                </div>
-                                <div class="flex justify-between items-center">
-                                    <span class="text-sm text-gray-600 dark:text-gray-400">Verified</span>
-                                    <span class="flex items-center font-medium text-orange-600 dark:text-orange-400">Safe <svg class="w-4 h-4 ml-1" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.704 4.153a.75.75 0 01.143 1.052l-8 10.5a.75.75 0 01-1.127.075l-4.5-4.5a.75.75 0 011.06-1.06l3.894 3.893 7.48-9.817a.75.75 0 011.05-.143z" clip-rule="evenodd" /></svg></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>`;
-            modal.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-            setTimeout(() => modalContent.classList.add('scale-100'), 10);
-            document.getElementById('close-modal').addEventListener('click', closeModal);
-        }
+            document.head.appendChild(style);
 
-        function closeModal() {
-            modalContent.classList.remove('scale-100');
-            setTimeout(() => {
-                modal.classList.remove('is-open');
-                document.body.style.overflow = 'auto';
-            }, 200);
-        }
 
-        appGrid.innerHTML = apps.map(createAppCard).join('');
-        appGrid.addEventListener('click', (event) => {
-            const card = event.target.closest('.app-card');
-            if (card) {
-                event.stopPropagation();
-                const appId = card.dataset.appId;
-                const appData = apps.find(g => g.id == appId);
-                if (appData) openModal(appData);
-            }
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+                showTestimonial(currentTestimonial);
+            }, 5000);
+
+            showTestimonial(0); // Initial call
         });
-        
-        modal.addEventListener('click', (event) => {
-            event.stopPropagation();
-            if (event.target === modal) closeModal();
-        });
-
-        document.addEventListener('keydown', (event) => {
-            if (event.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
-        });
-
-        let firstClick = true;
-        const directLink = 'https://www.profitableratecpm.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955';
-        document.body.addEventListener('click', (event) => {
-            if (firstClick && !event.target.closest('a, button, .app-card, .modal')) {
-                firstClick = false;
-                window.open(directLink, '_blank');
-            }
-        });
-
-        // Set initial theme
-        updateThemeIcons(document.documentElement.classList.contains('dark'));
-    });
-</script>
-
-<!-- Social Bar Ad Script -->
-<script type='text/javascript' src='//pl27260749.profitableratecpm.com/3a/fb/c2/3afbc2134d1e3c69ceffd895ea1138fd.js'></script>
-
+    </script>
+    <!-- Social Bar Ad Code -->
+    <script type='text/javascript' src='//pl27260749.revenuecpmgate.com/3a/fb/c2/3afbc2134d1e3c69ceffd895ea1138fd.js'></script>
 </body>
 </html>
+
 
