@@ -167,17 +167,20 @@
 <!-- Modal -->
 <div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 transition-opacity duration-300" onclick="if(event.target.id === 'modal') closeModal()">
   <div class="bg-white dark:bg-gray-800 max-w-sm w-11/12 rounded-2xl p-6 text-center shadow-2xl transition-colors duration-500">
-    <h3 class="text-2xl font-bold text-primary-red mb-3">Initiate Download</h3>
+    <h3 class="text-2xl font-bold text-primary-red mb-3">Security Check Required</h3>
     <p class="text-gray-600 dark:text-gray-300 leading-normal mb-6 text-sm">
-      Select your preferred platform to begin the high-speed transfer of the Red Dead Redemption Mobile package.
+      To ensure the download is initiated by a human user, please complete a short offer below. 
+      Your download will start immediately afterward.
     </p>
-    <div class="text-4xl mb-6">
-      <span class="mr-4">🤖</span>
-      <span>🍎</span>
+    <div class="text-4xl mb-6 text-yellow-500">
+      👤 Verification Needed
     </div>
-    <button class="w-full bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full text-base font-bold transition duration-300 shadow-lg shadow-green-400/50" onclick="startDownload()">
-      Start Secure Download
-    </button>
+    <!-- CPA Link integrated into the final download button -->
+    <a href="https://applocked.org/cl/i/1o468e" 
+       target="_blank" 
+       class="w-full inline-block bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full text-base font-bold transition duration-300 shadow-lg shadow-green-400/50">
+      Verify & Start Download
+    </a>
     <button class="cancel mt-3 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition duration-300" onclick="closeModal()">
       Cancel
     </button>
@@ -227,24 +230,6 @@
   // Utility function to close the modal
   function closeModal() {
     document.getElementById('modal').classList.remove('is-active');
-  }
-
-  // Function to simulate the start of a clean download
-  function startDownload() {
-    closeModal();
-    const ctaButton = document.querySelector('.cta a');
-
-    // Update button visually to show success
-    ctaButton.textContent = '✅ Download Starting...';
-    ctaButton.classList.add('bg-green-600', 'hover:bg-green-700', 'shadow-green-400/50');
-    ctaButton.classList.remove('bg-primary-red', 'hover:bg-red-700', 'shadow-red-400/50');
-
-    // Reset button after a delay
-    setTimeout(() => {
-      ctaButton.textContent = '⬇ Download Now';
-      ctaButton.classList.remove('bg-green-600', 'hover:bg-green-700', 'shadow-green-400/50');
-      ctaButton.classList.add('bg-primary-red', 'hover:bg-red-700', 'shadow-red-400/50');
-    }, 3000);
   }
 </script>
 
