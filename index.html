@@ -1,74 +1,103 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Red Dead Redemption – Mobile Edition</title>
+  <title>Red Dead Redemption – Official Mobile Edition</title>
   <!-- Load Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    // Configure Tailwind to use Inter font, define custom colors, and enable dark mode via class
+    // Configure Tailwind CSS
     tailwind.config = {
       darkMode: 'class', // Enable dark mode based on the 'dark' class on the HTML element
       theme: {
         extend: {
           colors: {
-            'primary-red': '#b11217',
-            'deep-dark': '#0f0f0f',
-            'off-white': '#f4f4f4',
+            'rdr-red': '#B11217',
+            'rdr-dark': '#1C1917', // Darker background for atmosphere
+            'rdr-brown': '#5C4033', // Western accent color
+            'rdr-light-gray': '#F5F5F4',
           },
           fontFamily: {
-            sans: ['Inter', 'sans-serif'],
+            // Using Inter as the primary readable font
+            sans: ['Inter', 'sans-serif'], 
           },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.5s ease-out',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          }
         },
       }
     }
   </script>
   <!-- Load Inter font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    /* Custom utility for the background image and its overlay */
+    /* Custom Header Background with Cinematic Overlay */
     .rdr-header-bg {
       background-image:
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        linear-gradient(rgba(28, 25, 23, 0.65), rgba(0, 0, 0, 0.85)),
         url('https://i.postimg.cc/zfQHVqCw/startup-1763186258436-rdr-mobile-editon-2l4LDNsck.webp');
       background-size: cover;
       background-position: center;
     }
-    /* Simple image placeholder for the icon */
+    /* Game Icon */
     .game-icon-bg {
         background-image: url('https://i.postimg.cc/nzMKPdkT/download-(3).jpg');
         background-size: cover;
         background-position: center;
     }
-    /* Ensure modal uses flex display for centering */
+    /* Sticky Footer for Mobile CTA */
+    .sticky-cta-mobile {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 40;
+        padding: 1rem;
+        box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.5);
+    }
+    /* Hide the sticky CTA on larger screens */
+    @media (min-width: 1024px) {
+      .sticky-cta-mobile {
+        display: none;
+      }
+    }
+    /* Modal display */
     #modal.is-active {
         display: flex;
     }
-    /* Base body background for light mode */
-    body {
-        background-color: #f4f4f4; /* Light Gray/Off-White base */
-    }
-    /* Dark mode body background */
+    
+    /* Global styling for theme transition */
     .dark body {
         background-color: #1a1a1a;
         color: #e0e0e0;
     }
-    /* Dark mode card styling */
     .dark .card-style {
-        background-color: #262626;
-        border-color: #3f3f46;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        background-color: #292524;
+        border-color: #44403C;
+    }
+    .dark .stat-box {
+        background-color: #3f3f46;
+    }
+    
+    /* RDR Title shadow for a distressed look */
+    .rdr-title-effect {
+        text-shadow: 1px 1px 0 #000, 2px 2px 0 #rdr-brown, 3px 3px 0 #000;
     }
   </style>
 </head>
-<!-- Initial body class ensures light gray background -->
-<body class="bg-gray-100 text-gray-800 transition-colors duration-500">
+
+<body class="bg-rdr-light-gray text-rdr-dark min-h-screen pb-20 lg:pb-0 transition-colors duration-500">
 
 <!-- Header Section (Hero Banner) -->
-<header class="rdr-header-bg text-white py-12 px-4 text-center rounded-b-2xl shadow-xl relative">
+<header class="rdr-header-bg text-white py-16 px-4 text-center rounded-b-3xl shadow-2xl relative">
   
   <!-- Theme Toggle Button (English Text) -->
   <button id="theme-toggle" onclick="toggleTheme()" 
@@ -77,125 +106,130 @@
     <span id="theme-text">Dark Mode</span>
   </button>
 
-  <h1 class="text-4xl sm:text-5xl font-extrabold mb-1 tracking-tight">Red Dead Redemption</h1>
-  <p class="opacity-90 text-md sm:text-lg">Mobile Edition – Legendary Western Adventure</p>
+  <h1 class="text-5xl sm:text-6xl font-extrabold mb-1 tracking-tight rdr-title-effect">
+    Red Dead Redemption
+  </h1>
+  <p class="opacity-90 text-xl sm:text-2xl font-semibold italic">Official Mobile Release</p>
 </header>
 
-<!-- Hero Content Section (Download/Info Cards) -->
-<section class="max-w-5xl mx-auto mt-8 sm:mt-10 p-4">
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+<!-- Main Content Area -->
+<main class="max-w-6xl mx-auto mt-10 sm:mt-12 p-4">
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-    <!-- Card 1: Download CTA and Stats -->
-    <div class="lg:col-span-2 bg-white card-style rounded-xl shadow-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700">
+    <!-- Card 1: Primary Download/Stats (Larger on Desktop) -->
+    <div class="lg:col-span-2 bg-white card-style rounded-xl shadow-xl p-6 sm:p-8 border-t-4 border-rdr-red dark:border-t-4 dark:border-rdr-red dark:shadow-none animate-fade-in-up">
       
       <!-- Game Info Block -->
-      <div class="flex items-center space-x-4">
-        <div class="game-icon-bg w-16 h-16 sm:w-20 sm:h-20 rounded-xl flex-shrink-0 shadow-md"></div>
+      <div class="flex items-center space-x-5">
+        <div class="game-icon-bg w-20 h-20 sm:w-24 sm:h-24 rounded-2xl flex-shrink-0 shadow-lg border-2 border-rdr-red"></div>
         <div>
-          <h2 class="text-xl sm:text-2xl font-bold mb-0 dark:text-gray-100">Red Dead Redemption</h2>
-          <span class="text-gray-500 text-sm">Rockstar Games / Netflix</span>
+          <h2 class="text-2xl sm:text-3xl font-bold mb-1 dark:text-rdr-light-gray">RDR Mobile Edition</h2>
+          <span class="text-gray-500 dark:text-gray-400 text-md font-medium">Rockstar Games / Available on iOS & Android</span>
         </div>
       </div>
 
       <!-- Stats Grid -->
-      <div class="grid grid-cols-3 gap-3 mt-4">
-        <div class="bg-off-white dark:bg-gray-700 rounded-lg p-3 text-center">
-          <strong class="text-lg font-extrabold text-primary-red">4.9 ★</strong>
-          <span class="block text-xs text-gray-600 dark:text-gray-400 mt-1">Rating</span>
+      <div class="grid grid-cols-3 gap-4 mt-6">
+        <div class="bg-rdr-light-gray dark:bg-gray-700 stat-box rounded-xl p-4 text-center transition-colors duration-500">
+          <strong class="text-2xl font-extrabold text-rdr-red">9.8/10</strong>
+          <span class="block text-xs text-gray-700 dark:text-gray-300 mt-1">Official Score</span>
         </div>
-        <div class="bg-off-white dark:bg-gray-700 rounded-lg p-3 text-center">
-          <strong class="text-lg font-extrabold dark:text-gray-100">2.8 GB</strong>
-          <span class="block text-xs text-gray-600 dark:text-gray-400 mt-1">Size</span>
+        <div class="bg-rdr-light-gray dark:bg-gray-700 stat-box rounded-xl p-4 text-center transition-colors duration-500">
+          <strong class="text-2xl font-extrabold dark:text-rdr-light-gray">48 Hours</strong>
+          <span class="block text-xs text-gray-700 dark:text-gray-300 mt-1">Free Trial Period</span>
         </div>
-        <div class="bg-off-white dark:bg-gray-700 rounded-lg p-3 text-center">
-          <strong class="text-lg font-extrabold dark:text-gray-100">10M+</strong>
-          <span class="block text-xs text-gray-600 dark:text-gray-400 mt-1">Downloads</span>
+        <!-- UPDATED FILE SIZE HERE -->
+        <div class="bg-rdr-light-gray dark:bg-gray-700 stat-box rounded-xl p-4 text-center transition-colors duration-500">
+          <strong class="text-2xl font-extrabold dark:text-rdr-light-gray">1.7 GB</strong>
+          <span class="block text-xs text-gray-700 dark:text-gray-300 mt-1">Minimum Space Req.</span>
         </div>
       </div>
 
-      <!-- CTA Button -->
-      <div class="cta mt-6 text-center">
-        <a href="#" onclick="openModal()" class="inline-block bg-primary-red hover:bg-red-700 text-white py-3 px-8 rounded-full text-lg font-bold transition duration-300 shadow-lg shadow-red-400/50 transform hover:scale-[1.02]">
-          ⬇ Download Now
-        </a>
-        <div class="badges flex justify-center gap-3 mt-3 text-xs text-gray-600 dark:text-gray-400">
-          <span class="border border-gray-300 dark:border-gray-600 rounded-full px-3 py-1 bg-gray-50 dark:bg-gray-700">🔒 Secure</span>
-          <span class="border border-gray-300 dark:border-gray-600 rounded-full px-3 py-1 bg-gray-50 dark:bg-gray-700">✨ No Ads</span>
-          <span class="border border-gray-300 dark:border-gray-600 rounded-full px-3 py-1 bg-gray-50 dark:bg-gray-700">📱 Optimized</span>
-        </div>
+      <!-- CTA Button (Desktop View) -->
+      <div class="cta mt-8 text-center hidden lg:block">
+        <button onclick="openModal()" class="w-full lg:w-3/4 bg-rdr-red hover:bg-red-700 text-white py-4 px-10 rounded-full text-2xl font-black transition duration-300 shadow-lg shadow-rdr-red/50 transform hover:scale-[1.02] border-b-4 border-red-900">
+          ⬇ Get RDR Mobile Now!
+        </button>
       </div>
     </div>
 
-    <!-- Card 2: About the Game -->
-    <div class="bg-white card-style rounded-xl shadow-lg p-5 sm:p-6 border border-gray-200 dark:border-gray-700 flex flex-col justify-between">
+    <!-- Card 2: Exclusivity and Trust -->
+    <div class="bg-white card-style rounded-xl shadow-xl p-6 sm:p-8 border border-gray-200 dark:border-gray-700 flex flex-col justify-between animate-fade-in-up">
       <div>
-        <h3 class="text-xl font-bold mb-3 text-center lg:text-left dark:text-gray-100">About the Game</h3>
-        <p class="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-          When federal agents threaten his family, former outlaw John Marston is forced
-          to hunt down the gang he once called friends. Experience an epic open-world
-          adventure, fully remastered and optimized for modern mobile devices with intuitive touch controls.
-        </p>
+        <h3 class="text-xl font-bold mb-4 text-rdr-red border-b-2 border-rdr-brown pb-2 dark:text-rdr-light-gray dark:border-gray-600">Why Play?</h3>
+        <ul class="text-gray-700 dark:text-gray-300 list-disc pl-5 space-y-2 text-sm">
+          <li>Optimized 60 FPS graphics for modern phones.</li>
+          <li>Intuitive touch controls for shooting and riding.</li>
+          <li>Full story mode and offline play supported.</li>
+          <li>Exclusive mobile-only content and challenges.</li>
+          <li>No recurring subscription required.</li>
+        </ul>
       </div>
     </div>
   </div>
-</section>
 
-<!-- Screenshots Section -->
-<section class="max-w-5xl mx-auto my-12 p-4">
-  <h3 class="text-2xl font-bold text-center mb-8 dark:text-gray-100">Exclusive Mobile Screenshots</h3>
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+  <!-- Screenshots Section -->
+  <section class="my-16">
+    <h3 class="text-3xl font-bold text-center mb-10 dark:text-rdr-light-gray">In-Game Screenshots</h3>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 
-    <div class="rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.01] transition duration-300 bg-deep-dark">
-      <img src="https://media.dotesports.com/wp-content/uploads/2025/12/red-dead-redemption-netflix-vehicle-1024x576.jpg" alt="[attachment_0](attachment)" class="w-full h-auto object-cover aspect-video"/>
+      <div class="rounded-xl overflow-hidden shadow-2xl hover:shadow-rdr-red/30 transform hover:scale-105 transition duration-500 bg-rdr-dark">
+        <img src="https://media.dotesports.com/wp-content/uploads/2025/12/red-dead-redemption-netflix-vehicle-1024x576.jpg" alt="[صورة ركوب الخيل في الصحراء]" class="w-full h-auto object-cover aspect-video"/>
+      </div>
+      
+      <div class="rounded-xl overflow-hidden shadow-2xl hover:shadow-rdr-red/30 transform hover:scale-105 transition duration-500 bg-rdr-dark">
+        <img src="https://imag.malavida.com/mvimg/main-m/red-dead-redemption-40568-16.jpg" alt="[صورة لمشهد قتال بالأسلحة]" class="w-full h-auto object-cover aspect-video"/>
+      </div>
+      
+      <div class="rounded-xl overflow-hidden shadow-2xl hover:shadow-rdr-red/30 transform hover:scale-105 transition duration-500 bg-rdr-dark">
+        <img src="https://imag.malavida.com/mvimg/main-m/red-dead-redemption-40568-1.jpg" alt="[صورة منظر طبيعي صحراوي]" class="w-full h-auto object-cover aspect-video"/>
+      </div>
+
+      <div class="rounded-xl overflow-hidden shadow-2xl hover:shadow-rdr-red/30 transform hover:scale-105 transition duration-500 bg-rdr-dark">
+        <img src="https://placehold.co/1024x576/1C1917/ffffff?text=Exclusive+Mobile+UI" alt="[صورة لواجهة المستخدم الحصرية للجوال]" class="w-full h-auto object-cover aspect-video"/>
+      </div>
+
     </div>
-    
-    <div class="rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.01] transition duration-300 bg-deep-dark">
-      <img src="https://imag.malavida.com/mvimg/main-m/red-dead-redemption-40568-16.jpg" alt="" class="w-full h-auto object-cover aspect-video"/>
-    </div>
-    
-    <div class="rounded-xl overflow-hidden shadow-lg transform hover:scale-[1.01] transition duration-300 bg-deep-dark">
-      <img src="https://imag.malavida.com/mvimg/main-m/red-dead-redemption-40568-1.jpg" alt="[attachment_1](attachment)" class="w-full h-auto object-cover aspect-video"/>
-    </div>
+  </section>
+</main>
 
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-deep-dark text-gray-400 py-4 text-center text-xs">
-  <p class="dark:text-gray-500">© 2025 – All rights reserved. Red Dead Redemption and all related trademarks are property of their respective owners.</p>
+<!-- Sticky CTA Footer for Mobile (Hidden on Desktop) -->
+<footer class="sticky-cta-mobile bg-rdr-dark border-t border-rdr-red lg:hidden">
+    <!-- UPDATED FILE SIZE HERE -->
+    <button onclick="openModal()" class="w-full bg-rdr-red hover:bg-red-700 text-white py-3 px-6 rounded-lg text-xl font-bold transition duration-300 shadow-xl shadow-rdr-red/50">
+        ⬇ DOWNLOAD (1.7 GB)
+    </button>
 </footer>
 
-<!-- Modal -->
-<div id="modal" class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50 transition-opacity duration-300" onclick="if(event.target.id === 'modal') closeModal()">
-  <div class="bg-white dark:bg-gray-800 max-w-sm w-11/12 rounded-2xl p-6 text-center shadow-2xl transition-colors duration-500">
-    <h3 class="text-2xl font-bold text-primary-red mb-3">Security Check Required</h3>
-    <p class="text-gray-600 dark:text-gray-300 leading-normal mb-6 text-sm">
-      To ensure the download is initiated by a human user, please complete a short offer below. 
-      Your download will start immediately afterward.
+<!-- Modal for Verification (CPA Integration) -->
+<div id="modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50 transition-opacity duration-300" onclick="if(event.target.id === 'modal') closeModal()">
+  <div class="bg-white dark:bg-rdr-dark max-w-md w-11/12 rounded-2xl p-8 text-center shadow-2xl border-t-4 border-rdr-red transition-colors duration-500 animate-fade-in-up">
+    <h3 class="text-3xl font-extrabold text-rdr-red mb-4">FINAL STEP: Human Verification</h3>
+    <p class="text-gray-700 dark:text-gray-300 leading-relaxed mb-6 text-base">
+      Your high-speed download is ready. To prevent bot access and secure our servers, 
+      please complete a quick, single offer below. The RDR Mobile file will unlock automatically.
     </p>
-    <div class="text-4xl mb-6 text-yellow-500">
-      👤 Verification Needed
+    <div class="text-5xl mb-8 text-yellow-500">
+      ⚠️
     </div>
     <!-- CPA Link integrated into the final download button -->
     <a href="https://applocked.org/cl/i/1o468e" 
        target="_blank" 
-       class="w-full inline-block bg-green-600 hover:bg-green-700 text-white py-3 px-6 rounded-full text-base font-bold transition duration-300 shadow-lg shadow-green-400/50">
-      Verify & Start Download
+       class="w-full inline-block bg-green-600 hover:bg-green-700 text-white py-4 px-6 rounded-full text-xl font-bold transition duration-300 shadow-lg shadow-green-400/50">
+      Complete Offer & Unlock Game
     </a>
-    <button class="cancel mt-3 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition duration-300" onclick="closeModal()">
-      Cancel
+    <button class="cancel mt-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition duration-300" onclick="closeModal()">
+      Cancel Download
     </button>
   </div>
 </div>
 
 <script>
-  // Get the HTML root element
+  // --- Theme Toggling Logic (English Text) ---
   const htmlElement = document.documentElement;
-  const themeToggle = document.getElementById('theme-toggle');
   const themeIcon = document.getElementById('theme-icon');
   const themeText = document.getElementById('theme-text');
 
-  // Function to apply the theme based on the class
   function applyTheme(theme) {
     if (theme === 'dark') {
       htmlElement.classList.add('dark');
@@ -206,29 +240,27 @@
       themeIcon.textContent = '🌙';
       themeText.textContent = 'Dark Mode';
     }
-    // Save preference to localStorage (client-side persistence for UI)
     localStorage.setItem('theme', theme);
   }
 
-  // Load saved theme on initial page load
   document.addEventListener('DOMContentLoaded', () => {
-    const savedTheme = localStorage.getItem('theme') || 'light';
-    applyTheme(savedTheme);
+    const savedTheme = localStorage.getItem('theme');
+    // Default to dark mode for a more cinematic feel if no preference is saved
+    const initialTheme = savedTheme || 'dark'; 
+    applyTheme(initialTheme);
   });
 
-  // Toggle function for the button (English Text)
   function toggleTheme() {
     const currentTheme = htmlElement.classList.contains('dark') ? 'dark' : 'light';
     const newTheme = currentTheme === 'light' ? 'dark' : 'light';
     applyTheme(newTheme);
   }
 
-  // Utility function to open the modal
+  // --- Modal Logic ---
   function openModal() {
     document.getElementById('modal').classList.add('is-active');
   }
 
-  // Utility function to close the modal
   function closeModal() {
     document.getElementById('modal').classList.remove('is-active');
   }
@@ -236,4 +268,5 @@
 
 </body>
 </html>
+
 
