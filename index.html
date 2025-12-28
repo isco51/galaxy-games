@@ -3,241 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Roblox MOD APK - Download Now</title>
-    
-    <!-- Tailwind CSS CDN -->
+    <title>Gaming MODs - Glow Edition</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
-        /* Custom Styles */
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-
-        /* Custom gradient for the download button */
-        .btn-orange-gradient {
-            background-image: linear-gradient(to right, #fb923c, #f97316, #ea580c);
-        }
-
-        /* Screenshot gallery auto-scroll animation */
-        .scrolling-wrapper {
-            display: flex;
-            flex-wrap: nowrap;
-            animation: scroll 30s linear infinite;
-        }
-
-        .scrolling-wrapper:hover {
-            animation-play-state: paused;
-        }
-
-        @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
-        }
+        body { font-family: 'Inter', sans-serif; transition: background-color 0.5s ease; overflow-x: hidden; }
         
-        /* Ensure the duplicated content for infinite scroll is seamless */
-        .gallery-container {
-            display: flex;
-            width: fit-content;
+        /* إضاءة الخلفية للوضع المظلم */
+        .dark body { background-color: #050505; }
+        .dark .glow-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(249, 115, 22, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 20%, rgba(34, 197, 94, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(239, 68, 68, 0.15) 0%, transparent 40%);
+            z-index: -1;
+            filter: blur(60px);
         }
+
+        .game-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+        .dark .game-card { background: rgba(17, 17, 17, 0.8); border: 1px solid rgba(255, 255, 255, 0.05); }
+        .dark .game-card:hover { border-color: rgba(255, 255, 255, 0.2); box-shadow: 0 0 20px rgba(255, 255, 255, 0.05); }
+
+        .game-logo { width: 100%; height: 70px; object-fit: contain; }
+        
+        /* أزرار التحميل */
+        .btn-grad { transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-grad:hover { transform: translateY(-2px); filter: brightness(1.1); box-shadow: 0 4px 15px rgba(0,0,0,0.3); }
+
+        .scrolling-wrapper { display: flex; animation: scroll 35s linear infinite; }
+        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
     </style>
 </head>
-<body class="bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-300">
+<body class="bg-gray-50 dark:text-gray-100">
+    <div class="glow-bg"></div>
 
-    <!-- Theme Toggle Button -->
-    <div class="absolute top-4 right-4">
-        <button id="theme-toggle" class="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500">
-            <svg id="theme-icon-sun" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            <svg id="theme-icon-moon" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
-        </button>
-    </div>
+    <!-- Toggle Header -->
+    <header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-white/10 bg-white/80 dark:bg-black/80 backdrop-blur-md">
+        <div class="container mx-auto px-4 py-2 flex justify-between items-center">
+            <div class="text-sm font-black tracking-tighter uppercase italic">
+                GAME<span class="text-orange-500">MODS</span>
+            </div>
+            <button id="theme-toggle" class="flex items-center space-x-2 bg-gray-200 dark:bg-white/10 p-1.5 rounded-full border border-transparent hover:border-orange-500 transition-all">
+                <div id="sun-box" class="p-1 rounded-full"><svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg></div>
+                <div id="moon-box" class="p-1 rounded-full"><svg class="w-4 h-4 text-indigo-400" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg></div>
+            </button>
+        </div>
+    </header>
 
-    <!-- Main Content Container -->
-    <div class="container mx-auto px-4 py-12 text-center">
-
-        <!-- Header Section -->
-        <header class="mb-8">
-            <img src="https://getmodsapk.com/storage/Roblox%20MOD%20APK8.webp" 
-                 alt="Roblox MOD Banner" 
-                 class="max-w-xs sm:max-w-sm md:max-w-lg mx-auto rounded-2xl shadow-lg shadow-orange-500/20 mb-6"
-                 onerror="this.onerror=null;this.src='https://placehold.co/600x300/1f2937/f97316?text=Roblox+MOD';">
+    <main class="container mx-auto px-4 py-6 max-w-5xl">
+        <!-- 3 Games Row -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             
-            <h1 class="text-4xl md:text-6xl font-black tracking-tight text-gray-900 dark:text-white">
-                Roblox <span class="text-orange-500">MOD APK</span>
-            </h1>
-            <p class="mt-2 text-lg md:text-xl text-gray-500 dark:text-gray-400">
-                v2.684.688 (Unlimited Robux/Mod Menu/Wall Hack/etc.)
-            </p>
-        </header>
-
-        <!-- Call to Action (CTA) Section -->
-        <section class="mb-12">
-            <a href="https://installchecker.com/cl/i/37ek2m" 
-               class="inline-block btn-orange-gradient text-white font-bold text-2xl px-12 py-4 rounded-full shadow-lg hover:shadow-orange-500/50 transform hover:scale-105 transition-all duration-300 ease-in-out">
-                Download Now
-            </a>
-            <div class="mt-6 flex justify-center items-center space-x-6 text-gray-500 dark:text-gray-400">
-                <div class="flex items-center space-x-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                    <span>188MB</span>
+            <!-- ROBLOX -->
+            <div class="game-card p-4 rounded-2xl bg-white shadow-xl flex flex-col items-center text-center">
+                <img src="https://getmodsapk.com/storage/Roblox%20MOD%20APK8.webp" alt="Roblox" class="game-logo mb-2">
+                <h2 class="text-sm font-black uppercase tracking-tight">Roblox <span class="text-orange-500">MOD</span></h2>
+                <p class="text-[8px] text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-widest">v2.684 • Robux Menu</p>
+                <div class="w-full text-[9px] grid grid-cols-2 gap-1 mb-4 opacity-70">
+                    <div class="flex items-center justify-center">✓ God Mode</div>
+                    <div class="flex items-center justify-center">✓ Fly Hack</div>
+                    <div class="flex items-center justify-center">✓ Wallhack</div>
+                    <div class="flex items-center justify-center">✓ Speed</div>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
-                    <span>25M+</span>
-                </div>
-                <div class="flex items-center space-x-2">
-                    <!-- Platform Icons -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M22,2H2V14H12.55A6.5,6.5,0,0,1,22,15.45V2ZM11,11H4V4H11Z"></path><path d="M21.5,16A5.5,5.5,0,1,0,16,21.5,5.5,5.5,0,0,0,21.5,16Z"></path></svg> <!-- Windows -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M17.3,8.62,12,3.31,6.7,8.62,4.75,6.67,12,0l7.25,6.67ZM12,20.69l5.3-5.3L19.25,17.33,12,24,4.75,17.33,6.7,15.39Z"></path></svg> <!-- Android -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M16.08,5.16A6.2,6.2,0,0,0,12,3.5,6.2,6.2,0,0,0,7.92,5.16,8.34,8.34,0,0,0,5.33,2.89,1,1,0,0,0,5.22,3C2.73,5.5,2.1,9.45,4.2,12.42,5.3,14,6.9,15.63,9,15.63A2.38,2.38,0,0,0,11.3,14.2a2.38,2.38,0,0,0,2.3-1.42,2.38,2.38,0,0,0,2.3,1.42c2.1,0,3.7-1.63,4.8-3.19C21.9,9.45,21.27,5.5,18.78,3a1,1,0,0,0-.11-.11A8.34,8.34,0,0,0,16.08,5.16Z"></path></svg> <!-- iOS -->
-                </div>
+                <a href="https://installchecker.com/cl/i/37ek2m" class="w-full btn-grad bg-orange-600 text-white text-[10px] font-bold py-2 rounded-lg">Download APK</a>
             </div>
-        </section>
 
-        <!-- Features Section -->
-        <section class="mb-16 max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white">Unlock the Full Power of Roblox!</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 text-left text-lg">
-                <div class="flex items-center space-x-3">
-                    <span class="text-green-500 font-bold text-2xl">✓</span>
-                    <span>Unlimited Robux</span>
+            <!-- GTA 5 -->
+            <div class="game-card p-4 rounded-2xl bg-white shadow-xl flex flex-col items-center text-center border-t-2 border-green-500/20">
+                <div class="h-[70px] flex items-center mb-2">
+                    <img src="https://wp.logos-download.com/wp-content/uploads/2016/05/GTA_5_logo_black.png" alt="GTA 5" class="game-logo dark:invert">
                 </div>
-                <div class="flex items-center space-x-3">
-                    <span class="text-green-500 font-bold text-2xl">✓</span>
-                    <span>God Mode</span>
+                <h2 class="text-sm font-black uppercase tracking-tight">GTA 5 <span class="text-green-500">Mobile</span></h2>
+                <p class="text-[8px] text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-widest">60FPS • Ultra HD</p>
+                <div class="w-full text-[9px] grid grid-cols-2 gap-1 mb-4 opacity-70">
+                    <div class="flex items-center justify-center">✓ Unlimited $</div>
+                    <div class="flex items-center justify-center">✓ All Cars</div>
+                    <div class="flex items-center justify-center">✓ No Police</div>
+                    <div class="flex items-center justify-center">✓ Full Map</div>
                 </div>
-                <div class="flex items-center space-x-3">
-                    <span class="text-green-500 font-bold text-2xl">✓</span>
-                    <span>Fly Hack</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="text-green-500 font-bold text-2xl">✓</span>
-                    <span>Wallhack (Noclip)</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="text-green-500 font-bold text-2xl">✓</span>
-                    <span>Speed Hack</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <span class="text-green-500 font-bold text-2xl">✓</span>
-                    <span>Aimbot Enabled</span>
-                </div>
+                <a href="https://installchecker.com/cl/i/37ek2m" class="w-full btn-grad bg-green-600 text-white text-[10px] font-bold py-2 rounded-lg">Download APK</a>
             </div>
-        </section>
 
-        <!-- Screenshots Gallery -->
-        <section class="mb-16 w-full overflow-hidden relative">
-            <div class="gallery-container">
-                <!-- We duplicate the wrapper to create a seamless loop -->
-                <div class="scrolling-wrapper">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="Screenshot 1" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+1';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-3.png" alt="Screenshot 2" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+2';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-4.png" alt="Screenshot 3" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+3';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-5.png" alt="Screenshot 4" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+4';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-6.png" alt="Screenshot 5" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+5';">
+            <!-- RDR -->
+            <div class="game-card p-4 rounded-2xl bg-white shadow-xl flex flex-col items-center text-center border-t-2 border-red-500/20">
+                <div class="h-[70px] flex items-center mb-2">
+                    <img src="https://www.pngplay.com/wp-content/uploads/11/Red-Dead-Redemption-Logo-PNG-Background-Clip-Art.png" alt="RDR" class="game-logo dark:brightness-150">
                 </div>
-                <div class="scrolling-wrapper" aria-hidden="true">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="Screenshot 1" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+1';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-3.png" alt="Screenshot 2" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+2';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-4.png" alt="Screenshot 3" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+3';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-5.png" alt="Screenshot 4" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+4';">
-                    <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-6.png" alt="Screenshot 5" class="h-48 md:h-64 rounded-lg shadow-md mx-4" onerror="this.onerror=null;this.src='https://placehold.co/400x300/1f2937/f97316?text=Screenshot+5';">
+                <h2 class="text-sm font-black uppercase tracking-tight">RDR <span class="text-red-600">Mobile</span></h2>
+                <p class="text-[8px] text-gray-500 dark:text-gray-400 mb-3 uppercase tracking-widest">Rockstar Port • v1.2</p>
+                <div class="w-full text-[9px] grid grid-cols-2 gap-1 mb-4 opacity-70">
+                    <div class="flex items-center justify-center">✓ Infinite Ammo</div>
+                    <div class="flex items-center justify-center">✓ All Skins</div>
+                    <div class="flex items-center justify-center">✓ Max Stats</div>
+                    <div class="flex items-center justify-center">✓ No Recoil</div>
                 </div>
+                <a href="https://installchecker.com/cl/i/37ek2m" class="w-full btn-grad bg-red-600 text-white text-[10px] font-bold py-2 rounded-lg">Download APK</a>
             </div>
-        </section>
 
-        <!-- Testimonials Section -->
-        <section class="max-w-4xl mx-auto">
-            <h2 class="text-3xl md:text-4xl font-bold mb-8 text-gray-900 dark:text-white">What Our Users Are Saying</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-left">
-                    <p class="text-yellow-400 text-2xl">★★★★★</p>
-                    <p class="italic my-4 text-gray-600 dark:text-gray-300">"This mod is insane! The unlimited Robux feature actually works. I can finally get all the items I've ever wanted. 10/10 would recommend."</p>
-                    <p class="font-bold text-gray-800 dark:text-white">- Player_Pro123</p>
-                </div>
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md text-left">
-                    <p class="text-yellow-400 text-2xl">★★★★★</p>
-                    <p class="italic my-4 text-gray-600 dark:text-gray-300">"I was skeptical at first, but the installation was easy and the features are amazing. The fly hack is so much fun to use in different games!"</p>
-                    <p class="font-bold text-gray-800 dark:text-white">- GamerGirl_x</p>
-                </div>
-            </div>
-        </section>
+        </div>
 
-    </div>
-
-    <!-- Footer Section -->
-    <footer class="py-8 text-center border-t border-gray-200 dark:border-gray-700 mt-12">
-        <!-- Trust Badges -->
-        <div class="flex justify-center items-center space-x-6 sm:space-x-12 mb-6">
-            <div class="flex flex-col items-center space-y-2">
-                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 20.417l4.162-3.828a1.5 1.5 0 012.12 0L12 19.732l2.718-2.149a1.5 1.5 0 012.12 0L21 20.417A12.02 12.02 0 0017.618 7.984z"></path></svg>
-                <p class="text-xs text-gray-500 dark:text-gray-400">100% Safe</p>
-            </div>
-            <div class="flex flex-col items-center space-y-2">
-                <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6-4a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Virus Free</p>
-            </div>
-            <div class="flex flex-col items-center space-y-2">
-                 <svg class="w-10 h-10 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                <p class="text-xs text-gray-500 dark:text-gray-400">Secure Download</p>
+        <!-- Slider -->
+        <div class="relative w-full overflow-hidden bg-black/5 dark:bg-white/5 p-4 rounded-2xl mb-8">
+            <div class="scrolling-wrapper gap-4">
+                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="S1" class="h-20 rounded-lg">
+                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-4.png" alt="S2" class="h-20 rounded-lg">
+                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-6.png" alt="S3" class="h-20 rounded-lg">
+                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="S1" class="h-20 rounded-lg">
+                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-4.png" alt="S2" class="h-20 rounded-lg">
+                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-6.png" alt="S3" class="h-20 rounded-lg">
             </div>
         </div>
-        <!-- Copyright Notice -->
-        <p class="text-gray-500 dark:text-gray-400">© 2023-2025 Roblox Mods. All Rights Reserved.</p>
+
+        <!-- Safety Badges -->
+        <div class="flex justify-center space-x-4 opacity-50 text-[8px] uppercase font-bold tracking-widest mb-6">
+            <div class="flex items-center space-x-1"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/><path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/></svg><span>100% Secure</span></div>
+            <div class="flex items-center space-x-1"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg><span>Verified</span></div>
+            <div class="flex items-center space-x-1"><svg class="w-3 h-3 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h3a1 1 0 100-2h-3zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H7zm3 0a1 1 0 100 2h3a1 1 0 100-2h-3z" clip-rule="evenodd"/></svg><span>Tested</span></div>
+        </div>
+
+    </main>
+
+    <footer class="py-4 border-t border-gray-200 dark:border-white/5 text-center">
+        <p class="text-[9px] text-gray-400">© 2023-2025 Mobile Game Mods. No Malware Guaranteed.</p>
     </footer>
 
     <script>
-        // JavaScript for Theme Toggle
         const themeToggle = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('theme-icon-sun');
-        const moonIcon = document.getElementById('theme-icon-moon');
-        const htmlEl = document.documentElement;
+        const sunBox = document.getElementById('sun-box');
+        const moonBox = document.getElementById('moon-box');
+        const html = document.documentElement;
 
-        // Function to set theme
-        const setTheme = (theme) => {
-            if (theme === 'dark') {
-                htmlEl.classList.add('dark');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
+        function updateUI(isDark) {
+            if(isDark) {
+                html.classList.add('dark');
+                moonBox.classList.add('bg-white/20');
+                sunBox.classList.remove('bg-white/20', 'bg-black/10');
             } else {
-                htmlEl.classList.remove('dark');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
+                html.classList.remove('dark');
+                sunBox.classList.add('bg-black/10');
+                moonBox.classList.remove('bg-white/20');
             }
-            localStorage.setItem('theme', theme);
-        };
-
-        // Check for saved theme in localStorage or use system preference
-        const savedTheme = localStorage.getItem('theme');
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-        if (savedTheme) {
-            setTheme(savedTheme);
-        } else {
-            setTheme(prefersDark ? 'dark' : 'light');
         }
-        
-        // Add click event listener to the toggle button
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = htmlEl.classList.contains('dark') ? 'dark' : 'light';
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            setTheme(newTheme);
-        });
-    </script>
 
+        themeToggle.addEventListener('click', () => {
+            const isDark = !html.classList.contains('dark');
+            updateUI(isDark);
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        updateUI(savedTheme === 'dark');
+    </script>
 </body>
 </html>
+
 
