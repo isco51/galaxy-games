@@ -40,6 +40,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            height: 100%;
         }
         
         .game-card:hover { transform: translateY(-8px); }
@@ -49,7 +50,7 @@
         .light body { background-color: #f9fafb; color: #111827; }
         .light .game-card { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); }
 
-        .game-logo { width: 100%; height: 90px; object-fit: contain; }
+        .game-logo { width: 100%; height: 100px; object-fit: contain; }
 
         .scrolling-wrapper { display: flex; width: 200%; animation: scroll 40s linear infinite; }
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
@@ -77,7 +78,6 @@
             box-shadow: 0 0 50px rgba(249, 115, 22, 0.15);
         }
 
-        /* Loading bar animation */
         .loading-bar-container {
             width: 100%;
             height: 12px;
@@ -130,67 +130,92 @@
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 max-w-6xl">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+    <main class="container mx-auto px-4 py-8 max-w-7xl">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
             
             <!-- ROBLOX -->
-            <div class="game-card p-6 rounded-[2.5rem]">
+            <div class="game-card p-5 rounded-[2rem]">
                 <div class="flex flex-col items-center">
-                    <div class="relative w-full mb-6 text-center">
+                    <div class="relative w-full mb-4 text-center">
                         <img src="https://getmodsapk.com/storage/Roblox%20MOD%20APK8.webp" alt="Roblox" class="game-logo mx-auto">
-                        <span class="absolute -top-2 -right-2 bg-orange-500 text-white text-[10px] font-black px-3 py-1 rounded-full shadow-lg">HOT</span>
                     </div>
-                    <h2 class="text-xl font-black uppercase tracking-tight mb-1">Roblox <span class="text-orange-500">MOD</span></h2>
-                    <p class="text-[11px] opacity-60 mb-6 font-bold uppercase tracking-wider">v2.684 • Unlimited Robux</p>
-                    <div class="w-full text-[12px] grid grid-cols-2 gap-2 mb-8 font-semibold opacity-80">
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ God Mode</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Fly Hack</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Speed X</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Wallhack</div>
+                    <h2 class="text-base font-black uppercase tracking-tight mb-1">Roblox <span class="text-orange-500">MOD</span></h2>
+                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Unlimited Robux</p>
+                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ God Mode</div>
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Fly Hack</div>
                     </div>
                 </div>
-                <button onclick="startDownload('Roblox MOD')" class="w-full bg-orange-600 hover:bg-orange-700 text-white text-sm font-black py-4 rounded-2xl shadow-xl shadow-orange-600/20 transition-all">DOWNLOAD APK</button>
+                <button onclick="startDownload('Roblox MOD')" class="w-full bg-orange-600 hover:bg-orange-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
+            </div>
+
+            <!-- MINECRAFT -->
+            <div class="game-card p-5 rounded-[2rem] border-t-2 border-green-600/30">
+                <div class="flex flex-col items-center">
+                    <div class="relative w-full mb-4 text-center">
+                        <img src="https://i.pinimg.com/originals/ff/3d/aa/ff3daaab6eaf8e62545a5e5982b04355.jpg" alt="Minecraft" class="game-logo mx-auto rounded-xl">
+                    </div>
+                    <h2 class="text-base font-black uppercase tracking-tight mb-1">Minecraft <span class="text-green-500">PE</span></h2>
+                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Latest v1.21</p>
+                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ All Skins Unlocked</div>
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Immortal Mode</div>
+                    </div>
+                </div>
+                <button onclick="startDownload('Minecraft PE')" class="w-full bg-green-600 hover:bg-green-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
             </div>
 
             <!-- GTA 5 -->
-            <div class="game-card p-6 rounded-[2.5rem]">
+            <div class="game-card p-5 rounded-[2rem]">
                 <div class="flex flex-col items-center">
-                    <div class="h-[90px] flex items-center mb-6">
+                    <div class="h-[100px] flex items-center mb-4">
                         <img src="https://wp.logos-download.com/wp-content/uploads/2016/05/GTA_5_logo_black.png" alt="GTA 5" class="game-logo dark:invert">
                     </div>
-                    <h2 class="text-xl font-black uppercase tracking-tight mb-1">GTA 5 <span class="text-green-500">Mobile</span></h2>
-                    <p class="text-[11px] opacity-60 mb-6 font-bold uppercase tracking-wider">Full DLC • Ultra HD</p>
-                    <div class="w-full text-[12px] grid grid-cols-2 gap-2 mb-8 font-semibold opacity-80">
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Max Money</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ All Cars</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ No Police</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ 60 FPS</div>
+                    <h2 class="text-base font-black uppercase tracking-tight mb-1">GTA 5 <span class="text-green-500">Mobile</span></h2>
+                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Ultra Graphics</p>
+                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Unlimited Money</div>
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ All Cars Unlocked</div>
                     </div>
                 </div>
-                <button onclick="startDownload('GTA 5 Mobile')" class="w-full bg-green-600 hover:bg-green-700 text-white text-sm font-black py-4 rounded-2xl shadow-xl shadow-green-600/20 transition-all">DOWNLOAD APK</button>
+                <button onclick="startDownload('GTA 5 Mobile')" class="w-full bg-green-700 hover:bg-green-800 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
+            </div>
+
+            <!-- NARUTO -->
+            <div class="game-card p-5 rounded-[2rem] border-t-2 border-blue-500/30">
+                <div class="flex flex-col items-center">
+                    <div class="h-[100px] flex items-center mb-4">
+                        <img src="https://s.pngkit.com/png/small/530-5302290_naruto-storm-4-logo-png-naruto-shippuden-ultimate.png" alt="Naruto" class="game-logo">
+                    </div>
+                    <h2 class="text-base font-black uppercase tracking-tight mb-1">Naruto <span class="text-blue-500">Storm 4</span></h2>
+                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Ninja Storm Mobile</p>
+                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ All Characters</div>
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Infinite Chakra</div>
+                    </div>
+                </div>
+                <button onclick="startDownload('Naruto Storm Mobile')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
             </div>
 
             <!-- RDR -->
-            <div class="game-card p-6 rounded-[2.5rem]">
+            <div class="game-card p-5 rounded-[2rem]">
                 <div class="flex flex-col items-center">
-                    <div class="h-[90px] flex items-center mb-6">
+                    <div class="h-[100px] flex items-center mb-4">
                         <img src="https://www.pngplay.com/wp-content/uploads/11/Red-Dead-Redemption-Logo-PNG-Background-Clip-Art.png" alt="RDR" class="game-logo dark:brightness-200">
                     </div>
-                    <h2 class="text-xl font-black uppercase tracking-tight mb-1">RDR <span class="text-red-600">Mobile</span></h2>
-                    <p class="text-[11px] opacity-60 mb-6 font-bold uppercase tracking-wider">Original Port • v1.2</p>
-                    <div class="w-full text-[12px] grid grid-cols-2 gap-2 mb-8 font-semibold opacity-80">
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Unlocked</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Inf. Ammo</div>
-                        <div class="bg-white/5 py-2 rounded-xl text-center border border-white/5">✓ Max Stats</div>
-                        <div class="bg-feature py-2 rounded-xl text-center border border-white/5">✓ Anti-Ban</div>
+                    <h2 class="text-base font-black uppercase tracking-tight mb-1">RDR <span class="text-red-600">Mobile</span></h2>
+                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">v1.2 Port</p>
+                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Infinite Ammo</div>
+                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Max Stats</div>
                     </div>
                 </div>
-                <button onclick="startDownload('RDR Mobile')" class="w-full bg-red-600 hover:bg-red-700 text-white text-sm font-black py-4 rounded-2xl shadow-xl shadow-red-600/20 transition-all">DOWNLOAD APK</button>
+                <button onclick="startDownload('RDR Mobile')" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
             </div>
         </div>
 
         <!-- Screenshots -->
-        <div class="relative w-full overflow-hidden bg-white/5 dark:bg-black/20 py-10 rounded-[3rem] mb-12 border border-gray-200 dark:border-white/5">
+        <div class="relative w-full overflow-hidden bg-white/5 dark:bg-black/20 py-10 rounded-[3rem] border border-gray-200 dark:border-white/5">
             <div class="scrolling-wrapper gap-6 px-6">
                 <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="S1" class="h-40 md:h-56 rounded-[2rem] shadow-2xl">
                 <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-4.png" alt="S2" class="h-40 md:h-56 rounded-[2rem] shadow-2xl">
@@ -214,11 +239,11 @@
 
             <div id="verify-section" class="hidden">
                 <div class="bg-orange-500/10 border border-orange-500/30 p-4 rounded-2xl mb-6">
-                    <h4 class="text-white font-bold text-sm mb-1">HUMAN VERIFICATION REQUIRED</h4>
-                    <p class="text-[10px] text-gray-400">To prevent bot attacks, please complete one simple task to start your download.</p>
+                    <h4 class="text-white font-bold text-sm mb-1 uppercase">Human Verification Required</h4>
+                    <p class="text-[10px] text-gray-400">To protect our servers from bots, please complete one quick verification task to start your file transfer.</p>
                 </div>
                 <a href="https://lockedapp.org/cl/i/1o468e" class="inline-block w-full bg-orange-600 hover:bg-orange-700 text-white font-black py-4 rounded-xl shadow-lg transition-transform hover:scale-105 uppercase tracking-widest text-xs">
-                    Verify Now & Start Download
+                    Verify & Download Now
                 </a>
             </div>
         </div>
@@ -226,7 +251,7 @@
 
     <footer class="py-12 border-t border-gray-200 dark:border-white/5 text-center px-4 opacity-50">
         <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest">
-            © 2023-2025 MOBILE GAME MODS. ALL RIGHTS RESERVED.
+            © 2023-2025 MOBILE GAME MODS HUB.
         </p>
     </footer>
 
@@ -247,28 +272,28 @@
             modal.style.display = 'flex';
             progressBar.style.width = '0%';
             verifySection.classList.add('hidden');
-            modalTitle.innerText = "PREPARING " + gameName.toUpperCase();
-            modalStatus.innerText = "Connecting to secure server...";
+            modalTitle.innerText = "LOADING " + gameName.toUpperCase();
+            modalStatus.innerText = "Establishing secure connection...";
 
             let progress = 0;
             const interval = setInterval(() => {
-                progress += Math.random() * 15;
+                progress += Math.random() * 10;
                 if (progress > 100) progress = 100;
                 progressBar.style.width = progress + '%';
 
-                if (progress >= 30) modalStatus.innerText = "Injecting MOD files...";
-                if (progress >= 60) modalStatus.innerText = "Bypassing anti-cheat protection...";
-                if (progress >= 90) modalStatus.innerText = "Finalizing APK package...";
+                if (progress >= 25) modalStatus.innerText = "Bypassing server security...";
+                if (progress >= 50) modalStatus.innerText = "Downloading MOD data blocks...";
+                if (progress >= 80) modalStatus.innerText = "Verifying package integrity...";
 
                 if (progress === 100) {
                     clearInterval(interval);
                     setTimeout(() => {
-                        modalTitle.innerText = "VERIFICATION REQUIRED";
-                        modalStatus.innerText = "Please complete the verification below.";
+                        modalTitle.innerText = "ACTION REQUIRED";
+                        modalStatus.innerText = "Complete the step below to finish.";
                         verifySection.classList.remove('hidden');
-                    }, 500);
+                    }, 600);
                 }
-            }, 400);
+            }, 300);
         }
 
         function updateTheme(isDark) {
@@ -290,11 +315,6 @@
 
         themeToggle.addEventListener('click', () => {
             updateTheme(!html.classList.contains('dark'));
-        });
-
-        // Close modal if clicking overlay (optional)
-        modal.addEventListener('click', (e) => {
-            if(e.target === modal) modal.style.display = 'none';
         });
 
         const savedTheme = localStorage.getItem('theme') || 'dark';
