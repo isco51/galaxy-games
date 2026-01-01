@@ -3,322 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gaming MODs - Universal Access</title>
+    <title>Pro Mods Hub | Verified Game Modifications</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        body { 
-            font-family: 'Inter', sans-serif; 
-            transition: background-color 0.5s ease, color 0.5s ease;
-            overflow-x: hidden;
-            min-height: 100vh;
-        }
+        body { font-family: 'Inter', sans-serif; transition: background 0.5s; overflow-x: hidden; }
+        .dark body { background: #050505; color: #fff; }
+        .light body { background: #f4f7f6; color: #1a1a1a; }
         
-        .glow-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            filter: blur(80px);
-            transition: opacity 0.5s ease;
-            pointer-events: none;
-        }
-
-        .dark .glow-bg {
-            background: 
-                radial-gradient(circle at 10% 20%, rgba(249, 115, 22, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(239, 68, 68, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(34, 197, 94, 0.1) 0%, transparent 50%);
-            opacity: 1;
-        }
-
-        .game-card {
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        .card-premium {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            height: 100%;
         }
-        
-        .game-card:hover { transform: translateY(-8px); }
+        .light .card-premium {
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        .card-premium:hover {
+            border-color: #f97316;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1);
+        }
 
-        .dark body { background-color: #0a0a0a; color: #ffffff; }
-        .dark .game-card { background: rgba(30, 30, 30, 0.6); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .light body { background-color: #f9fafb; color: #111827; }
-        .light .game-card { background: #ffffff; border: 1px solid rgba(0, 0, 0, 0.05); }
-
-        .game-logo { width: 100%; height: 100px; object-fit: contain; }
-
-        .scrolling-wrapper { display: flex; width: 200%; animation: scroll 40s linear infinite; }
-        @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        /* Verification Modal Styles */
-        .modal-overlay {
+        /* Notification */
+        #notification-box {
             position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
+            bottom: 20px;
+            left: 20px;
+            z-index: 2000;
             display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
+            animation: slideIn 0.5s ease-out;
         }
+        @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        .modal-content {
-            background: #151515;
-            border: 1px solid rgba(249, 115, 22, 0.3);
-            width: 90%;
-            max-width: 450px;
-            padding: 2rem;
-            border-radius: 2rem;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(249, 115, 22, 0.15);
-        }
-
-        .loading-bar-container {
-            width: 100%;
-            height: 12px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 10px;
+        /* Progress Bar */
+        .progress-container {
+            height: 10px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 6px;
             overflow: hidden;
-            margin: 1.5rem 0;
-            position: relative;
+            margin: 20px 0;
         }
-
-        .loading-bar-progress {
+        .progress-fill {
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #f97316, #fb923c);
-            box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);
-            transition: width 0.3s ease;
+            background: linear-gradient(90deg, #f97316, #ea580c);
+            position: relative;
         }
-
-        .stripes {
+        .progress-fill::after {
+            content: "";
             position: absolute;
             top: 0; left: 0; bottom: 0; right: 0;
-            background-image: linear-gradient(45deg, rgba(255,255,255,0.15) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.15) 75%, transparent 75%, transparent);
-            background-size: 20px 20px;
+            background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent);
+            background-size: 15px 15px;
             animation: moveStripes 1s linear infinite;
         }
+        @keyframes moveStripes { from { background-position: 0 0; } to { background-position: 15px 0; } }
 
-        @keyframes moveStripes {
-            from { background-position: 0 0; }
-            to { background-position: 20px 0; }
+        .modal-blur {
+            backdrop-filter: blur(15px);
+            background: rgba(0,0,0,0.85);
         }
+        .game-img { width: 70px; height: 70px; object-fit: cover; border-radius: 1rem; }
     </style>
 </head>
-<body class="dark">
-    <div class="glow-bg"></div>
+<body>
 
     <!-- Header -->
-    <header class="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-white/10 bg-white/70 dark:bg-black/70 backdrop-blur-xl">
-        <div class="container mx-auto px-4 h-16 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <div class="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center font-black text-white shadow-lg shadow-orange-600/20">M</div>
-                <span class="font-black tracking-tighter uppercase text-base md:text-xl">MODS<span class="text-orange-500">HUB</span></span>
+    <header class="border-b dark:border-white/10 p-4 sticky top-0 bg-inherit z-50">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="bg-orange-600 p-2 rounded-lg font-black text-white">PH</div>
+                <h1 class="text-xl font-black italic tracking-tighter">PRO<span class="text-orange-500">MODS</span></h1>
             </div>
-            
-            <button id="theme-toggle" class="relative flex items-center p-1 bg-gray-200 dark:bg-white/10 rounded-full border border-gray-300 dark:border-white/20 w-16 h-9 transition-all">
-                <div id="toggle-circle" class="w-7 h-7 bg-white dark:bg-orange-500 rounded-full shadow-lg transform transition-transform duration-300 flex items-center justify-center">
-                    <svg id="sun-icon" class="hidden w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"/></svg>
-                    <svg id="moon-icon" class="w-4 h-4 text-gray-800" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"/></svg>
-                </div>
-            </button>
+            <div class="hidden md:flex items-center gap-6 text-[10px] font-bold opacity-60 uppercase tracking-widest">
+                <span>Verified by McAfee</span>
+                <span>Anti-Ban v4.2</span>
+                <span class="text-green-500">● Server Online</span>
+            </div>
+            <button id="theme-btn" class="p-2 rounded-full border dark:border-white/10">🌓</button>
         </div>
     </header>
 
-    <main class="container mx-auto px-4 py-8 max-w-7xl">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6 mb-12">
-            
-            <!-- ROBLOX -->
-            <div class="game-card p-5 rounded-[2rem]">
-                <div class="flex flex-col items-center">
-                    <div class="relative w-full mb-4 text-center">
-                        <img src="https://getmodsapk.com/storage/Roblox%20MOD%20APK8.webp" alt="Roblox" class="game-logo mx-auto">
-                    </div>
-                    <h2 class="text-base font-black uppercase tracking-tight mb-1">Roblox <span class="text-orange-500">MOD</span></h2>
-                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Unlimited Robux</p>
-                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ God Mode</div>
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Fly Hack</div>
-                    </div>
-                </div>
-                <button onclick="startDownload('Roblox MOD')" class="w-full bg-orange-600 hover:bg-orange-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <!-- Stats Section -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+            <div class="card-premium p-4 rounded-2xl text-center">
+                <div class="text-xl font-black text-orange-500">2.4M+</div>
+                <div class="text-[9px] uppercase font-bold opacity-50">Downloads</div>
             </div>
-
-            <!-- MINECRAFT -->
-            <div class="game-card p-5 rounded-[2rem] border-t-2 border-green-600/30">
-                <div class="flex flex-col items-center">
-                    <div class="relative w-full mb-4 text-center">
-                        <img src="https://i.pinimg.com/originals/ff/3d/aa/ff3daaab6eaf8e62545a5e5982b04355.jpg" alt="Minecraft" class="game-logo mx-auto rounded-xl">
-                    </div>
-                    <h2 class="text-base font-black uppercase tracking-tight mb-1">Minecraft <span class="text-green-500">PE</span></h2>
-                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Latest v1.21</p>
-                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ All Skins Unlocked</div>
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Immortal Mode</div>
-                    </div>
-                </div>
-                <button onclick="startDownload('Minecraft PE')" class="w-full bg-green-600 hover:bg-green-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
+            <div class="card-premium p-4 rounded-2xl text-center">
+                <div class="text-xl font-black text-green-500" id="live-users">1,542</div>
+                <div class="text-[9px] uppercase font-bold opacity-50">Active Users</div>
             </div>
-
-            <!-- GTA 5 -->
-            <div class="game-card p-5 rounded-[2rem]">
-                <div class="flex flex-col items-center">
-                    <div class="h-[100px] flex items-center mb-4">
-                        <img src="https://wp.logos-download.com/wp-content/uploads/2016/05/GTA_5_logo_black.png" alt="GTA 5" class="game-logo dark:invert">
-                    </div>
-                    <h2 class="text-base font-black uppercase tracking-tight mb-1">GTA 5 <span class="text-green-500">Mobile</span></h2>
-                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Ultra Graphics</p>
-                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Unlimited Money</div>
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ All Cars Unlocked</div>
-                    </div>
-                </div>
-                <button onclick="startDownload('GTA 5 Mobile')" class="w-full bg-green-700 hover:bg-green-800 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
+            <div class="card-premium p-4 rounded-2xl text-center">
+                <div class="text-xl font-black text-blue-500">Secure</div>
+                <div class="text-[9px] uppercase font-bold opacity-50">SSL Encrypted</div>
             </div>
-
-            <!-- NARUTO -->
-            <div class="game-card p-5 rounded-[2rem] border-t-2 border-blue-500/30">
-                <div class="flex flex-col items-center">
-                    <div class="h-[100px] flex items-center mb-4">
-                        <img src="https://s.pngkit.com/png/small/530-5302290_naruto-storm-4-logo-png-naruto-shippuden-ultimate.png" alt="Naruto" class="game-logo">
-                    </div>
-                    <h2 class="text-base font-black uppercase tracking-tight mb-1">Naruto <span class="text-blue-500">Storm 4</span></h2>
-                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">Ninja Storm Mobile</p>
-                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ All Characters</div>
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Infinite Chakra</div>
-                    </div>
-                </div>
-                <button onclick="startDownload('Naruto Storm Mobile')" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
-            </div>
-
-            <!-- RDR -->
-            <div class="game-card p-5 rounded-[2rem]">
-                <div class="flex flex-col items-center">
-                    <div class="h-[100px] flex items-center mb-4">
-                        <img src="https://www.pngplay.com/wp-content/uploads/11/Red-Dead-Redemption-Logo-PNG-Background-Clip-Art.png" alt="RDR" class="game-logo dark:brightness-200">
-                    </div>
-                    <h2 class="text-base font-black uppercase tracking-tight mb-1">RDR <span class="text-red-600">Mobile</span></h2>
-                    <p class="text-[10px] opacity-60 mb-4 font-bold uppercase tracking-wider">v1.2 Port</p>
-                    <div class="w-full text-[11px] grid grid-cols-1 gap-1 mb-6 font-semibold opacity-80">
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Infinite Ammo</div>
-                        <div class="bg-white/5 py-1.5 rounded-lg text-center border border-white/5">✓ Max Stats</div>
-                    </div>
-                </div>
-                <button onclick="startDownload('RDR Mobile')" class="w-full bg-red-600 hover:bg-red-700 text-white text-xs font-black py-3 rounded-xl shadow-lg transition-all">DOWNLOAD</button>
+            <div class="card-premium p-4 rounded-2xl text-center">
+                <div class="text-xl font-black text-purple-500">Today</div>
+                <div class="text-[9px] uppercase font-bold opacity-50">Updated</div>
             </div>
         </div>
 
-        <!-- Screenshots -->
-        <div class="relative w-full overflow-hidden bg-white/5 dark:bg-black/20 py-10 rounded-[3rem] border border-gray-200 dark:border-white/5">
-            <div class="scrolling-wrapper gap-6 px-6">
-                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="S1" class="h-40 md:h-56 rounded-[2rem] shadow-2xl">
-                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-4.png" alt="S2" class="h-40 md:h-56 rounded-[2rem] shadow-2xl">
-                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-6.png" alt="S3" class="h-40 md:h-56 rounded-[2rem] shadow-2xl">
-                <img src="https://liteapks.com/wp-content/uploads/2022/12/roblox-2.png" alt="S1" class="h-40 md:h-56 rounded-[2rem] shadow-2xl">
+        <!-- Games Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            
+            <!-- Minecraft -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://i.pinimg.com/originals/ff/3d/aa/ff3daaab6eaf8e62545a5e5982b04355.jpg" class="game-img">
+                    <div>
+                        <h3 class="font-black text-lg">Minecraft PE</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">v1.21 PREMIUM MOD</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">Full premium unlocked. God mode, infinite items, and all skins available.</p>
+                <button onclick="initAction('Minecraft PE')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
+            <!-- Roblox -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://getmodsapk.com/storage/Roblox%20MOD%20APK8.webp" class="game-img">
+                    <div>
+                        <h3 class="font-black text-lg">Roblox MOD</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">MEGA MENU 2024</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">Mod Menu with Wallhack, Fly, and Anti-Ban protection. Unlimited items.</p>
+                <button onclick="initAction('Roblox')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
+            <!-- GTA V -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://wp.logos-download.com/wp-content/uploads/2016/05/GTA_5_logo_black.png" class="game-img bg-white p-1">
+                    <div>
+                        <h3 class="font-black text-lg">GTA V Mobile</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">FULL APK + OBB</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">Original Rockstar port. Ultra graphics and full story mode unlocked.</p>
+                <button onclick="initAction('GTA V Mobile')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
+            <!-- Naruto -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://s.pngkit.com/png/small/530-5302290_naruto-storm-4-logo-png-naruto-shippuden-ultimate.png" class="game-img">
+                    <div>
+                        <h3 class="font-black text-lg">Naruto Storm 4</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">NINJA STORM MOBILE</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">All characters unlocked. Infinite Chakra and max stats enabled.</p>
+                <button onclick="initAction('Naruto Storm 4')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
+            <!-- RDR -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://www.pngplay.com/wp-content/uploads/11/Red-Dead-Redemption-Logo-PNG-Background-Clip-Art.png" class="game-img dark:brightness-150">
+                    <div>
+                        <h3 class="font-black text-lg">RDR Mobile</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">BETA PORT v1.2</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">Experience the wild west on mobile. High performance optimization.</p>
+                <button onclick="initAction('RDR Mobile')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
+        </div>
+
+        <!-- Community Section -->
+        <div class="max-w-2xl mx-auto border-t dark:border-white/10 pt-10">
+            <h2 class="text-center font-black text-xl mb-8 uppercase italic tracking-widest">Live Community Activity</h2>
+            <div class="space-y-4" id="comment-section">
+                <div class="card-premium p-4 rounded-2xl flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center font-bold text-xs">M</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs font-bold">Mike_Pro</span>
+                            <span class="text-[9px] opacity-40">Just now</span>
+                        </div>
+                        <p class="text-[11px] opacity-70">Minecraft works 100%! The skin pack is amazing. No lag at all on my S23.</p>
+                    </div>
+                </div>
+                <div class="card-premium p-4 rounded-2xl flex gap-3">
+                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs">S</div>
+                    <div class="flex-1">
+                        <div class="flex justify-between items-center mb-1">
+                            <span class="text-xs font-bold">Sara_Gaming</span>
+                            <span class="text-[9px] opacity-40">5 mins ago</span>
+                        </div>
+                        <p class="text-[11px] opacity-70">Roblox menu is crazy. I used fly hack and it's so smooth. Thanks ProMods!</p>
+                    </div>
+                </div>
             </div>
         </div>
     </main>
 
-    <!-- Verification Modal -->
-    <div id="verify-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3 id="modal-title" class="text-xl font-black text-orange-500 uppercase italic">Preparing Download</h3>
-            <p id="modal-status" class="text-sm text-gray-400 mt-2">Checking device compatibility...</p>
-            
-            <div class="loading-bar-container">
-                <div id="progress-bar" class="loading-bar-progress relative">
-                    <div class="stripes"></div>
+    <!-- Modal -->
+    <div id="action-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 modal-blur">
+        <div class="bg-[#111] border border-orange-600/30 w-full max-w-sm p-8 rounded-[2.5rem] text-center shadow-2xl shadow-orange-900/20">
+            <div id="modal-loading">
+                <div class="w-16 h-16 border-4 border-orange-600 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+                <h3 class="text-lg font-black uppercase text-orange-500 tracking-tighter">Processing Request</h3>
+                <p id="loading-msg" class="text-[10px] opacity-50 mt-2 uppercase font-bold">Scanning Server Layers</p>
+                <div class="progress-container">
+                    <div id="bar" class="progress-fill"></div>
                 </div>
             </div>
 
-            <div id="verify-section" class="hidden">
-                <div class="bg-orange-500/10 border border-orange-500/30 p-4 rounded-2xl mb-6">
-                    <h4 class="text-white font-bold text-sm mb-1 uppercase">Human Verification Required</h4>
-                    <p class="text-[10px] text-gray-400">To protect our servers from bots, please complete one quick verification task to start your file transfer.</p>
+            <div id="modal-verify" class="hidden">
+                <div class="w-16 h-16 bg-orange-600/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg class="w-8 h-8 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                 </div>
-                <a href="https://lockedapp.org/cl/i/1o468e" class="inline-block w-full bg-orange-600 hover:bg-orange-700 text-white font-black py-4 rounded-xl shadow-lg transition-transform hover:scale-105 uppercase tracking-widest text-xs">
-                    Verify & Download Now
-                </a>
+                <h3 class="text-xl font-black mb-2 uppercase">Manual Verification</h3>
+                <p class="text-[11px] opacity-60 mb-6">To prevent automated bot abuse, please complete one simple verification to receive your direct APK link.</p>
+                <a href="https://lockedapp.org/cl/i/1o468e" class="block w-full bg-orange-600 hover:bg-orange-700 py-4 rounded-xl font-black text-xs uppercase tracking-widest shadow-lg transition-transform hover:scale-105">Verify & Start Download</a>
+                <p class="text-[8px] mt-4 opacity-30 uppercase font-bold">Verified by RSA 4096-bit Encryption</p>
             </div>
         </div>
     </div>
 
-    <footer class="py-12 border-t border-gray-200 dark:border-white/5 text-center px-4 opacity-50">
-        <p class="text-[10px] md:text-xs font-bold uppercase tracking-widest">
-            © 2023-2025 MOBILE GAME MODS HUB.
-        </p>
-    </footer>
+    <!-- Notification -->
+    <div id="notification-box" class="bg-white text-black p-3 rounded-xl shadow-2xl flex items-center gap-3">
+        <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-[10px]">✓</div>
+        <div class="text-[9px] leading-tight">
+            <span class="font-bold" id="notif-user">User122</span> <br> 
+            <span class="opacity-60" id="notif-action">Downloaded GTA V</span>
+        </div>
+    </div>
 
     <script>
-        const themeToggle = document.getElementById('theme-toggle');
-        const toggleCircle = document.getElementById('toggle-circle');
-        const sunIcon = document.getElementById('sun-icon');
-        const moonIcon = document.getElementById('moon-icon');
-        const html = document.documentElement;
+        // Live Stat Update
+        setInterval(() => {
+            const users = document.getElementById('live-users');
+            const change = Math.floor(Math.random() * 15) - 7;
+            users.innerText = (parseInt(users.innerText.replace(',', '')) + change).toLocaleString();
+        }, 4000);
 
-        const modal = document.getElementById('verify-modal');
-        const progressBar = document.getElementById('progress-bar');
-        const modalStatus = document.getElementById('modal-status');
-        const modalTitle = document.getElementById('modal-title');
-        const verifySection = document.getElementById('verify-section');
-
-        function startDownload(gameName) {
-            modal.style.display = 'flex';
-            progressBar.style.width = '0%';
-            verifySection.classList.add('hidden');
-            modalTitle.innerText = "LOADING " + gameName.toUpperCase();
-            modalStatus.innerText = "Establishing secure connection...";
-
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 10;
-                if (progress > 100) progress = 100;
-                progressBar.style.width = progress + '%';
-
-                if (progress >= 25) modalStatus.innerText = "Bypassing server security...";
-                if (progress >= 50) modalStatus.innerText = "Downloading MOD data blocks...";
-                if (progress >= 80) modalStatus.innerText = "Verifying package integrity...";
-
-                if (progress === 100) {
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        modalTitle.innerText = "ACTION REQUIRED";
-                        modalStatus.innerText = "Complete the step below to finish.";
-                        verifySection.classList.remove('hidden');
-                    }, 600);
-                }
-            }, 300);
+        // Notification Logic
+        const users = ["X-Gamer", "Dark_Knight", "Sofia_M", "Alex99", "ProPlayer", "ModMaster"];
+        const gamesList = ["Minecraft PE", "Roblox MOD", "GTA V Mobile", "Naruto Storm 4", "RDR Mobile"];
+        
+        function showNotif() {
+            const box = document.getElementById('notification-box');
+            document.getElementById('notif-user').innerText = users[Math.floor(Math.random() * users.length)];
+            document.getElementById('notif-action').innerText = "Downloaded " + gamesList[Math.floor(Math.random() * gamesList.length)];
+            box.style.display = 'flex';
+            setTimeout(() => { box.style.display = 'none'; }, 3500);
         }
+        setInterval(showNotif, 10000);
 
-        function updateTheme(isDark) {
-            if (isDark) {
-                html.classList.add('dark');
-                html.classList.remove('light');
-                toggleCircle.style.transform = 'translateX(28px)';
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                html.classList.remove('dark');
-                html.classList.add('light');
-                toggleCircle.style.transform = 'translateX(0px)';
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            }
-            localStorage.setItem('theme', isDark ? 'dark' : 'light');
-        }
-
-        themeToggle.addEventListener('click', () => {
-            updateTheme(!html.classList.contains('dark'));
+        // Theme
+        document.getElementById('theme-btn').addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
         });
 
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        updateTheme(savedTheme === 'dark');
+        // Action Logic
+        function initAction(game) {
+            const modal = document.getElementById('action-modal');
+            const bar = document.getElementById('bar');
+            const msg = document.getElementById('loading-msg');
+            const loadingSec = document.getElementById('modal-loading');
+            const verifySec = document.getElementById('modal-verify');
+
+            modal.classList.remove('hidden');
+            loadingSec.classList.remove('hidden');
+            verifySec.classList.add('hidden');
+            
+            let w = 0;
+            const msgs = ["Connecting to Secure Node...", "Injecting MOD Scripts...", "Verifying File Hashes...", "Preparing Final Link..."];
+            
+            const timer = setInterval(() => {
+                w += Math.random() * 4;
+                if (w >= 100) {
+                    w = 100;
+                    clearInterval(timer);
+                    setTimeout(() => {
+                        loadingSec.classList.add('hidden');
+                        verifySec.classList.remove('hidden');
+                    }, 400);
+                }
+                bar.style.width = w + '%';
+                msg.innerText = msgs[Math.floor(w / 26)];
+            }, 80);
+        }
+
+        // Close Modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('action-modal')) {
+                document.getElementById('action-modal').classList.add('hidden');
+            }
+        }
     </script>
 </body>
 </html>
