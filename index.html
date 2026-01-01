@@ -30,7 +30,7 @@
             box-shadow: 0 10px 30px rgba(249, 115, 22, 0.1);
         }
 
-        /* Notification */
+        /* الإشعارات */
         #notification-box {
             position: fixed;
             bottom: 20px;
@@ -41,7 +41,7 @@
         }
         @keyframes slideIn { from { transform: translateX(-100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
 
-        /* Progress Bar */
+        /* شريط التحميل */
         .progress-container {
             height: 10px;
             background: rgba(255,255,255,0.1);
@@ -74,7 +74,7 @@
 </head>
 <body>
 
-    <!-- Header -->
+    <!-- الهيدر -->
     <header class="border-b dark:border-white/10 p-4 sticky top-0 bg-inherit z-50">
         <div class="max-w-7xl mx-auto flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -83,7 +83,7 @@
             </div>
             <div class="hidden md:flex items-center gap-6 text-[10px] font-bold opacity-60 uppercase tracking-widest">
                 <span>Verified by McAfee</span>
-                <span>Anti-Ban v4.2</span>
+                <span>Anti-Ban v4.5</span>
                 <span class="text-green-500">● Server Online</span>
             </div>
             <button id="theme-btn" class="p-2 rounded-full border dark:border-white/10">🌓</button>
@@ -91,14 +91,14 @@
     </header>
 
     <main class="max-w-7xl mx-auto px-4 py-8">
-        <!-- Stats Section -->
+        <!-- قسم الإحصائيات -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
             <div class="card-premium p-4 rounded-2xl text-center">
-                <div class="text-xl font-black text-orange-500">2.4M+</div>
+                <div class="text-xl font-black text-orange-500">3.1M+</div>
                 <div class="text-[9px] uppercase font-bold opacity-50">Downloads</div>
             </div>
             <div class="card-premium p-4 rounded-2xl text-center">
-                <div class="text-xl font-black text-green-500" id="live-users">1,542</div>
+                <div class="text-xl font-black text-green-500" id="live-users">2,108</div>
                 <div class="text-[9px] uppercase font-bold opacity-50">Active Users</div>
             </div>
             <div class="card-premium p-4 rounded-2xl text-center">
@@ -111,9 +111,37 @@
             </div>
         </div>
 
-        <!-- Games Grid -->
+        <!-- شبكة الألعاب -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             
+            <!-- FC 26 MOBILE MOD -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://image.winudf.com/v2/image1/Y29tLmVhLmdwLmZpZmFtb2JpbGVfaWNvbl9pZF8xNzU4NzgwMDA5XzAyMQ/icon.png?w=106&fakeurl=1" class="game-img">
+                    <div>
+                        <h3 class="font-black text-lg">FC 26 MOBILE MOD</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">UNLIMITED FC POINTS</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">Unlimited points and coins. All 2026 transfers updated. 100% win rate AI mod enabled.</p>
+                <button onclick="initAction('FC 26 MOBILE MOD')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
+            <!-- Geometry Dash -->
+            <div class="card-premium p-5 rounded-[2rem]">
+                <div class="flex gap-4 mb-4">
+                    <img src="https://geodashlite.io/cache/data/image/game/geometry-dash2-m330x330.jpg" class="game-img">
+                    <div>
+                        <h3 class="font-black text-lg">Geometry Dash</h3>
+                        <p class="text-[10px] text-orange-500 font-bold">FULL VERSION UNLOCKED</p>
+                        <div class="text-yellow-500 text-[10px]">★★★★★</div>
+                    </div>
+                </div>
+                <p class="text-[11px] opacity-60 mb-6">Access all icons, levels, and colors. Built-in practice mode improvements and anti-lag.</p>
+                <button onclick="initAction('Geometry Dash')" class="mt-auto w-full bg-orange-600 py-3 rounded-xl font-black text-xs uppercase hover:bg-orange-700 transition-colors">Download Game</button>
+            </div>
+
             <!-- Minecraft -->
             <div class="card-premium p-5 rounded-[2rem]">
                 <div class="flex gap-4 mb-4">
@@ -186,35 +214,35 @@
 
         </div>
 
-        <!-- Community Section -->
+        <!-- قسم المجتمع -->
         <div class="max-w-2xl mx-auto border-t dark:border-white/10 pt-10">
             <h2 class="text-center font-black text-xl mb-8 uppercase italic tracking-widest">Live Community Activity</h2>
             <div class="space-y-4" id="comment-section">
                 <div class="card-premium p-4 rounded-2xl flex gap-3">
-                    <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center font-bold text-xs">M</div>
+                    <div class="w-8 h-8 rounded-full bg-green-600 flex items-center justify-center font-bold text-xs text-white">F</div>
                     <div class="flex-1">
                         <div class="flex justify-between items-center mb-1">
-                            <span class="text-xs font-bold">Mike_Pro</span>
+                            <span class="text-xs font-bold">FC_Legend</span>
                             <span class="text-[9px] opacity-40">Just now</span>
                         </div>
-                        <p class="text-[11px] opacity-70">Minecraft works 100%! The skin pack is amazing. No lag at all on my S23.</p>
+                        <p class="text-[11px] opacity-70">FC 26 MOBILE MOD actually works. Got my dream team in 5 minutes!</p>
                     </div>
                 </div>
                 <div class="card-premium p-4 rounded-2xl flex gap-3">
-                    <div class="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center font-bold text-xs">S</div>
+                    <div class="w-8 h-8 rounded-full bg-orange-600 flex items-center justify-center font-bold text-xs text-white">M</div>
                     <div class="flex-1">
                         <div class="flex justify-between items-center mb-1">
-                            <span class="text-xs font-bold">Sara_Gaming</span>
-                            <span class="text-[9px] opacity-40">5 mins ago</span>
+                            <span class="text-xs font-bold">Mike_Pro</span>
+                            <span class="text-[9px] opacity-40">12 mins ago</span>
                         </div>
-                        <p class="text-[11px] opacity-70">Roblox menu is crazy. I used fly hack and it's so smooth. Thanks ProMods!</p>
+                        <p class="text-[11px] opacity-70">Minecraft works 100%! The skin pack is amazing. No lag at all.</p>
                     </div>
                 </div>
             </div>
         </div>
     </main>
 
-    <!-- Modal -->
+    <!-- المودال -->
     <div id="action-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 modal-blur">
         <div class="bg-[#111] border border-orange-600/30 w-full max-w-sm p-8 rounded-[2.5rem] text-center shadow-2xl shadow-orange-900/20">
             <div id="modal-loading">
@@ -238,42 +266,42 @@
         </div>
     </div>
 
-    <!-- Notification -->
+    <!-- الإشعار المباشر -->
     <div id="notification-box" class="bg-white text-black p-3 rounded-xl shadow-2xl flex items-center gap-3">
         <div class="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center text-white text-[10px]">✓</div>
         <div class="text-[9px] leading-tight">
             <span class="font-bold" id="notif-user">User122</span> <br> 
-            <span class="opacity-60" id="notif-action">Downloaded GTA V</span>
+            <span class="opacity-60" id="notif-action">Downloaded FC 26 MOBILE MOD</span>
         </div>
     </div>
 
     <script>
-        // Live Stat Update
+        // تحديث إحصائيات المستخدمين مباشرة
         setInterval(() => {
             const users = document.getElementById('live-users');
             const change = Math.floor(Math.random() * 15) - 7;
             users.innerText = (parseInt(users.innerText.replace(',', '')) + change).toLocaleString();
         }, 4000);
 
-        // Notification Logic
-        const users = ["X-Gamer", "Dark_Knight", "Sofia_M", "Alex99", "ProPlayer", "ModMaster"];
-        const gamesList = ["Minecraft PE", "Roblox MOD", "GTA V Mobile", "Naruto Storm 4", "RDR Mobile"];
+        // منطق الإشعارات
+        const usersList = ["X-Gamer", "Dark_Knight", "Sofia_M", "Alex99", "ProPlayer", "ModMaster", "FC_Killer"];
+        const gamesList = ["Minecraft PE", "Roblox MOD", "GTA V Mobile", "Naruto Storm 4", "RDR Mobile", "Geometry Dash", "FC 26 MOBILE MOD"];
         
         function showNotif() {
             const box = document.getElementById('notification-box');
-            document.getElementById('notif-user').innerText = users[Math.floor(Math.random() * users.length)];
+            document.getElementById('notif-user').innerText = usersList[Math.floor(Math.random() * usersList.length)];
             document.getElementById('notif-action').innerText = "Downloaded " + gamesList[Math.floor(Math.random() * gamesList.length)];
             box.style.display = 'flex';
             setTimeout(() => { box.style.display = 'none'; }, 3500);
         }
         setInterval(showNotif, 10000);
 
-        // Theme
+        // تبديل السمة
         document.getElementById('theme-btn').addEventListener('click', () => {
             document.documentElement.classList.toggle('dark');
         });
 
-        // Action Logic
+        // منطق التحميل والتحقق
         function initAction(game) {
             const modal = document.getElementById('action-modal');
             const bar = document.getElementById('bar');
@@ -303,7 +331,7 @@
             }, 80);
         }
 
-        // Close Modal
+        // إغلاق المودال عند الضغط خارجه
         window.onclick = function(event) {
             if (event.target == document.getElementById('action-modal')) {
                 document.getElementById('action-modal').classList.add('hidden');
